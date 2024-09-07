@@ -22,10 +22,12 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dock-from-dash
     gnomeExtensions.launch-new-instance
-    gnomeExtensions.native-window-placement
-    gnomeExtensions.on-the-top
+    # gnomeExtensions.native-window-placement
+    # gnomeExtensions.on-the-top
+    gnomeExtensions.search-light
     gnomeExtensions.tiling-assistant
     gnomeExtensions.user-themes
+    gnomeExtensions.window-title-is-back
   ];
 
 }
