@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "" = {
+    "org/gnome/shell/keybindings" = {
       open-new-window-application-1 = [ "<Super><Shift>1" ];
       open-new-window-application-2 = [ "<Super><Shift>2" ];
       open-new-window-application-3 = [ "<Super><Shift>3" ];

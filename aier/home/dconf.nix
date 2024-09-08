@@ -5,6 +5,10 @@ with lib.hm.gvariant;
 {
   
   imports = [
-    #./dconf/gnomeKeybindings
+    ./dconf/gnomeCustomKeybindings.nix
+    ./dconf/gnomeDesktopWMKeybindings.nix
+    ./dconf/gnomeDesktopWMPreferences.nix
+    # ./gnomeExtensionsClipboardManager.nix
+    ./dconf/gnomeShellKeybindings.nix
   ];
 }

@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "" = {
+    "org/gnome/desktop/wm/keybindings" = {
       activate-window-menu = [];
       always-on-top = [ "<Super>u" ];
       begin-move = [];
