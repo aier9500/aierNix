@@ -10,6 +10,7 @@
     vial
     whatsapp-for-linux
     dconf2nix
+    microsoft-edge
 
     # Creative Suite
     darktable # Lightroom Linux Alt
@@ -21,13 +22,12 @@
     gnomeExtensions.auto-move-windows
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dock-from-dash
+    gnomeExtensions.forge
     gnomeExtensions.launch-new-instance
-    # gnomeExtensions.native-window-placement
-    # gnomeExtensions.on-the-top
     gnomeExtensions.search-light
     gnomeExtensions.tiling-assistant
+    gnomeExtensions.unite
     gnomeExtensions.user-themes
-    gnomeExtensions.window-title-is-back
   ];
 
 }
