@@ -10,6 +10,7 @@ with lib.hm.gvariant;
     ./dconf/gnomeDesktopWMPreferences.nix
     ./dconf/gnomeExtensionsClipboardManager.nix
     ./dconf/gnomeExtensionsUnite.nix
+    ./dconf/gnomeMutter.nix
     ./dconf/gnomeShellKeybindings.nix
   ];
 }
