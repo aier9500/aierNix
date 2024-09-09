@@ -19,7 +19,7 @@
     
     # Gnome Extensions
     gnomeExtensions.appindicator
-    gnomeExtensions.auto-move-windows
+    # gnomeExtensions.auto-move-windows
     gnomeExtensions.clipboard-indicator
     # gnomeExtensions.gtk4-desktop-icons-ng-ding
     gnomeExtensions.dock-from-dash
