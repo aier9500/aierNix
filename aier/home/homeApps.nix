@@ -8,7 +8,6 @@
     libreoffice
     vesktop
     vial
-    whatsapp-for-linux
     dconf2nix
     microsoft-edge
 
