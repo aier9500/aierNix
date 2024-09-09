@@ -22,10 +22,7 @@
     gnomeExtensions.clipboard-indicator
     # gnomeExtensions.gtk4-desktop-icons-ng-ding
     gnomeExtensions.dock-from-dash
-    gnomeExtensions.forge
     gnomeExtensions.launch-new-instance
-    gnomeExtensions.search-light
-    gnomeExtensions.tiling-assistant
     gnomeExtensions.unite
     gnomeExtensions.user-themes
   ];
