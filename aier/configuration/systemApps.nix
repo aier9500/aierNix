@@ -20,21 +20,22 @@
     totem # Videos
     
     # Other Apps
-    vscode
+    dconf-editor
     fastfetch
     gparted
-    resources
-    dconf-editor
     obs-studio
+    resources
+    protonvpn-gui
+    vscode
     # flameshot
 
     # Programs
-    jdk
     git
-    ntfs3g
     home-manager
-    tlp
+    jdk
+    ntfs3g
     python3
+    tlp
     
     # Codecs
   ];
