@@ -1,0 +1,10 @@
+Home-manager
+
+rm ~/.config/gtk-*/gtk.css
+home-manager switch --flake .#aier
+home-manager switch -b backup --flake .#aier
+
+
+Systemwide
+
+sudo nixos-rebuild switch --flake .#aier
