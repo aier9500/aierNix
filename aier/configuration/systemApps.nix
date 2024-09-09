@@ -26,6 +26,7 @@
     resources
     dconf-editor
     obs-studio
+    # flameshot
 
     # Programs
     jdk

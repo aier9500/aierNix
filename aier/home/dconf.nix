@@ -8,7 +8,7 @@ with lib.hm.gvariant;
     ./dconf/gnomeCustomKeybindings.nix
     ./dconf/gnomeDesktopWMKeybindings.nix
     ./dconf/gnomeDesktopWMPreferences.nix
-    # ./gnomeExtensionsClipboardManager.nix
+    ./dconf/gnomeExtensionsClipboardManager.nix
     ./dconf/gnomeShellKeybindings.nix
   ];
 }
