@@ -5,11 +5,12 @@
   home.packages = with pkgs; [
 
     # User Apps
+    dconf2nix
     libreoffice
+    microsoft-edge
+    osu-lazer
     vesktop
     vial
-    dconf2nix
-    microsoft-edge
 
     # Creative Suite
     darktable # Lightroom Linux Alt
