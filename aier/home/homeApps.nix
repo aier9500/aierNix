@@ -6,6 +6,7 @@
 
     # User Apps
     dconf2nix
+    gnome-boxes
     libreoffice
     microsoft-edge
     osu-lazer
