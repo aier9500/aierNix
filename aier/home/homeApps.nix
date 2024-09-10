@@ -17,6 +17,10 @@
     davinci-resolve # Premiere Pro Linux Alt
     inkscape # Photoshop/Paint
     
+    # programs
+    sassc
+
+    
     # Gnome Extensions
     gnomeExtensions.appindicator
     # gnomeExtensions.auto-move-windows
