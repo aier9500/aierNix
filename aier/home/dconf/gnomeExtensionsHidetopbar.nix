@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "org/gonme/extensions/hidetopbar" = {
+    "org/gnome/extensions/hidetopbar" = {
       enable-active-window = false;
       mouse-sensitive = true;
       shortcut-keybind = [ "<Super>q" ];
