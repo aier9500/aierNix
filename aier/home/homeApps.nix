@@ -27,8 +27,8 @@
     # gnomeExtensions.auto-move-windows
     gnomeExtensions.clipboard-indicator
     # gnomeExtensions.gtk4-desktop-icons-ng-ding
+    gnomeExtensions.dash-to-dock
     gnomeExtensions.disable-unredirect-fullscreen-windows
-    gnomeExtensions.dock-from-dash
     gnomeExtensions.hide-top-bar
     gnomeExtensions.launch-new-instance
     gnomeExtensions.unite
