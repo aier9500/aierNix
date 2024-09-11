@@ -28,4 +28,7 @@
         intel-compute-runtime
     ];
   };
+
+  # Adding v4l2loopback for virtual camera
+  boot.kernelModules = [ "kvm-intel" "hid-nintendo" "v4l2loopback" ];
 }
