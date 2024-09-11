@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
 
     # User Apps
+    chromium
     dconf2nix
     gnome-boxes
     libreoffice

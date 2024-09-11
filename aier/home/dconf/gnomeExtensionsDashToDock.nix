@@ -12,6 +12,7 @@ with lib.hm.gvariant;
       height-fraction = 0.9;
       hotkeys-overlay = true;
       hotkeys-show-dock = true;
+      intellihide-mode = "ALL_WINDOWS";
       preferred-monitor = -2;
       preferred-monitor-by-connector = "eDP-1";
       shortcut = [ "<Shift><Super>q" ];
