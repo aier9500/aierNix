@@ -14,8 +14,8 @@ with lib.hm.gvariant;
       hotkeys-show-dock = true;
       preferred-monitor = -2;
       preferred-monitor-by-connector = "eDP-1";
-      shortcut = [ "<Super>q" ];
-      shortcut-text = "<Super>q";
+      shortcut = [ "<Shift><Super>q" ];
+      shortcut-text = "<Shift><Super>q";
       shortcut-timeout = 2.0;
     };
 
