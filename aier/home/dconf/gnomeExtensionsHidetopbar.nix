@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "" = {
+    "org/gonme/extensions/hidetopbar" = {
       enable-active-window = false;
       mouse-sensitive = true;
       shortcut-keybind = [ "<Shift><Super>q" ];
