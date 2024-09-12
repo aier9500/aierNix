@@ -16,11 +16,11 @@ with lib.hm.gvariant;
       reduce-panel-spacing = true;
       show-appmenu-button = true;
       show-legacy-tray = true;
-      show-window-buttons = "never";
+      show-window-buttons = "maximized";
       show-window-title = "always";
       use-activities-text = false;
       window-buttons-placement = "last";
-      window-buttons-theme = "mcmojave";
+      window-buttons-theme = "adwaita";
     };
 
   };
