@@ -27,7 +27,7 @@
     gnomeExtensions.disable-unredirect-fullscreen-windows
     gnomeExtensions.hide-top-bar
     gnomeExtensions.launch-new-instance
-    gnomeExtensions.rounded-corners
+    gnomeExtensions.rounded-window-corners-reborn
     gnomeExtensions.unite
     gnomeExtensions.user-themes
   ];
