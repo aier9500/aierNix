@@ -19,7 +19,7 @@ with lib.hm.gvariant;
       show-window-buttons = "maximized";
       show-window-title = "always";
       use-activities-text = false;
-      window-buttons-placement = "last";
+      window-buttons-placement = "auto";
       window-buttons-theme = "adwaita";
     };
 
