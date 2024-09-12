@@ -7,7 +7,7 @@ with lib.hm.gvariant;
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       action-middle-click-titlebar = "minimize";
-      button-layout = "close:appmenu";
+      button-layout = "appmenu:close";
       num-workspaces = 3;
     };
 
