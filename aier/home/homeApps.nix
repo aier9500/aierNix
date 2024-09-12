@@ -30,6 +30,7 @@
     gnomeExtensions.rounded-window-corners-reborn
     gnomeExtensions.unite
     gnomeExtensions.user-themes
+    gnomeExtensions.window-gestures
   ];
 
 }
