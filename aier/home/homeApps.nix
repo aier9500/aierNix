@@ -7,9 +7,9 @@
     # User Apps
     chromium
     dconf2nix
+    discord
     gnome-boxes
     libreoffice
-    microsoft-edge
     osu-lazer
     vesktop
     vial
