@@ -13,7 +13,7 @@ with lib.hm.gvariant;
       font-antialiasing = "rgba";
       font-hinting = "full";
       font-name = "Cantarell 12";
-      gtk-theme = "adw-gtk3";
+      gtk-theme = "adwGtk3";
       monospace-font-name = "Monospace 11";
       show-battery-percentage = true;
     };

@@ -14,12 +14,12 @@
     
     # fonts
     ".fonts/ubuntuSans".source = "${pkgs.ubuntu-sans}/share/fonts/truetype/ubuntu-sans";
-    
+
     # .icons
     ".icons/latteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
 
     # .themes
-    ".themes/adw-gtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
+    ".themes/adwGtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
   };
 
   # Bash
