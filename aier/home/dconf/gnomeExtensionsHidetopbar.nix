@@ -8,6 +8,7 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/hidetopbar" = {
       enable-active-window = false;
       mouse-sensitive = true;
+      mouse-sensitive-fullscreen-window = false; 
       shortcut-keybind = [ "<Super>q" ];
     };
 
