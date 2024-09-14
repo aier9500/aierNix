@@ -9,6 +9,8 @@
   
 
   nixpkgs.config.allowUnfree = true; 
+  services.flatpak.enable = true;
+
 
   home.file = {
     
