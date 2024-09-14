@@ -9,6 +9,7 @@ with lib.hm.gvariant;
       enable-active-window = false;
       mouse-sensitive = true;
       mouse-sensitive-fullscreen-window = false; 
+      pressure-threshold = 200;
       shortcut-keybind = [ "<Super>q" ];
     };
 
