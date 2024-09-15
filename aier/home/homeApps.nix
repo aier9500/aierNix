@@ -2,7 +2,7 @@
 
 {
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
 
     # User Apps
     chromium
@@ -19,18 +19,20 @@
     davinci-resolve # Premiere Pro Linux Alt
     inkscape # Photoshop/Paint
 
-    
-    # Gnome Extensions
-    gnomeExtensions.appindicator
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.disable-unredirect-fullscreen-windows
-    gnomeExtensions.hide-top-bar
-    gnomeExtensions.launch-new-instance
-    gnomeExtensions.rounded-window-corners-reborn
-    gnomeExtensions.unite
-    gnomeExtensions.user-themes
-    gnomeExtensions.window-gestures
-  ];
 
+  ]) ++ (with pkgs.gnomeExtensions; [
+
+    # Gnome Extensions
+    appindicator
+    clipboard-indicator
+    dash-to-dock
+    disable-unredirect-fullscreen-windows
+    hide-top-bar
+    launch-new-instance
+    rounded-window-corners-reborn
+    unite
+    user-themes
+
+    ]);
+    
 }
