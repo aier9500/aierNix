@@ -21,13 +21,13 @@
     
     # Other Apps
     dconf-editor
+    drawing
     fastfetch
     gparted
     obs-studio
     resources
     protonvpn-gui
     vscode
-    # flameshot
 
     # Programs
     git
