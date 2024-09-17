@@ -8,7 +8,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/preferences" = {
       action-middle-click-titlebar = "minimize";
       button-layout = "appmenu:close";
-      num-workspaces = 3;
+      # num-workspaces = 3;
     };
 
   };
