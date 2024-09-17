@@ -15,6 +15,7 @@
     
     # fonts
     ".fonts/ubuntuSans".source = "${pkgs.ubuntu-sans}/share/fonts/truetype/ubuntu-sans";
+    ".fonts/ibmPlex".source = "${pkgs.ibm-plex}/share/fonts/opentype";
 
     # .icons
     ".icons/latteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
