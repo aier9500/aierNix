@@ -14,14 +14,14 @@
   home.file = {
     
     # fonts
-    ".fonts/ubuntuSans".source = "${pkgs.ubuntu-sans}/share/fonts/truetype/ubuntu-sans";
-    ".fonts/ibmPlex".source = "${pkgs.ibm-plex}/share/fonts/opentype";
+    ".local/share/fonts/UbuntuSans".source = "${pkgs.ubuntu-sans}/share/fonts/truetype/ubuntu-sans";
+    ".local/share/fonts/IbmPlex".source = "${pkgs.ibm-plex}/share/fonts/opentype";
 
     # .icons
-    ".icons/latteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
+    ".local/share/icons/LatteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
 
     # .themes
-    ".themes/adwGtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
+    ".local/share/themes/AdwGtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
   };
 
   # Bash
