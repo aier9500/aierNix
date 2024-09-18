@@ -9,7 +9,6 @@
     dconf2nix
     discord
     gnome-boxes
-    ibus-engines.pinyin
     libreoffice
     osu-lazer
     vesktop
