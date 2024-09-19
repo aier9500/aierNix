@@ -36,7 +36,7 @@
   services.flatpak.enable = true;
 
   # Adding Chinese ibus
-  il8n.inputMethod = {
+  i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
   };
