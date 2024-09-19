@@ -8,13 +8,13 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       # color-scheme = "default";
       cursor-theme = "LatteLightCursors";
-      document-font-name = "IBM Plex Serif weight=450 11";
+      document-font-name = "Noto Serif CJK TC @wght=400 11";
       enable-hot-corners = false;
       font-antialiasing = "rgba";
       font-hinting = "full";
       font-name = "IBM Plex Sans 11";
       gtk-theme = "AdwGtk3";
-      monospace-font-name = "IBM Plex Mono 10";
+      monospace-font-name = "Noto Sans CJK SC @wght=400 10";
       show-battery-percentage = true;
     };
 
