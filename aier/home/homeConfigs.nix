@@ -14,8 +14,9 @@
   home.file = {
     
     # fonts
-    ".local/share/fonts/UbuntuSans".source = "${pkgs.ubuntu-sans}/share/fonts/truetype/ubuntu-sans";
     ".local/share/fonts/IbmPlex".source = "${pkgs.ibm-plex}/share/fonts/opentype";
+    ".local/share/fonts/NotoCjkSerif".source = "${noto-fonts-cjk-serif}/share/fonts/opentype/noto-cjk";
+    ".local/share/fonts/NotoCjkSans".source = "${noto-fonts-cjk-sans}/share/fonts/opentype/noto-cjk";
 
     # .icons
     ".local/share/icons/LatteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
