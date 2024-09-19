@@ -49,8 +49,8 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "us, cn";
-    variant = "colemak_dh,";
+    layout = "us";
+    variant = "colemak_dh";
   };
 
   # Enable CUPS to print documents.
