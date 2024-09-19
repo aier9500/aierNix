@@ -38,7 +38,7 @@
   # Adding Chinese ibus
   il8n.inputMethod = {
     enabled = "ibus";
-    ibus.engines = with pkgs.ibus-englines; [ libpinyin ];
+    ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
   };
 
 }
