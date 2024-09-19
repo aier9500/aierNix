@@ -11,6 +11,7 @@
     gnome-boxes
     libreoffice
     osu-lazer
+    steam
     vesktop
     vial
 
