@@ -9,6 +9,7 @@
     dconf2nix
     discord
     gnome-boxes
+    gnome-solanum
     libreoffice
     osu-lazer
     steam
