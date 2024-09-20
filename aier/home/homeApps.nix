@@ -11,6 +11,7 @@
     gnome-boxes
     gnome-solanum
     libreoffice
+    localsend
     osu-lazer
     steam
     vesktop
