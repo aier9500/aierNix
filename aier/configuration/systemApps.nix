@@ -15,6 +15,7 @@
     gnome-terminal
     gnome-tweaks
     evince # Document viewer
+    firewalld-gui # Firewall
     loupe # Image viewer
     nautilus # Files
     totem # Videos
