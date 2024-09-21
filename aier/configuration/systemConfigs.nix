@@ -26,6 +26,8 @@
   services = {
     # Removing Gnome Utilities
     gnome.core-utilities.enable = false; 
+    # Enabling TLP
+    power-profile-daemon.enable = false; 
     tlp.enable = true; 
   };
   
