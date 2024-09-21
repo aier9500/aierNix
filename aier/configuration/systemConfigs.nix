@@ -24,8 +24,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {
-    # Enabling Flatpak
-    flatpak.enable = true;
     # Removing Gnome Utilities
     gnome.core-utilities.enable = false; 
   };

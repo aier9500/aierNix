@@ -3,7 +3,6 @@
 {
 
   home.packages = (with pkgs; [
-
     # User Apps
     chromium
     dconf2nix
@@ -15,15 +14,11 @@
     steam
     vesktop
     vial
-
     # Creative Suite
     darktable # Lightroom Linux Alt
     davinci-resolve # Premiere Pro Linux Alt
     inkscape # Photoshop/Paint
-
-
   ]) ++ (with pkgs.gnomeExtensions; [
-
     # Gnome Extensions
     appindicator
     clipboard-indicator
@@ -34,7 +29,5 @@
     rounded-window-corners-reborn
     unite
     user-themes
-
-    ]);
-    
+  ]);
 }
