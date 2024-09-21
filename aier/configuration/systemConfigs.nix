@@ -24,6 +24,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {
+    # Enabling Flatpaks
+    flatpak.enable = true; 
     # Removing Gnome Utilities
     gnome.core-utilities.enable = false; 
     # Enabling TLP

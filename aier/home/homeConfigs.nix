@@ -1,10 +1,11 @@
 { config, pkgs, input, ... }: 
 
 {
-  programs.home-manager.enable = true;
-  home.username = "aier";
-  home.homeDirectory = "/home/aier";
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home = {
+    username = "aier";
+    homeDirectory = "/home/aier";
+    stateVersion = "24.05"; # Please read the comment before changing.
+  };
   
   nixpkgs.config.allowUnfree = true; 
 
@@ -19,9 +20,8 @@
     ".local/share/themes/AdwGtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
   };
 
-  # Bash
-
   programs = {
+    # Bash
     bash = {
       enable = true; 
       bashrcExtra = "
@@ -31,7 +31,10 @@
         alias homeswitch-b='home-manager switch -b backup --flake .#aier'
       ";
     };
+    home-manager.enable = true; 
   };
-  
 
+  services = {
+    flatpak.enable = true; 
+  };
 }
