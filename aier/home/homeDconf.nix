@@ -15,5 +15,6 @@ with lib.hm.gvariant;
     ./dconf/gnomeExtensionsUnite.nix
     ./dconf/gnomeMutter.nix
     ./dconf/gnomeShellKeybindings.nix
+    ./dconf/gnomeTouchpad.nix
   ];
 }

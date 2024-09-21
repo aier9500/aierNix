@@ -8,7 +8,7 @@
 
   services.flatpak.overrides = {
     global = {
-      Context.sockets = ["wayland" "!x11"];
+      Context.sockets = [ "wayland" "!x11" "fallbackx11" ];
       Context.filesystems = ["host"];
     };
   };
