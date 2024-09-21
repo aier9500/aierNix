@@ -3,7 +3,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    
     # Gnome Apps
     gnome-calculator
     gnome-calendar
@@ -12,13 +11,10 @@
     gnome-console
     gnome-photos
     gnome-text-editor
-    gnome-terminal
     gnome-tweaks
-    evince # Document viewer
     loupe # Image viewer
     nautilus # Files
     totem # Videos
-    
     # Other Apps
     dconf-editor
     drawing
@@ -28,23 +24,25 @@
     resources
     protonvpn-gui
     vscode
-
     # Programs
-    git
     home-manager
-    jdk
     ntfs3g
     python3
-    tlp
-    
-    # Codecs
   ];
 
   programs = {
+    evince.enable = true;
+    firefox.enable = true;
+    git.enable = true; 
+    gnome-terminal.enable = true; 
     localsend = {
       enable = true;
       openFirewall = true; 
     };
+    java.enable = true; 
   };
 
+  services.flatpak.packages = [
+
+  ];
 }

@@ -20,14 +20,18 @@
   };
 
   # Bash
-  programs.bash = {
-    enable = true; 
-    bashrcExtra = "
-      fastfetch
-      alias cls='clear'
-      alias homeswitch='home-manager switch --flake .#aier'
-      alias homeswitch-b='home-manager switch -b backup --flake .#aier'
-    ";
+
+  programs = {
+    bash = {
+      enable = true; 
+      bashrcExtra = "
+        fastfetch
+        alias cls='clear'
+        alias homeswitch='home-manager switch --flake .#aier'
+        alias homeswitch-b='home-manager switch -b backup --flake .#aier'
+      ";
+    };
   };
+  
 
 }

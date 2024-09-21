@@ -26,6 +26,7 @@
   services = {
     # Removing Gnome Utilities
     gnome.core-utilities.enable = false; 
+    tlp.enable = true; 
   };
   
   # Enabling OpenGL
@@ -42,6 +43,11 @@
     enable = true; 
     type = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+  };
+
+  programs = {
+    nautilus-open-any-terminal.enable = true; 
+
   };
 
 }
