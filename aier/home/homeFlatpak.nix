@@ -11,7 +11,7 @@
       # Force Wayland by default
       Context.sockets = ["wayland" "!x11" "!fallback-x11"];
 
-      filesystem = ["host"];
+      Context.filesystems = ["host"];
     };
   };
 
