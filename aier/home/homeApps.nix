@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: 
+{ pkgs, ... }: 
 
 {
 
@@ -11,7 +11,6 @@
     gnome-boxes
     gnome-solanum
     libreoffice
-    localsend
     osu-lazer
     steam
     vesktop

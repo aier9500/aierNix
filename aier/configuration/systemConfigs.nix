@@ -3,23 +3,33 @@
 {
 	
 	# Bootloader.
-  boot.loader.grub.enable = true; 
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true; 
-  boot.loader.efi.canTouchEfiVariables = true;
-  
-  # Enabling Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  # Removing Gnome Utilities
-  services.gnome.core-utilities.enable = false; 
+  boot.loader = {
+    
+    grub = {
+      enable = true; 
+      devices = [ "nodev" ];
+      efiSupport = true;
+      useOSProber = true; 
+    };
 
+    efi.canTouchEfiVariables = true;
+  };
+  
   # Enabling NTFS
   boot.supportedFilesystems = {
     ntfs = true; 
   };
 
+  # Enabling Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  services = {
+    # Enabling Flatpak
+    flatpak.enable = true;
+    # Removing Gnome Utilities
+    gnome.core-utilities.enable = false; 
+  };
+  
   # Enabling OpenGL
   hardware.graphics = {
     enable = true;
@@ -28,12 +38,6 @@
         intel-compute-runtime
     ];
   };
-
-  # Adding v4l2loopback for virtual camera
-  boot.kernelModules = [ "kvm-intel" "hid-nintendo" "v4l2loopback" ];
-
-  # Enabling Flatpak
-  services.flatpak.enable = true;
 
   # Adding Chinese ibus
   i18n.inputMethod = {
