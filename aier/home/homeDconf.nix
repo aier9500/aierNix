@@ -9,6 +9,7 @@ with lib.hm.gvariant;
     ./dconf/gnomeDesktopInterface.nix
     ./dconf/gnomeDesktopWMKeybindings.nix
     ./dconf/gnomeDesktopWMPreferences.nix
+    ./dconf/gnomeExtensionsBlurMyShell.nix
     ./dconf/gnomeExtensionsClipboardManager.nix
     ./dconf/gnomeExtensionsDashToDock.nix
     ./dconf/gnomeExtensionsHidetopbar.nix
