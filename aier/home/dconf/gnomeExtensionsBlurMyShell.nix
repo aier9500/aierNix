@@ -34,7 +34,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       brightness = 0.6;
-      pipeline = "pipeline_default";
+      pipeline = "pipeline_default_rounded";
       sigma = 30;
       unblur-in-overview = false;
     };

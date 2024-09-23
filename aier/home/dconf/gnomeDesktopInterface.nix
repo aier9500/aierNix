@@ -7,6 +7,7 @@ with lib.hm.gvariant;
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       # color-scheme = "default";
+      # The shell theme is not set declaratively
       cursor-theme = "LatteLightCursors";
       document-font-name = "Noto Serif CJK TC 11 @wght=400"; # Serif/Document
       enable-hot-corners = false;
