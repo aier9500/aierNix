@@ -28,9 +28,9 @@
     flatpak.enable = true; 
     # Removing Gnome Utilities
     gnome.core-utilities.enable = false; 
-    # Enabling TLP
-    power-profiles-daemon.enable = false; 
-    tlp.enable = true; 
+    # Enabling power control
+    power-profiles-daemon.enable = true; 
+    tlp.enable = false; 
   };
   
   # Enabling OpenGL
