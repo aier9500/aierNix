@@ -16,9 +16,7 @@
   };
   
   # Enabling NTFS
-  boot.supportedFilesystems = {
-    ntfs = true; 
-  };
+  boot.supportedFilesystems = [ "btrfs" "ext2" "ext3" "ext4" "exfat" "f2fs" "fat8" "fat16" "fat32" "ntfs" "xfs" "zfs" ];
 
   # Enabling Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
