@@ -20,6 +20,7 @@
     drawing
     fastfetch
     fprintd # Finger Print Scanner Service
+    fprintd-tod
     gparted
     obs-studio
     resources
