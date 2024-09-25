@@ -26,7 +26,12 @@
   services = {
     # Enabling Flatpaks
     flatpak.enable = true; 
-    # Removing Gnome Utilities
+    # Enabling Fingerprint reading service
+    fprintd.enable = true;
+    fprintd.tod.enable = true;
+    # fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; # (If the vfs0090 Driver does not work, use the following driver)
+    fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+    # Removing Gnome Core Utilities
     gnome.core-utilities.enable = false; 
     # Enabling power control
     power-profiles-daemon.enable = true; 

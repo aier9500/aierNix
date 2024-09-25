@@ -19,6 +19,7 @@
     dconf-editor
     drawing
     fastfetch
+    fprintd # Finger Print Scanner Service
     gparted
     obs-studio
     resources
