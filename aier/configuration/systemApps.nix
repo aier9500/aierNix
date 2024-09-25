@@ -19,12 +19,11 @@
     dconf-editor
     drawing
     fastfetch
-    fprintd # Finger Print Scanner Service
-    fprintd-tod
     gparted
     obs-studio
-    resources
     protonvpn-gui
+    resources
+    usbutils
     vscode
     # Programs
     home-manager
