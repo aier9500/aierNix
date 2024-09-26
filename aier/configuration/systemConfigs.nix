@@ -21,10 +21,10 @@
 
   networking = {
     hostName = "aierNixOS"; # Define your hostname.
+    hostId = "9edbe06b"; 
     wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # Enable networking
     networkmanager.enable = true;
-
   };
 
   # Enabling NTFS
