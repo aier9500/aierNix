@@ -7,6 +7,7 @@ with lib.hm.gvariant;
   dconf.settings = {
     "org/gnome/shell/extensions/dash-to-dock" = {
       background-opacity = 1; # 0.8
+      custom-theme-shrink = true; 
       dash-max-icon-size = 40; # 48
       dock-position = "BOTTOM";
       height-fraction = 0.9;
