@@ -5,6 +5,8 @@
 	# Bootloader.
   boot.loader = {
     
+    efi.canTouchEfiVariables = true;
+
     grub = {
       enable = true; 
       devices = [ "nodev" ];
@@ -12,9 +14,19 @@
       useOSProber = true; 
     };
 
-    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = false; 
   };
   
+  # Networking 
+
+  networking = {
+    hostName = "aierNixOS"; # Define your hostname.
+    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # Enable networking
+    networkmanager.enable = true;
+
+  };
+
   # Enabling NTFS
   boot.supportedFilesystems = [ "btrfs" "ext2" "ext3" "ext4" "exfat" "f2fs" "fat8" "fat16" "fat32" "ntfs" "xfs" "zfs" ];
 
