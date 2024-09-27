@@ -14,7 +14,7 @@ with lib.hm.gvariant;
     ./dconf/gnomeExtensionsDashToDock.nix
     # ./dconf/gnomeExtensionsHidetopbar.nix
     ./dconf/gnomeExtensionsPaperWM.nix
-    # ./dconf/gnomeExtensionsUnite.nix
+    ./dconf/gnomeExtensionsUnite.nix
     ./dconf/gnomeMutter.nix
     ./dconf/gnomeShellKeybindings.nix
     ./dconf/gnomeTouchpad.nix
