@@ -25,11 +25,11 @@
     clipboard-indicator
     dash-to-dock
     disable-unredirect-fullscreen-windows
-    hide-top-bar
+    # hide-top-bar
     launch-new-instance
     paperwm
     rounded-window-corners-reborn
-    unite
+    # unite
     user-themes
   ]);
 
