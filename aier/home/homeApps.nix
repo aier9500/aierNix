@@ -29,7 +29,7 @@
     launch-new-instance
     paperwm
     rounded-window-corners-reborn
-    # unite
+    unite
     user-themes
   ]);
 
