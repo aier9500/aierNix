@@ -9,14 +9,14 @@ with lib.hm.gvariant;
       gesture-horizontal-fingers = 4;
       gesture-workspace-fingers = 0;
 
-      horizontal-margin = 8;
+      horizontal-margin = 5;
       open-window-position = 0;
       selection-border-radius-bottom = 12;
-      selection-border-size = 3;
+      selection-border-size = 0;
       use-default-background = true;
-      vertical-margin = 8;
-      vertical-margin-bottom = 8;
-      window-gap = 8;
+      vertical-margin = 5;
+      vertical-margin-bottom = 5;
+      window-gap = 5;
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {
