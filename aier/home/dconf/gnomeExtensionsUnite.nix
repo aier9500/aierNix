@@ -16,7 +16,7 @@ with lib.hm.gvariant;
       reduce-panel-spacing = true;
       show-appmenu-button = false;
       show-legacy-tray = true;
-      show-window-buttons = "always";
+      show-window-buttons = "never";
       show-desktop-name = false;
       show-window-title = "always";
       use-activities-text = false;
