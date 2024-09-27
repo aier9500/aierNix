@@ -11,7 +11,7 @@ with lib.hm.gvariant;
     ./dconf/gnomeExtensionsBlurMyShell.nix
     ./dconf/gnomeExtensionsClipboardManager.nix
     ./dconf/gnomeExtensionsDashToDock.nix
-    # ./dconf/gnomeExtensionsHidetopbar.nix
+    ./dconf/gnomeExtensionsHidetopbar.nix
     ./dconf/gnomeExtensionsPaperWM.nix
     ./dconf/gnomeExtensionsUnite.nix
     ./dconf/gnomeMediaKeys.nix
