@@ -17,7 +17,7 @@ with lib.hm.gvariant;
       show-appmenu-button = true;
       show-legacy-tray = true;
       show-window-buttons = "never";
-      show-window-title = "always";
+      show-window-title = "never";
       use-activities-text = false;
       window-buttons-placement = "first";
       window-buttons-theme = "adwaita";
