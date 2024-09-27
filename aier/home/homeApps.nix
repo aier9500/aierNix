@@ -27,6 +27,7 @@
     disable-unredirect-fullscreen-windows
     hide-top-bar
     launch-new-instance
+    paperwm
     rounded-window-corners-reborn
     unite
     user-themes
