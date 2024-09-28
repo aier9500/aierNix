@@ -13,7 +13,7 @@ with lib.hm.gvariant;
 
       selection-border-radius-bottom = 12;
       selection-border-radius-top = 12;
-      selection-border-size = 4;
+      selection-border-size = 0;
       horizontal-margin = 6;
       vertical-margin = 6;
       vertical-margin-bottom = 6;
