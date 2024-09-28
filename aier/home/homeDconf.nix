@@ -15,7 +15,6 @@ with lib.hm.gvariant;
     ./dconf/gnomeExtensionsPaperWM.nix
     ./dconf/gnomeExtensionsUnite.nix
     ./dconf/gnomeMediaKeys.nix
-    ./dconf/gnomeMutter.nix
     ./dconf/gnomeShellKeybindings.nix
     ./dconf/gnomeTouchpad.nix
   ];

@@ -8,15 +8,15 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/paperwm" = {
       gesture-horizontal-fingers = 4;
       gesture-workspace-fingers = 0;
-
-      horizontal-margin = 5;
       open-window-position = 0;
       selection-border-radius-bottom = 12;
-      selection-border-size = 0;
-      use-default-background = true;
-      vertical-margin = 5;
-      vertical-margin-bottom = 5;
-      window-gap = 5;
+      show-workspace-indicator = false; 
+
+      selection-border-size = 4;
+      horizontal-margin = 6;
+      vertical-margin = 6;
+      vertical-margin-bottom = 6;
+      window-gap = 6;
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {

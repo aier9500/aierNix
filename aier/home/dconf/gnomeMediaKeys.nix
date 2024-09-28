@@ -13,7 +13,7 @@ with lib.hm.gvariant;
       home = [ "<Super>e" ];
       magnifier = [ "<Super>z" ];
       magnifier-zoom-in = [ "<Super>equal" ];
-      magnifier-zoom-out = [];
+      magnifier-zoom-out = [ "<Super>minus" ];
       mic-mute = [ "F8" ];
       rotate-video-lock-static = [];
       screenreader = [];
