@@ -9,9 +9,10 @@ with lib.hm.gvariant;
       gesture-horizontal-fingers = 4;
       gesture-workspace-fingers = 0;
       open-window-position = 0;
-      selection-border-radius-bottom = 12;
       show-workspace-indicator = false; 
 
+      selection-border-radius-bottom = 12;
+      selection-border-radius-top = 12;
       selection-border-size = 4;
       horizontal-margin = 6;
       vertical-margin = 6;
