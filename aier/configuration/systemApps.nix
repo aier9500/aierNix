@@ -42,8 +42,4 @@
     };
     java.enable = true; 
   };
-
-  services.flatpak.packages = [
-
-  ];
 }
