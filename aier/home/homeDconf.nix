@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 {
   
   imports = [
-    # ./dconf/gnomeDesktopInterface.nix
+    ./dconf/gnomeDesktopInterface.nix
     ./dconf/gnomeDesktopWMKeybindings.nix
     ./dconf/gnomeDesktopWMPreferences.nix
     ./dconf/gnomeExtensionsBlurMyShell.nix

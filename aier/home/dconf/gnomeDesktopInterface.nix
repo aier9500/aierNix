@@ -14,7 +14,7 @@ with lib.hm.gvariant;
       font-antialiasing = "rgba";
       font-hinting = "full";
       font-name = "IBM Plex Sans 11"; # Sans/Interface
-      gtk-theme = "AdwGtk3";
+      # gtk-theme = "AdwGtk3";
       monospace-font-name = "IBM Plex Mono 10"; # Mono
       show-battery-percentage = true;
     };
