@@ -35,18 +35,18 @@
   };
 
   services = {
-    # flatpak = {
-    #   enable = true; 
-    #   update.auto = {
-    #     enable = true; 
-    #     onCalendar = "weekly"; Default value
-    #   };
-    #   overrides = {
-    #     global = {
-    #       Context.sockets = [ "wayland" "!x11" "fallbackx11" ]; 
-    #       Context.filesystem = [ "host" ];
-    #     };
-    #   };
-    # };
+    flatpak = {
+      enable = true; 
+      update.auto = {
+        enable = true; 
+        onCalendar = "weekly"; # Default value
+      };
+      overrides = {
+        global = {
+          Context.sockets = [ "wayland" "!x11" "fallbackx11" ]; 
+          Context.filesystem = [ "host" ];
+        };
+      };
+    };
   };
 }

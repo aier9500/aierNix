@@ -27,7 +27,7 @@
         inherit pkgs;
         modules = [ 
           ./aier/home.nix 
-          # nix-flatpak.homeManagerModules.nix-flatpak
+          nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
     };
