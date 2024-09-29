@@ -6,7 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/mutter" = {
-      attach-modal-dialogs = false;
+      attach-modal-dialogs = true;
       center-new-windows = true;
       dynamic-workspaces = true; 
       edge-tiling = true; 
