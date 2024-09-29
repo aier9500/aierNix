@@ -28,8 +28,8 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Shift><Super>r";
-      command = "gnome-terminal";
-      name = "gnome-terminal";
+      command = "kgx";
+      name = "kgx";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {

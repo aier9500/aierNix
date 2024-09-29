@@ -34,6 +34,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {
+    # Enabling Flatpak
+    flatpak.enable = true; 
     # Enabling power control
     power-profiles-daemon.enable = true; 
     tlp.enable = false; 
