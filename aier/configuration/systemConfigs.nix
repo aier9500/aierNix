@@ -34,8 +34,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {
-    # Removing Gnome Core Utilities
-    gnome.core-utilities.enable = false; 
     # Enabling power control
     power-profiles-daemon.enable = true; 
     tlp.enable = false; 
