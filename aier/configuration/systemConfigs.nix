@@ -8,9 +8,12 @@
     efi.canTouchEfiVariables = true;
 
     grub = {
-      enable = true; 
       devices = [ "nodev" ];
       efiSupport = true;
+      enable = true; 
+      gfxmodeBios = "1920x1080";
+      gfxmodeEfi = "1920x1080";
+      theme = "${pkgs.catppuccin-grub}";
       useOSProber = true; 
     };
 

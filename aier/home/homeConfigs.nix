@@ -31,7 +31,16 @@
         alias homeswitch-b='home-manager switch -b backup --flake .#aier'
       ";
     };
+
     home-manager.enable = true; 
+
+  };
+
+  qt = {
+    enable = true; 
+    platformTheme.name = "gtk";
+    style.name = "adwaita";
+    style.package = pkgs.adwaita-qt;
   };
 
   services = {
