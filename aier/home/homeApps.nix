@@ -2,34 +2,36 @@
 
 {
 
-  home.packages = (with pkgs; [
-    # User Apps
+  home.packages = (with pkgs; [    # User Apps
     chromium
     dconf2nix
     discord
     gnome-boxes
     gnome-solanum
+    gradience
     libreoffice
     osu-lazer
     steam
     vesktop
     vial
     # Creative Suite
-    darktable # Lightroom Linux Alt
-    davinci-resolve # Premiere Pro Linux Alt
-    inkscape # Photoshop/Paint
-  ]) ++ (with pkgs.gnomeExtensions; [
-    # Gnome Extensions
+    darktable # Lightroom Alt
+    davinci-resolve # Premiere Alt
+    # inkscape # Photoshop/Paint
+
+  ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
+
     appindicator
     blur-my-shell
     clipboard-indicator
     dash-to-dock
-    disable-unredirect-fullscreen-windows
+    # disable-unredirect-fullscreen-windows # Not needed for PaperWM
     # hide-top-bar # Not needed for PaperWM
     launch-new-instance
     paperwm
     # rounded-window-corners-reborn # Incompatible with PaperWM
     unite
     user-themes
+    windownavigator
   ]);
 }
