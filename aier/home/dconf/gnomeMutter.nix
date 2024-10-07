@@ -10,6 +10,7 @@ with lib.hm.gvariant;
       center-new-windows = true;
       dynamic-workspaces = true; 
       edge-tiling = true; 
+      workspaces-only-on-primary = true; 
     };
 
   };
