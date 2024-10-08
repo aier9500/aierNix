@@ -3,6 +3,7 @@
 {
 
   home.packages = (with pkgs; [    # User Apps
+    blender
     chromium
     dconf2nix
     discord
