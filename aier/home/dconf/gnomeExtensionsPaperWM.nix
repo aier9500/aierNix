@@ -10,6 +10,7 @@ with lib.hm.gvariant;
       gesture-workspace-fingers = 0;
       open-window-position = 0;
       show-workspace-indicator = false; 
+      swipe-friction = [ 2.5000000000000004 2.5000000000000004 ]; 
 
       selection-border-radius-bottom = 12;
       selection-border-radius-top = 12;

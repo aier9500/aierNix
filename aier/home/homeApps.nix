@@ -7,6 +7,7 @@
     chromium
     dconf2nix
     discord
+    gdm-settings
     gnome-boxes
     gnome-solanum
     gradience
@@ -27,9 +28,10 @@
     clipboard-indicator
     dash-to-dock
     # disable-unredirect-fullscreen-windows # Not needed for PaperWM
+    forge
     # hide-top-bar # Not needed for PaperWM
     launch-new-instance
-    paperwm
+    # paperwm
     # rounded-window-corners-reborn # Incompatible with PaperWM
     unite
     user-themes
