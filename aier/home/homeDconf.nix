@@ -13,8 +13,10 @@ with lib.hm.gvariant;
     ./dconf/gnomeExtensionsDashToDock.nix
     ./dconf/gnomeExtensionsHidetopbar.nix
     ./dconf/gnomeExtensionsPaperWM.nix
+    ./dconf/gnomeExtensionsRoundedCornersReborn.nix
     ./dconf/gnomeExtensionsUnite.nix
     ./dconf/gnomeMediaKeys.nix
+    ./dconf/gnomeMutter.nix
     ./dconf/gnomeShellKeybindings.nix
     ./dconf/gnomeTouchpad.nix
   ];
