@@ -41,8 +41,6 @@ with lib.hm.gvariant;
       toggle-fullscreen = [ "F11" ];
       toggle-maximized = [ "F10" ];
       toggle-on-all-workspaces = [ "<Super><Shift>u" ];
-      toggle-tiled-left = [ "<Super>left" ];
-      toggle-tiled-right = [ "<Super>right" ];
       unmaximize = [ "<Super>Down" ];
     };
 

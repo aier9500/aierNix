@@ -6,12 +6,16 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/mutter" = {
-      attach-modal-dialogs = false;
+      attach-modal-dialogs = true;
       center-new-windows = true;
       dynamic-workspaces = true; 
       edge-tiling = true; 
       workspaces-only-on-primary = true; 
     };
 
+    "org/gnome/mutter/keybindings" = {
+      toggle-tiled-left = [ "<Super>left" ];
+      toggle-tiled-right = [ "<Super>right" ];
+    };
   };
 }
