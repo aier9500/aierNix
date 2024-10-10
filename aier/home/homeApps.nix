@@ -26,7 +26,6 @@
 
     appindicator
     blur-my-shell
-    burn-my-windows
     clipboard-indicator
     dash-to-dock
     # disable-unredirect-fullscreen-windows # Not needed for PaperWM
