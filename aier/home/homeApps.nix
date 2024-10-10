@@ -25,15 +25,18 @@
 
     appindicator
     blur-my-shell
+    burn-my-windows
     clipboard-indicator
     dash-to-dock
     # disable-unredirect-fullscreen-windows # Not needed for PaperWM
+    fly-pie
     # hide-top-bar # Incompatible with PaperWM
     launch-new-instance
     paperwm
     # rounded-window-corners-reborn # Incompatible with PaperWM
     unite
     user-themes
+    wiggle
     windownavigator
   ]);
 }
