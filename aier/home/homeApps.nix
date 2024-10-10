@@ -16,6 +16,7 @@
     steam
     vesktop
     vial
+    wordbook
     # Creative Suite
     darktable # Lightroom Alt
     davinci-resolve # Premiere Alt
