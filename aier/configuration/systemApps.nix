@@ -23,12 +23,12 @@
     obs-studio
     protonvpn-gui
     resources
-    usbutils
     vscode
     # Programs
     home-manager
     ntfs3g
     python3
+    usbutils # lsusb etc.
   ];
 
   programs = {

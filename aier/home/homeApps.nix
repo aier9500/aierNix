@@ -11,6 +11,7 @@
     gnome-boxes
     gnome-solanum
     gradience
+    jdk17
     libreoffice
     osu-lazer
     steam
