@@ -29,12 +29,13 @@
     blur-my-shell
     clipboard-indicator
     dash-to-dock
-    # disable-unredirect-fullscreen-windows # Not needed for PaperWM
-    # hide-top-bar # Incompatible with PaperWM
+    disable-unredirect-fullscreen-windows # Not needed for PaperWM
+    # gsconnect
+    hide-top-bar # Incompatible with PaperWM
     launch-new-instance
-    paperwm
-    # rounded-window-corners-reborn # Incompatible with PaperWM
-    unite
+    # paperwm
+    rounded-window-corners-reborn # Incompatible with PaperWM
+    # unite
     user-themes
     windownavigator
   ]);

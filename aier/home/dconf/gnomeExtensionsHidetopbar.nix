@@ -7,6 +7,7 @@ with lib.hm.gvariant;
   dconf.settings = {
     "org/gnome/shell/extensions/hidetopbar" = {
       enable-active-window = false;
+      enable-intellihide = false; 
       mouse-sensitive = true;
       mouse-sensitive-fullscreen-window = false; 
       pressure-threshold = 200;
