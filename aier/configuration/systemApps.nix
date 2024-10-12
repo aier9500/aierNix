@@ -25,9 +25,12 @@
     resources
     vscode
     # Programs
+    gnome-themes-extra # Theming dependency
+    gtk-engine-murrine # Theming dependency
     home-manager
     ntfs3g
     python3
+    sassc # Theming dependency
     usbutils # lsusb etc.
   ];
 
