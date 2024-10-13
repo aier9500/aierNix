@@ -4,10 +4,11 @@
 with lib.hm.gvariant;
 
 {
+  # The shell theme is not set declaratively
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      # color-scheme = "default";
-      # The shell theme is not set declaratively
+      clock-format = "24h"; 
+      color-scheme = "default"; # Prefer dark or light
       cursor-theme = "LatteLightCursors";
       document-font-name = "Noto Serif CJK TC 11 @wght=400"; # Serif/Document
       enable-hot-corners = false;
