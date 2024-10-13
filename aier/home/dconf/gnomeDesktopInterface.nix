@@ -17,6 +17,7 @@ with lib.hm.gvariant;
       # gtk-theme = "AdwGtk3";
       monospace-font-name = "IBM Plex Mono 10"; # Mono
       show-battery-percentage = true;
+      text-scaling-factor = 0.87; 
     };
 
   };
