@@ -14,8 +14,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/mutter/keybindings" = {
-      # toggle-tiled-left = [ "<Super>left" ]; # Incompatible with PaperWM
-      # toggle-tiled-right = [ "<Super>right" ]; # Incompatible with PaperWM
+      toggle-tiled-left = [ "<Super>left" ]; # Incompatible with PaperWM
+      toggle-tiled-right = [ "<Super>right" ]; # Incompatible with PaperWM
     };
   };
 }
