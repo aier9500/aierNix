@@ -6,6 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = false; 
       background-opacity = 1; # 0.8
       custom-theme-shrink = true; 
       dash-max-icon-size = 40; # 48
