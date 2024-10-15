@@ -5,23 +5,20 @@
   home.packages = (with pkgs; [    # User Apps
     blender
     chromium
+    darktable
+    davinci-resolve
     dconf2nix
     discord
     gdm-settings
     gnome-boxes
     gnome-solanum
     gradience
-    jdk17
     libreoffice
     osu-lazer
     steam
     vesktop
     vial
     wordbook
-    # Creative Suite
-    darktable # Lightroom Alt
-    davinci-resolve # Premiere Alt
-    # inkscape # Photoshop/Paint
 
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 

@@ -3,19 +3,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    # Gnome Apps
-    gnome-calculator
-    gnome-calendar
-    gnome-characters
-    gnome-clocks
-    gnome-console
-    gnome-photos
-    gnome-text-editor
-    gnome-tweaks
-    loupe # Image viewer
-    nautilus # Files
-    totem # Videos
-    # Other Apps
     dconf-editor
     drawing
     fastfetch
@@ -24,7 +11,8 @@
     protonvpn-gui
     resources
     vscode
-    # Programs
+    # Non graphical programs
+    ffmpeg-full
     gnome-themes-extra # Theming dependency
     gtk-engine-murrine # Theming dependency
     home-manager
