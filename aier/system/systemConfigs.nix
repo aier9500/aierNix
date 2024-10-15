@@ -24,6 +24,7 @@
 
   networking = {
     hostName = "aierNixOS"; # Define your hostname.
+    hostId = "76a9986d"; # Defining hostID
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # Enable networking
     networkmanager.enable = true;
