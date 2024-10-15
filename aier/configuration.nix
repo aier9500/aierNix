@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./system/hardware-configuration.nix
+      ./system/modules.nix
       ./system/systemApps.nix
       ./system/systemConfigs.nix
     ];
