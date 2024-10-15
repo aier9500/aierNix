@@ -22,6 +22,7 @@
   ];
 
   programs = {
+    adb.enable = true; 
     evince.enable = true;
     firefox.enable = true;
     git.enable = true; 
