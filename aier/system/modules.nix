@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./droidcam.nix
+    ./modules/droidcam.nix
   ];
 }
