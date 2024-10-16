@@ -21,6 +21,7 @@ with lib.hm.gvariant;
       shortcut-text = "<Shift><Super>q";
       shortcut-timeout = 2.0;
       show-dock-urgent-notify = false;
+      show-trash = false;
     };
 
   };
