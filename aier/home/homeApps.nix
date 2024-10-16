@@ -15,6 +15,7 @@
     gnome-boxes
     gnome-solanum
     gradience
+    hieroglyphic
     libreoffice
     osu-lazer
     steam
