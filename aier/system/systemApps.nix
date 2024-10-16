@@ -7,6 +7,7 @@
     dconf-editor
     drawing
     fastfetch
+    gnome-tweaks
     gparted
     handbrake
     protonvpn-gui
