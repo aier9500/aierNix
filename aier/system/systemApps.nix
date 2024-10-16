@@ -19,10 +19,12 @@
     python3
     sassc # Theming dependency
     usbutils # lsusb etc.
+    zoxide
   ];
 
   programs = {
     adb.enable = true; 
+    droidcam.enable = true; 
     evince.enable = true;
     git.enable = true; 
     gnome-terminal.enable = true; 

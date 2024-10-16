@@ -29,6 +29,7 @@
         alias cls='clear'
         alias homeswitch='home-manager switch --flake .#aier'
         alias homeswitch-b='home-manager switch -b backup --flake .#aier'
+        eval "$(zoxide init bash)"
       ";
     };
 

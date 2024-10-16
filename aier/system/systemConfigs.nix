@@ -53,7 +53,7 @@
 
   programs = {
     nautilus-open-any-terminal.enable = true; 
-
+    appimage.enable = true; 
   };
 
 }
