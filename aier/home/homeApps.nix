@@ -3,12 +3,14 @@
 {
 
   home.packages = (with pkgs; [    # User Apps
+    audacity
     blender
     chromium
     darktable
     davinci-resolve
     dconf2nix
     discord
+    eyedropper
     gdm-settings
     gnome-boxes
     gnome-solanum

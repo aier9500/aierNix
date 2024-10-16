@@ -3,10 +3,12 @@
 {
 
   environment.systemPackages = with pkgs; [
+    bottles
     dconf-editor
     drawing
     fastfetch
     gparted
+    handbrake
     protonvpn-gui
     resources
     vscode
