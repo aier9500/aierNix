@@ -26,6 +26,7 @@
     adb.enable = true; 
     droidcam.enable = true; 
     evince.enable = true;
+    fzf.fuzzyCompletion = true; 
     git.enable = true; 
     gnome-terminal.enable = true; 
     localsend = {
