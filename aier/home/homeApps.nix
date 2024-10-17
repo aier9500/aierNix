@@ -19,6 +19,7 @@
     libreoffice
     osu-lazer
     steam
+    texliveFull
     vesktop
     vial
     wordbook
