@@ -11,6 +11,7 @@
     dconf2nix
     discord
     eyedropper
+    ferdium
     gdm-settings
     gnome-boxes
     gnome-solanum
