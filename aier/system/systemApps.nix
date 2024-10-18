@@ -3,7 +3,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    bash-completion
     bottles
     dconf-editor
     drawing
