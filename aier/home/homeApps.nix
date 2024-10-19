@@ -5,7 +5,6 @@
   home.packages = (with pkgs; [    # User Apps
     audacity
     blender
-    chromium
     darktable
     davinci-resolve
     dconf2nix
@@ -20,6 +19,7 @@
     libreoffice
     osu-lazer
     steam
+    tetrio-desktop
     texliveFull
     vesktop
     vial
