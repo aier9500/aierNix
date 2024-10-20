@@ -31,6 +31,7 @@
       ";
       shellAliases = {
         cls = "clear"; 
+        cmd = "compgen -c | fzf";
         homeswitch = "home-manager switch --flake .#aier";
         homeswitch-b = "home-manager switch -b backup --flake .#aier";
         nixse = "nix search nixpkgs"; 

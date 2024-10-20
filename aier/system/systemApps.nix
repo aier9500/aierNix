@@ -5,8 +5,6 @@
   environment.systemPackages = with pkgs; [
     bottles
     dconf-editor
-    drawing
-    fastfetch
     gnome-tweaks
     gparted
     handbrake
@@ -14,12 +12,15 @@
     resources
     vscode
     # Non graphical programs
+    fastfetch
+    fd
     ffmpeg-full
     gnome-themes-extra # Theming dependency
     gtk-engine-murrine # Theming dependency
     home-manager
     ntfs3g
     python3
+    ripgrep
     sassc # Theming dependency
     usbutils # lsusb etc.
     zoxide
