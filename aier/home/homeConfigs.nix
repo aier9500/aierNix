@@ -25,14 +25,16 @@
     bash = {
       enable = true; 
       bashrcExtra = "
-        alias cls='clear'
-        alias homeswitch='home-manager switch --flake .#aier'
-        alias homeswitch-b='home-manager switch -b backup --flake .#aier'
-        alias nixse='nix search nixpkgs'
         fastfetch
-        export PS1='\[$(tput setaf 33)\][\[$(tput setaf 69)\]\u\[$(tput setaf 69)\]@\[$(tput setaf 105)\]\h \[$(tput setaf 105)\]\w\[$(tput setaf 33)\]]\[$(tput sgr0)\]\n'
+        PS1='\\[$(tput setaf 33)\\][\\[$(tput setaf 69)\\]\\u \\[$(tput setaf 69)\\]@ \\[$(tput setaf 105)\\]\\h\\[$(tput setaf 33)\\]] \\[$(tput setaf 105)\\]\\w\\[$(tput sgr0)\\]\n'
         eval \"$(zoxide init bash)\"
       ";
+      shellAliases = {
+        cls = "clear"; 
+        homeswitch = "home-manager switch --flake .#aier";
+        homeswitch-b = "home-manager switch -b backup --flake .#aier";
+        nixse = "nix search nixpkgs"; 
+      };
     };
 
     home-manager.enable = true; 
