@@ -16,6 +16,7 @@
     gnome-solanum
     gradience
     hieroglyphic
+    krita
     libreoffice
     osu-lazer
     steam
