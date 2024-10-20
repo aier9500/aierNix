@@ -22,6 +22,7 @@
     osu-lazer
     steam
     texliveFull
+    tetrio-desktop
     vesktop
     vial
     wordbook
