@@ -4,6 +4,7 @@
 
   home.packages = (with pkgs; [    # User Apps
     audacity
+    blanket
     blender
     darktable
     davinci-resolve
