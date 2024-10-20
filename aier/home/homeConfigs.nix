@@ -26,7 +26,7 @@
       enable = true; 
       bashrcExtra = "
         fastfetch
-        PS1='\\[$(tput setaf 33)\\][\\[$(tput setaf 69)\\]\\u \\[$(tput setaf 69)\\]@ \\[$(tput setaf 105)\\]\\h\\[$(tput setaf 33)\\]] \\[$(tput setaf 105)\\]\\w\\[$(tput sgr0)\\]\n> '
+        PS1='\\[$(tput setaf 33)\\][\\[$(tput setaf 69)\\]\\u \\[$(tput setaf 69)\\]@ \\[$(tput setaf 105)\\]\\h\\[$(tput setaf 33)\\]] \\[$(tput setaf 105)\\]\\w\\[$(tput sgr0)\\]\n > '
         eval \"$(zoxide init bash)\"
       ";
       shellAliases = {
