@@ -25,11 +25,12 @@
     bash = {
       enable = true; 
       bashrcExtra = "
-        fastfetch
         alias cls='clear'
         alias homeswitch='home-manager switch --flake .#aier'
         alias homeswitch-b='home-manager switch -b backup --flake .#aier'
         alias nixse='nix search nixpkgs'
+        fastfetch
+        export PS1='\[$(tput setaf 33)\][\[$(tput setaf 69)\]\u\[$(tput setaf 69)\]@\[$(tput setaf 105)\]\h \[$(tput setaf 105)\]\w\[$(tput setaf 33)\]]\[$(tput sgr0)\]\n'
         eval \"$(zoxide init bash)\"
       ";
     };
