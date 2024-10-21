@@ -34,7 +34,6 @@
         cmd = "compgen -c | fzf";
         homesw = "home-manager switch --flake .#aier";
         homesw-b = "home-manager switch -b backup --flake .#aier";
-        sysw = "nixos-rebuild switch --flake .#aier";
         nixse = "nix search nixpkgs"; 
         zh = "history | fzf";
         zs = "ls | fzf";
