@@ -30,13 +30,17 @@
         eval \"$(zoxide init bash)\"
       ";
       shellAliases = {
+        cd = "z";
         cls = "clear"; 
-        cmd = "compgen -c | fzf";
-        homesw = "home-manager switch --flake .#aier";
+        cmd = "compgen -c | fzf"; # Search through all available commands
+        homesw = "home-manager switch --flake .#aier"; 
         homesw-b = "home-manager switch -b backup --flake .#aier";
+        ls = "eza";
+        lsd = "eza -TD";
+        lsf = "eza -Tf";
+        lst = "eza -T";
         nixse = "nix search nixpkgs"; 
         zh = "history | fzf";
-        zs = "ls | fzf";
       };
     };
 
