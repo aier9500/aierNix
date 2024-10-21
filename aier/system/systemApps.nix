@@ -22,7 +22,8 @@
     sassc # Theming dependency
     usbutils # lsusb etc.
     # Shell wizardry
-    fd
+    eza # Better ls
+    fd # Better find
     ripgrep # Better grep
     zoxide # Better cd
   ];
@@ -32,7 +33,7 @@
     droidcam.enable = true; 
     fzf.fuzzyCompletion = true;
     git.enable = true; 
-    localsend = {
+    localsend = { # Nearby Share for all
       enable = true;
       openFirewall = true; 
     };
