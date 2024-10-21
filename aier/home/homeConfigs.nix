@@ -32,9 +32,9 @@
       shellAliases = {
         cls = "clear"; 
         cmd = "compgen -c | fzf";
-        homeswitch = "home-manager switch --flake .#aier";
-        homeswitch-b = "home-manager switch -b backup --flake .#aier";
-        systemswitch = "nixos-rebuild switch --flake .#aier";
+        homesw = "home-manager switch --flake .#aier";
+        homesw-b = "home-manager switch -b backup --flake .#aier";
+        sysw = "nixos-rebuild switch --flake .#aier";
         nixse = "nix search nixpkgs"; 
         zh = "history | fzf";
         zs = "ls | fzf";
