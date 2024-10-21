@@ -35,6 +35,7 @@
         homeswitch = "home-manager switch --flake .#aier";
         homeswitch-b = "home-manager switch -b backup --flake .#aier";
         nixse = "nix search nixpkgs"; 
+        zh = "history | fzf";
         zs = "ls | fzf";
       };
     };
