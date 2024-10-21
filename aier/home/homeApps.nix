@@ -34,7 +34,7 @@
     clipboard-indicator
     dash-to-dock
     disable-unredirect-fullscreen-windows # Not needed for PaperWM
-    # gsconnect
+    gsconnect
     hide-top-bar # Incompatible with PaperWM
     launch-new-instance
     # paperwm
