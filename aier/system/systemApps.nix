@@ -45,5 +45,6 @@
         pkgs.obs-studio-plugins.droidcam-obs
       ];
     };
+    virtualisation.waydroid.enable = true; 
   };
 }
