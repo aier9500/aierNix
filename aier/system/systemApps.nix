@@ -13,26 +13,25 @@
     vscode
     # Non graphical programs
     fastfetch
-    fd
     ffmpeg-full
     gnome-themes-extra # Theming dependency
     gtk-engine-murrine # Theming dependency
     home-manager
     ntfs3g
     python3
-    ripgrep
     sassc # Theming dependency
     usbutils # lsusb etc.
-    zoxide
+    # Shell wizardry
+    fd
+    ripgrep # Better grep
+    zoxide # Better cd
   ];
 
   programs = {
-    adb.enable = true; 
+    adb.enable = true; # Android USB Debugging
     droidcam.enable = true; 
-    evince.enable = true;
-    fzf.fuzzyCompletion = true; 
+    fzf.fuzzyCompletion = true;
     git.enable = true; 
-    gnome-terminal.enable = true; 
     localsend = {
       enable = true;
       openFirewall = true; 
