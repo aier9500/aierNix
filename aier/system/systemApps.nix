@@ -3,6 +3,7 @@
 {
 
   environment.systemPackages = with pkgs; [
+    annotator
     bottles
     dconf-editor
     gnome-tweaks
