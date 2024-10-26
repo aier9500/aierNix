@@ -37,7 +37,7 @@
     hide-top-bar # Incompatible with PaperWM
     launch-new-instance
     # paperwm
-    rounded-window-corners-reborn # Incompatible with PaperWM
+    # rounded-window-corners-reborn # Incompatible with PaperWM
     # unite
     user-themes
     windownavigator
