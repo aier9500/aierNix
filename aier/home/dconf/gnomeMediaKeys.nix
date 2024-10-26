@@ -67,8 +67,8 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
       binding = "<Shift><Super>c";
-      command = "gnome-characters";
-      name = "gnome-characters";
+      command = "emoji-picker";
+      name = "emoji-picker";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
