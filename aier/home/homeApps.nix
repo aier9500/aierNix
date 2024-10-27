@@ -10,6 +10,7 @@
     davinci-resolve
     dconf2nix
     discord
+    easyeffects
     eyedropper
     ferdium
     gdm-settings
