@@ -30,6 +30,7 @@
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 
     appindicator
+    auto-move-windows
     # blur-my-shell
     clipboard-indicator
     dash-to-dock
@@ -38,6 +39,7 @@
     launch-new-instance
     # paperwm
     # rounded-window-corners-reborn # Incompatible with PaperWM
+    smart-auto-move
     # unite
     user-themes
     windownavigator
