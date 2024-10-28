@@ -17,7 +17,7 @@ with lib.hm.gvariant;
       # gtk-theme = "AdwGtk3"; # Legacy application theming
       monospace-font-name = "IBM Plex Mono 10"; # Mono font
       show-battery-percentage = true;
-      text-scaling-factor = 0.87; 
+      text-scaling-factor = 0.85; 
     };
 
     "org/gnome/shell/extensions/user-theme" = {
