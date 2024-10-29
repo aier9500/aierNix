@@ -14,17 +14,17 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      nixosConfigurations.aier = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         inherit system; 
         modules = [ 
-          ./aier/configuration.nix 
+          ./default/configuration.nix 
         ];
       };
 
-      homeConfigurations.aier = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ 
-          ./aier/home.nix 
+          ./default/home.nix 
         ];
       };
     };

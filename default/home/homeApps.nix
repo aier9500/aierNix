@@ -18,6 +18,7 @@
     hieroglyphic
     krita
     libreoffice
+    lyrebird
     osu-lazer
     steam
     texliveFull
@@ -42,7 +43,6 @@
     # rounded-window-corners-reborn # Incompatible with PaperWM
     # unite
     user-themes
-    wiggle
     windownavigator
   ]);
   
