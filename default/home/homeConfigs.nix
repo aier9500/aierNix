@@ -38,8 +38,8 @@
       shellAliases = {
         cls = "clear"; 
         cmd = "compgen -c | fzf"; # Search through all available commands
-        homesw = "home-manager switch --flake .#aier"; 
-        homesw-b = "home-manager switch -b backup --flake .#aier";
+        homesw = "home-manager switch --flake .#default"; 
+        homesw-b = "home-manager switch -b backup --flake .#default";
         lsd = "eza -TD"; # Directory tree
         lsd1 = "eza -TD --level 1";
         lsd2 = "eza -TD --level 2";
