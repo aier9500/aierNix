@@ -43,6 +43,7 @@
     # rounded-window-corners-reborn # Incompatible with PaperWM
     # unite
     user-themes
+    wiggle
     windownavigator
   ]);
 }
