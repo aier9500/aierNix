@@ -1,14 +1,6 @@
 { config, pkgs, input, ... }: 
 
 {
-  home = {
-    username = "aier";
-    homeDirectory = "/home/aier";
-    stateVersion = "24.05"; # Please read the comment before changing.
-  };
-  
-  nixpkgs.config.allowUnfree = true; 
-
   programs = {
     # Bash
     bash = {
@@ -35,18 +27,5 @@
         zh = "history | fzf"; # Search through Bash history
       };
     };
-
-    home-manager.enable = true; 
-
-  };
-
-  qt = {
-    enable = true; 
-    platformTheme.name = "adwaita";
-    style.name = "adwaita";
-    style.package = pkgs.adwaita-qt;
-  };
-
-  services = {
   };
 }
