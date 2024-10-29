@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     annotator
     bottles
+    chromium
     dconf-editor
     gnome-tweaks
     gparted
@@ -31,7 +32,6 @@
 
   programs = {
     adb.enable = true; # Android USB Debugging
-    chromium.enable = true; 
     droidcam.enable = true; 
     fzf.fuzzyCompletion = true;
     git.enable = true; 
