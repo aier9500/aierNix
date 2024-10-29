@@ -31,7 +31,6 @@
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 
     appindicator
-    arcmenu
     auto-move-windows
     # blur-my-shell
     clipboard-indicator
@@ -39,11 +38,9 @@
     disable-unredirect-fullscreen-windows # Not needed for PaperWM
     hide-top-bar # Incompatible with PaperWM
     launch-new-instance
-    media-controls
     # paperwm
     quick-settings-audio-panel
     # rounded-window-corners-reborn # Incompatible with PaperWM
-    smart-auto-move
     # unite
     user-themes
     windownavigator
