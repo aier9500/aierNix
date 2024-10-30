@@ -6,7 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/shell/extensions/arcmenu" = {
-      arcmenu-hotkey = [ "Super_L" ];
+      arcmenu-hotkey = [ "<Super>r" ];
       highlight-result-terms = true; 
       menu-button-position-offset = 1;
       menu-layout = "Runner";

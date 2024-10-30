@@ -22,7 +22,6 @@ with lib.hm.gvariant;
       shift-overview-up = [ "<Super><Control>Up" ];
       show-screen-recording-ui = [];
       toggle-message-tray = [ "<Super>v" ];
-      toggle-overview = [ "<Alt>space" ];
     };
 
   };
