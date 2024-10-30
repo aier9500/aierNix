@@ -10,6 +10,8 @@ with lib.hm.gvariant;
       highlight-result-terms = true; 
       menu-button-position-offset = 1;
       menu-layout = "Runner";
+      runner-menu-height = 800;
+      runner-menu-width = 600;
       runner-search-display-style = "Grid";
       runner-show-frequent-apps = true;
       search-provider-open-windows = true; 
