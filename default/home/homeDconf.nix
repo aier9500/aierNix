@@ -8,6 +8,7 @@ with lib.hm.gvariant;
     ./homeDconf/gnomeDesktopInterface.nix
     ./homeDconf/gnomeDesktopWMKeybindings.nix
     ./homeDconf/gnomeDesktopWMPreferences.nix
+    ./homeDconf/gnomeExtensionsArcmenu.nix
     ./homeDconf/gnomeExtensionsBlurMyShell.nix
     ./homeDconf/gnomeExtensionsClipboardManager.nix
     ./homeDconf/gnomeExtensionsDashToDock.nix
