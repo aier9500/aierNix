@@ -30,6 +30,7 @@
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 
     appindicator
+    arcmenu
     auto-move-windows
     # blur-my-shell
     clipboard-indicator
