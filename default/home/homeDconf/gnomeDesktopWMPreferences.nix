@@ -9,7 +9,7 @@ with lib.hm.gvariant;
       action-middle-click-titlebar = "minimize";
       button-layout = "appmenu:close";
       focus-mode = "click";
-      num-workspaces = 3;
+      # num-workspaces = 3;
     };
 
   };
