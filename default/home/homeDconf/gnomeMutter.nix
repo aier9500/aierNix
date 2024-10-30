@@ -8,7 +8,7 @@ with lib.hm.gvariant;
     "org/gnome/mutter" = {
       attach-modal-dialogs = true;
       center-new-windows = true;
-      dynamic-workspaces = false; 
+      dynamic-workspaces = true; 
       edge-tiling = true; 
       workspaces-only-on-primary = true; 
     };
