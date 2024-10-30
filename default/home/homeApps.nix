@@ -50,7 +50,6 @@
   services = {
     blanket.enable = true;
     easyeffects.enable = true;
-
   };
 
 }
