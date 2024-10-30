@@ -45,6 +45,7 @@
     # unite
     user-themes
     windownavigator
+    window-title-is-back
   ]);
   
   services = {
