@@ -4,7 +4,6 @@
   programs = {
     # Bash
     bash = {
-      enable = true; 
       bashrcExtra = "
         fastfetch
         PS1='------------------\n\\[$(tput setaf 56)\\][\\[$(tput setaf 56)\\]\\u \\[$(tput setaf 92)\\]@ \\[$(tput setaf 128)\\]\\h\\[$(tput setaf 128)\\]] \\[$(tput setaf 200)\\]\\w\\[$(tput sgr0)\\]\n > '
@@ -27,5 +26,6 @@
         zh = "history | fzf"; # Search through Bash history
       };
     };
+    
   };
 }
