@@ -31,7 +31,7 @@
 
     appindicator
     arcmenu
-    auto-move-windows
+    # auto-move-windows
     # blur-my-shell
     clipboard-indicator
     dash-to-dock
