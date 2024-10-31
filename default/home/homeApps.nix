@@ -39,6 +39,7 @@
     easyeffects-preset-selector
     hide-top-bar # Incompatible with PaperWM
     launch-new-instance
+    night-theme-switcher
     # paperwm
     quick-settings-audio-panel
     # rounded-window-corners-reborn # Incompatible with PaperWM
