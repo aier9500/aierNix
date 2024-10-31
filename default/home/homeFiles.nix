@@ -9,12 +9,12 @@
     # .icons
     ".local/share/icons/LatteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
     # .themes
-    ".themes/MarbleBlueLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-light";
-    ".themes/MarbleBlueDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-dark";
-    ".themes/MarblePinkLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-pink-light";
-    ".themes/MarblePinkDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-pink-dark";
-    ".themes/MarblePurpleLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-purple-light";
-    ".themes/MarblePurpleDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-purple-dark";
+    ".local/share/themes/MarbleBlueLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-light";
+    ".local/share/themes/MarbleBlueDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-dark";
+    ".local/share/themes/MarblePinkLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-pink-light";
+    ".local/share/themes/MarblePinkDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-pink-dark";
+    ".local/share/themes/MarblePurpleLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-purple-light";
+    ".local/share/themes/MarblePurpleDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-purple-dark";
     ".local/share/themes/AdwGtk3".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3";
   };
 }
