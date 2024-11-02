@@ -22,6 +22,7 @@
     ntfs3g
     python3
     sassc # Theming dependency
+    thunderbird
     usbutils # lsusb etc.
     # Shell wizardry
     eza # Better ls
