@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./imports/homeImports.nix
+    ./Imports/homeImports.nix
   ];
 
   home = {
