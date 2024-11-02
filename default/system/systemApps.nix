@@ -22,7 +22,6 @@
     ntfs3g
     python3
     sassc # Theming dependency
-    thunderbird
     usbutils # lsusb etc.
     # Shell wizardry
     eza # Better ls
@@ -48,6 +47,7 @@
         pkgs.obs-studio-plugins.droidcam-obs
       ];
     };
+    thunderbird.enable = true; 
   };
 
   virtualisation.waydroid.enable = true; 
