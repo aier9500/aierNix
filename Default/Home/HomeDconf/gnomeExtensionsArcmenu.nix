@@ -7,7 +7,7 @@ with lib.hm.gvariant;
   dconf.settings = {
     "org/gnome/shell/extensions/arcmenu" = {
       arcmenu-hotkey = [ "<Super>r" ];
-      distro-icon = 15;
+      distro-icon = 15; # RedHat Icon bc it looks like Linux Premium
       highlight-result-terms = true; 
       menu-button-appearance = "Icon";
       menu-button-icon = "Distro_Icon";

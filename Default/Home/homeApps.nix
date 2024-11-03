@@ -60,10 +60,10 @@
     vscode = {
       enable = true;
       extensions = with pkgs.vscode-extensions; [
-        piousdeer.adwaita-theme
-        icrawl.discord-vscode
-        james-yu.latex-workshop
         bbenoist.nix
+        james-yu.latex-workshop
+        leonardssh.vscord
+        piousdeer.adwaita-theme
         vscjava.vscode-java-pack
       ];
       userSettings = {
