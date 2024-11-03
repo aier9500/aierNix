@@ -9,7 +9,7 @@
     dconf-editor
     gnome-tweaks
     gparted
-    # handbrake
+    # handbrake # temporarily disabled
     protonvpn-gui
     resources
     shutter
