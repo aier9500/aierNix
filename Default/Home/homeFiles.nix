@@ -24,7 +24,7 @@
           home-manager switch --flake .#default
           echo \"
           ----------------------------------------
-          ----------- Script Finished ------------
+          ---------- homesw.sh Finished ----------
           ----- You can close this window now ----
           ----------------------------------------
           \"
@@ -38,7 +38,7 @@
           sudo nixos-rebuild switch --flake .#default
           echo \"
           ----------------------------------------
-          ----------- Script Finished ------------
+          ----------- sysw.sh Finished -----------
           ----- You can close this window now ----
           ----------------------------------------
           \"
