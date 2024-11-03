@@ -8,7 +8,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       clock-format = "24h"; 
       color-scheme = "default"; # Prefer dark or light
-      cursor-theme = "LatteLightCursors";
+      # cursor-theme = "LatteLightCursors"; # temporarily disabled
       document-font-name = "Noto Serif CJK TC 11 @wght=400"; # Serif/Document font
       enable-hot-corners = false;
       font-antialiasing = "rgba";
