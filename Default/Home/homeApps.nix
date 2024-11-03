@@ -7,7 +7,6 @@
     audacity
     blender
     darktable
-    davinci-resolve
     dconf2nix
     discord
     eyedropper
@@ -17,9 +16,7 @@
     gnome-solanum
     gradience
     hieroglyphic
-    krita
     libreoffice
-    lyrebird
     osu-lazer
     steam
     texliveFull
