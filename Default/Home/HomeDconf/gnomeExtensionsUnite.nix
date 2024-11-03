@@ -11,7 +11,7 @@ with lib.hm.gvariant;
       greyscale-tray-icons = false;
       hide-activities-button = "never";
       hide-app-menu-icon = false;
-      hide-window-titlebars = "always";
+      hide-window-titlebars = "maximized";
       notifications-position = "center";
       reduce-panel-spacing = true;
       show-appmenu-button = true;
