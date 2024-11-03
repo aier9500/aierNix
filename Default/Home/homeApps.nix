@@ -3,6 +3,7 @@
 {
 
   home.packages = (with pkgs; [    # User Apps
+
     audacity
     blender
     darktable
@@ -49,8 +50,30 @@
   ]);
   
   services = {
+
     blanket.enable = true;
     easyeffects.enable = true;
   };
 
+  programs = {
+
+    vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        piousdeer.adwaita-theme
+        icrawl.discord-vscode
+        james-yu.latex-workshop
+        bbenoist.nix
+        vscjava.vscode-java-pack
+      ];
+      userSettings = {
+        "window.menuBarVisibility" = "toggle";
+        "files.autoSave" = "onFocusChange";
+        "workbench.colorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
+        "workbench.preferredDarkColorTheme" = "Adwaita Dark & default syntax highlighting & colorful status bar";
+        "workbench.preferredLightColorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
+        "window.autoDetectColorScheme" = true;
+      };
+    };
+  };
 }
