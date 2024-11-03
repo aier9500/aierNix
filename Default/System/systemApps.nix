@@ -51,5 +51,9 @@
     thunderbird.enable = true; 
   };
 
+  services.kanata = {
+    enable = true;
+  };
+
   virtualisation.waydroid.enable = true; 
 }
