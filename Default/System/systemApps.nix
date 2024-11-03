@@ -53,7 +53,7 @@
 
   services.kanata = {
     enable = true;
-    keyboards.colemak-dh.config = 
+    keyboards.colemak-dh.config = # exchanges caps lock and backspace
     "
       (defsrc
       esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
@@ -67,9 +67,9 @@
       (deflayer default
       esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
       grv  1    2    3    4    5    6    7    8    9    0    -    =    caps
-      tab  q    w    f    p    b    j    l    u    y    ;    [    ]    
-      bspc a    r    s    t    g    m    n    e    i    o    '    ret
-      lsft x    c    d    v    z    k    h    ,    .    /    rsft
+      tab  q    w    e    r    t    y    u    i    o    p    [    ]    
+      bspc a    s    d    f    g    h    j    k    l    ;    '    ret
+      lsft z    x    c    v    b    n    m    ,    .    /    rsft
       lctl lmet lalt           spc            ralt rmet rctl
       )  
     ";
