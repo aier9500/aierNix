@@ -9,14 +9,14 @@
     dconf-editor
     gnome-tweaks
     gparted
-    handbrake
+    # handbrake
     protonvpn-gui
     resources
     shutter
     vscode
     # Non graphical programs
     fastfetch
-    # ffmpeg-full
+    ffmpeg-full
     gnome-themes-extra # Theming dependency
     gtk-engine-murrine # Theming dependency
     home-manager
