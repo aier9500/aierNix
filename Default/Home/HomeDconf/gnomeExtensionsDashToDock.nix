@@ -17,6 +17,7 @@ with lib.hm.gvariant;
       intellihide-mode = "ALL_WINDOWS";
       preferred-monitor = -2;
       preferred-monitor-by-connector = "eDP-1";
+      running-indicator-style = "DOTS";
       shortcut = [ "<Shift><Super>q" ];
       shortcut-text = "<Shift><Super>q";
       shortcut-timeout = 2.0;
