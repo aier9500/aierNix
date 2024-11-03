@@ -56,4 +56,7 @@
     appimage.enable = true; 
   };
 
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome.gnome-shell-extensions
+  ]);
 }
