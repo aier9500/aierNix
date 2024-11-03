@@ -8,7 +8,7 @@
     ".local/share/fonts/NotoCjkSans".source = "${pkgs.noto-fonts-cjk-sans}/share/fonts/opentype/noto-cjk";
     # .icons
     ".local/share/icons/LatteLightCursors".source = "${pkgs.catppuccin-cursors.latteLight}/share/icons/catppuccin-latte-light-cursors";
-    ".local/share/icons/WhitesurCursors".source = "${pkgs.whitesur-cursors}/share/icons/WhiteSur-cursors/cursors";
+    ".local/share/icons/WhitesurCursors".source = "${pkgs.whitesur-cursors}/share/icons/WhiteSur-cursors";
     # .themes
     ".local/share/themes/MarbleBlueLight".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-light";
     ".local/share/themes/MarbleBlueDark".source = "${pkgs.marble-shell-theme}/share/themes/Marble-blue-dark";
