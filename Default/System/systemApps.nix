@@ -12,6 +12,7 @@
     handbrake
     protonvpn-gui
     resources
+    shutter
     vscode
     # Non graphical programs
     fastfetch
