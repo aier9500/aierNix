@@ -17,7 +17,7 @@ with lib.hm.gvariant;
     ./HomeDconf/gnomeExtensionsQuickSettingsAudioPanel.nix
     ./HomeDconf/gnomeExtensionsRoundedWindowCornersReborn.nix
     ./HomeDconf/gnomeExtensionsUnite.nix
-    ./HomeDconf/gnomeExtensionsUserThemeX.nix
+    # ./HomeDconf/gnomeExtensionsUserThemes.nix
     ./HomeDconf/gnomeMediaKeys.nix
     ./HomeDconf/gnomeMutter.nix
     ./HomeDconf/gnomeShellKeybindings.nix
