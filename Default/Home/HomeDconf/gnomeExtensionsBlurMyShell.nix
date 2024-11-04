@@ -6,7 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/shell/extensions/blur-my-shell" = {
-      hacks-level = 0; # High performance
+      hacks-level = 1; # Default performance
     };
 
     "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
