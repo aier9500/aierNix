@@ -10,23 +10,17 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      brightness = 1.0;
+      brightness = 0.8;
       sigma = 0;
       style-dialogs = 0; 
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
       blur = false;
-      brightness = 0.6;
-      override-background = true;
-      pipeline = "pipeline_default_rounded";
-      sigma = 30;
-      static-blur = true;
-      style-dash-to-dock = 0;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/lockscreen" = {
-      pipeline = "pipeline_default";
+      blur = false; 
     };
 
     "org/gnome/shell/extensions/blur-my-shell/overview" = {
@@ -36,10 +30,6 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       blur = false; 
-      brightness = 0.6;
-      pipeline = "pipeline_default_rounded";
-      sigma = 30;
-      unblur-in-overview = false;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
