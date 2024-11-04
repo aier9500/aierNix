@@ -30,7 +30,7 @@
     appindicator
     arcmenu
     # auto-move-windows
-    # blur-my-shell
+    blur-my-shell
     clipboard-indicator
     dash-to-dock
     disable-unredirect-fullscreen-windows # Not needed for PaperWM
