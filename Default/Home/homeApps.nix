@@ -40,10 +40,10 @@
     # paperwm
     quick-settings-audio-panel
     # rounded-window-corners-reborn # Incompatible with PaperWM
-    unite
+    # unite
     user-themes
     windownavigator
-    # window-title-is-back # not needed when using unite
+    window-title-is-back # not needed when using unite
   ]);
   
   services = {
