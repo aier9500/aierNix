@@ -10,7 +10,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      brightness = 1;
+      brightness = 1.0;
       sigma = 30;
       style-dialogs = 0; 
     };
