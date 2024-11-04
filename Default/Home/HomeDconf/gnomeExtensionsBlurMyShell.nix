@@ -15,8 +15,8 @@ with lib.hm.gvariant;
       style-dialogs = 0; 
     };
 
-    "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      blur = false;
+    "org/gnome/shell/extensions/blur-my-shell/applications" = {
+      blur = true;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
