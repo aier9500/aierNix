@@ -2,6 +2,6 @@
 
 {
   imports = [
-    
+    ./SystemModules/systemKanata.nix
   ];
 }
