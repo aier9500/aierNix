@@ -24,7 +24,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-      blur = true;
+      blur = false;
       pipeline = "pipeline_default_rounded";
       static-blur = true;
     };
