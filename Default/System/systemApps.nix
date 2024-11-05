@@ -53,7 +53,7 @@
 
   services.kanata = {
     enable = true;
-    keyboards.colemak-dh.config = # exchanges caps lock and backspace
+    keyboards.default.config = # exchanges caps lock and backspace
     "
       (defsrc
       esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
@@ -75,5 +75,13 @@
     ";
   };
 
-  virtualisation.waydroid.enable = true; 
+  virtualisation = {
+    waydroid.enable = true; 
+    virtualbox = {
+      host = {
+        enable = true; 
+        enableExtensionPack = true;
+      };
+    };
+  };
 }
