@@ -4,9 +4,7 @@
 	
 	# Bootloader.
   boot.loader = {
-    
     efi.canTouchEfiVariables = true;
-
     grub = {
       devices = [ "nodev" ];
       efiSupport = true;
@@ -16,7 +14,6 @@
       theme = "${pkgs.catppuccin-grub}";
       useOSProber = true; 
     };
-
     systemd-boot.enable = false; 
   };
 
@@ -44,7 +41,7 @@
     ];
   };
 
-  # Adding Chinese ibus
+  # Adding Chinese ibus (pinyin input)
   i18n.inputMethod = {
     enable = true; 
     type = "ibus";
