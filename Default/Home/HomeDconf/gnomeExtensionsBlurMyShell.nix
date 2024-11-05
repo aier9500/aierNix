@@ -24,7 +24,9 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-      blur = false;
+      blur = true;
+      pipeline = "pipeline_default_rounded";
+      static-blur = true;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/lockscreen" = {
@@ -37,10 +39,13 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      blur = false; 
+      blur = true; 
+      pipeline = "pipeline_default";
+      static-blur = true;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
+      blur = true;
       pipeline = "pipeline_default";
     };
 
