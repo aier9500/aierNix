@@ -9,7 +9,7 @@ with lib.hm.gvariant;
       apply-custom-theme = false; 
       background-opacity = 1; # 0.8
       custom-theme-shrink = true; 
-      dash-max-icon-size = 40; # 48
+      dash-max-icon-size = 48; # 48
       dock-position = "BOTTOM";
       height-fraction = 0.9;
       hotkeys-overlay = true;
