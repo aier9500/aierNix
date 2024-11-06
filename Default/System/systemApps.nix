@@ -7,6 +7,7 @@
     bottles
     chromium
     dconf-editor
+    gnome-extension-manager
     gnome-tweaks
     gparted
     handbrake
