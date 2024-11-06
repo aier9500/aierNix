@@ -23,6 +23,7 @@ with lib.hm.gvariant;
       shortcut-timeout = 2.0;
       show-dock-urgent-notify = false;
       show-trash = false;
+      trasparency-mode = "DEFAULT";
     };
 
   };
