@@ -28,7 +28,7 @@
         XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
         XX    XX   XX   XX   XX   XX   XX   @clt up   @crt XX   XX   XX   
         XX     XX   XX   XX   XX   XX   XX   lft  down rght XX   XX   XX
-        XX       XX   XX   XX   XX   XX   XX   XX   home end  XX   XX
+        XX       lctl XX   XX   XX   XX   XX   XX   home end  XX   XX
         XX   XX   XX             XX             XX   XX   XX 
       )
 

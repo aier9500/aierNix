@@ -5,7 +5,7 @@
   home.packages = (with pkgs; [    # User Apps
 
     audacity
-    blender # temporarily disabled
+    # blender # temporarily disabled
     darktable
     dconf2nix
     discord
