@@ -13,6 +13,7 @@ with lib.hm.gvariant;
     ./HomeDconf/gnomeExtensionsClipboardManager.nix
     ./HomeDconf/gnomeExtensionsDashToDock.nix
     ./HomeDconf/gnomeExtensionsHidetopbar.nix
+    ./HomeDconf/gnomeExtensionsJustPerfection.nix
     ./HomeDconf/gnomeExtensionsPaperWM.nix
     ./HomeDconf/gnomeExtensionsQuickSettingsAudioPanel.nix
     ./HomeDconf/gnomeExtensionsRoundedWindowCornersReborn.nix

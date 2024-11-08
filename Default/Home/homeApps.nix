@@ -36,6 +36,7 @@
     dash-to-dock
     disable-unredirect-fullscreen-windows         # Not needed for PaperWM
     hide-top-bar                                  # Incompatible with PaperWM
+    just-perfection
     launch-new-instance
     # paperwm
     quick-settings-audio-panel
