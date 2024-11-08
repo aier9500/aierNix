@@ -3,16 +3,15 @@
 {
 
   environment.systemPackages = with pkgs; [
-    annotator
     bottles
     chromium
     dconf-editor
-    gnome-extension-manager
     gnome-tweaks
     gparted
     handbrake
     protonvpn-gui
     resources
+    scrcpy
     shutter
     vscode
     # Non graphical programs
