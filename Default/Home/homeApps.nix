@@ -42,7 +42,7 @@
     # unite
     user-themes
     windownavigator
-    window-title-is-back                          # not needed when using unite
+    window-title-is-back                          # Not needed when using unite
   ]);
   
   services = {
