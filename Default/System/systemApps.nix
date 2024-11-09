@@ -36,6 +36,7 @@
     droidcam.enable = true; 
     fzf.fuzzyCompletion = true;
     git.enable = true; 
+    htop.enable = true;
     localsend = { # Nearby Share for all
       enable = true;
       openFirewall = true; 
