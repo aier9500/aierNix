@@ -27,9 +27,9 @@
         XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
         XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
         XX    XX   XX   XX   XX   XX   XX   @clt up   @crt XX   XX   XX   
-        XX     lsft XX   XX   XX   XX   XX   lft  down rght XX   XX   XX
-        XX       lctl XX   XX   XX   XX   XX   XX   home end  XX   XX
-        XX   XX   XX             XX             XX   XX   XX 
+        XX     XX   XX   XX   XX   XX   XX   lft  down rght XX   XX   XX
+        lsft     lalt XX   XX   XX   XX   XX   XX   home end  XX   XX
+        lctl lmet XX             XX             XX   XX   XX 
       )
 
       (defalias
