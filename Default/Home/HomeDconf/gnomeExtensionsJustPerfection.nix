@@ -8,6 +8,7 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/just-perfection" = {
       animation = 1;
       search = false;
+      workspace-switcher-should-show = true;
       workspace-switcher-size = 15;
     };
 
