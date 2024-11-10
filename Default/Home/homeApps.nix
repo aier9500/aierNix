@@ -28,13 +28,13 @@
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 
     appindicator
-    # arcmenu                                     # Installed locally
-    # auto-move-windows
+    arcmenu
+    # auto-move-windows                           # Incompatible with dynamic workspaces
     blur-my-shell
     clipboard-indicator
     dash-to-dock
-    disable-unredirect-fullscreen-windows         # Not needed for PaperWM
-    hide-top-bar                                  # Incompatible with PaperWM
+    # disable-unredirect-fullscreen-windows       # Not needed for PaperWM
+    # hide-top-bar                                # Incompatible with PaperWM
     just-perfection
     launch-new-instance
     # paperwm
@@ -43,7 +43,7 @@
     # unite
     user-themes
     windownavigator
-    window-title-is-back                          # Not needed when using unite
+    window-title-is-back                          # Not needed for unite
   ]);
   
   services = {
