@@ -11,7 +11,6 @@
     discord
     eyedropper
     ferdium
-    gdm-settings
     gnome-boxes
     gnome-solanum
     gradience
@@ -21,10 +20,10 @@
     steam
     texliveMedium
     tetrio-desktop
-    planify
     vesktop
     vial
     wordbook
+    # Installed through Flatpak: Zen Browser, Flatseal, Remembrance, GDM-Settings
 
   ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
 
