@@ -18,7 +18,7 @@
     libreoffice
     osu-lazer
     steam
-    texliveMedium
+    texliveFull
     tetrio-desktop
     vesktop
     vial
