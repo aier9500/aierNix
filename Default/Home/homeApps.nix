@@ -4,6 +4,7 @@
 
   home.packages = (with pkgs; [    # User Apps
 
+    activate-linux
     audacity
     # blender # temporarily disabled
     darktable
