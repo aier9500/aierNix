@@ -64,12 +64,8 @@
         vscjava.vscode-java-pack
       ];
       userSettings = {
-        "window.menuBarVisibility" = "toggle";
+        "editor.minimap.enabled" = false ;
         "files.autoSave" = "onFocusChange";
-        "workbench.colorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
-        "workbench.preferredDarkColorTheme" = "Adwaita Dark & default syntax highlighting & colorful status bar";
-        "workbench.preferredLightColorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
-        "window.autoDetectColorScheme" = true;
         "latex-workshop.latex.recipes" = [
           {
             name = "latexmk (lualatex)";
@@ -108,6 +104,11 @@
             tools = [ "tectonic" ];
           }
         ];
+        "window.autoDetectColorScheme" = true;
+        "window.menuBarVisibility" = "toggle";
+        "workbench.colorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
+        "workbench.preferredDarkColorTheme" = "Adwaita Dark & default syntax highlighting & colorful status bar";
+        "workbench.preferredLightColorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
       };
     };
   };
