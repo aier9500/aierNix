@@ -19,6 +19,7 @@
     osu-lazer
     steam
     texliveFull
+    texlivePackages.pygmentex
     tetrio-desktop
     vesktop
     vial
@@ -69,6 +70,44 @@
         "workbench.preferredDarkColorTheme" = "Adwaita Dark & default syntax highlighting & colorful status bar";
         "workbench.preferredLightColorTheme" = "Adwaita Light & default syntax highlighting & colorful status bar";
         "window.autoDetectColorScheme" = true;
+        "latex-workshop.latex.recipes" = [
+          {
+            name = "latexmk (lualatex)";
+            tools = [ "lualatexmk" ];
+          }
+          {
+            name = "latexmk";
+            tools = [ "latexmk" ];
+          }
+          {
+            name = "latexmk (latexmkrc)";
+            tools = [ "latexmk_rconly" ];
+          }
+          {
+            name = "latexmk (xelatex)";
+            tools = [ "xelatexmk" ];
+          }
+          {
+            name = "pdflatex -> bibtex -> pdflatex * 2";
+            tools = [ "pdflatex" "bibtex" "pdflatex" "pdflatex" ];
+          }
+          {
+            name = "Compile Rnw files";
+            tools = [ "rnw2tex" "latexmk" ];
+          }
+          {
+            name = "Compile Jnw files";
+            tools = [ "jnw2tex" "latexmk" ];
+          }
+          {
+            name = "Compile Pnw files";
+            tools = [ "pnw2tex" "latexmk" ];
+          }
+          {
+            name = "tectonic";
+            tools = [ "tectonic" ];
+          }
+        ];
       };
     };
   };
