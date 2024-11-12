@@ -4,7 +4,6 @@
 
   home.packages = (with pkgs; [    # User Apps
 
-    activate-linux
     audacity
     # blender # temporarily disabled
     darktable
@@ -20,7 +19,6 @@
     osu-lazer
     steam
     texliveFull
-    texlivePackages.pygmentex
     tetrio-desktop
     vesktop
     vial

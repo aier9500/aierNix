@@ -3,7 +3,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    bottles
     chromium
     dconf-editor
     gnome-tweaks
