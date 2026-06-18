@@ -1,3 +1,2 @@
 # Per-device hardware config — generate on each machine, never commit.
 # See README.md.
-default/hardware-configuration.nix
