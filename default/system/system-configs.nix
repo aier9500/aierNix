@@ -45,6 +45,7 @@
         TIMELINE_LIMIT_YEARLY = 0;
       };
     };
+  };
 
   ########## Exclude default Gnome extensions ##########
   environment.gnome.excludePackages = (with pkgs; [

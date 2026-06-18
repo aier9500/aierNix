@@ -3,10 +3,15 @@
 {
   ########## User Apps ##########
   home.packages = (with pkgs; [
-    claude-code
     darktable
     vesktop
+    ########## CLI ##########
+    claude-code
     openconnect
+    ########## Other Packages ##########
+    adw-gtk3
+    bibata-cursors
+    ibm-plex
   ]);
 
   ########## Gnome Extensions ##########

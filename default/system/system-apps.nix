@@ -16,13 +16,10 @@
     dconf2nix
     ffmpeg-full
     home-manager
+    node
     ntfs3g
     python3
     usbutils # lsusb etc.
-    ########## Other Packages ##########
-    adw-gtk3
-    bibata-cursors
-    ibm-plex
   ];
 
   programs = {
