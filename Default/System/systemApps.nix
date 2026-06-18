@@ -3,7 +3,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    chromium
     dconf-editor
     gnome-tweaks
     gparted
@@ -16,12 +15,9 @@
     # Non graphical programs
     fastfetch
     ffmpeg-full
-    gnome-themes-extra # Theming dependency
-    gtk-engine-murrine # Theming dependency
     home-manager
     ntfs3g
     python3
-    sassc # Theming dependency
     usbutils # lsusb etc.
     # Shell wizardry
     eza # Better ls
