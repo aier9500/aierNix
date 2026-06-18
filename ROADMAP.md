@@ -58,6 +58,25 @@ so the same flake later runs on baremetal.
 
 ---
 
+## Changes (2026-06-18) — baremetal dconf crash fix
+
+First baremetal run crashed on dconf extension settings (conflicts detected,
+default config backed up; enabling extensions → crash, suspected extension
+version mismatch). Pulled all extension state out of declarative dconf:
+
+- [x] **Extensions now imperative** — `home-dconf.nix`: dropped `gnome-shell.nix`
+      (enabled-extensions + just-perfection) and `gnome-night-theme.nix`
+      (nightthemeswitcher) from imports. Also removed `pkgs.gnomeExtensions.*`
+      install block from `home-apps.nix` (9 exts listed there for hand-reinstall).
+      Manage all via GNOME Extensions app / extensions.gnome.org.
+- [x] **copyous settings stripped** — `gnome-clipboard.nix`: commented out
+      `org/gnome/shell/extensions/copyous` block; kept `toggle-message-tray`.
+- [x] **Safe dconf re-enabled** — interface, clipboard, keybindings (Ghostty
+      `<Super>Return`), input-sources stay declarative.
+- [ ] Post-rebuild: install + enable wanted extensions, then set options in-app.
+
+---
+
 ## Changes (2026-06-18) — declutter + hygiene session
 
 - [x] **yazi + ghostty → native HM modules** — migrated from raw `home.file` blobs to
