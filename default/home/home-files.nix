@@ -59,12 +59,12 @@
       Comment=Kando radial menu daemon
     '';
     # Kando general settings — app-level preferences (theme, behaviour, etc.)
-    ".config/kando/config.json".source = ../../tuxies-wiki/resources/logitech-linux-setup/kando/general-settings-backup.json;
+    # ".config/kando/config.json".source = ../../tuxies-wiki/resources/logitech-linux-setup/kando/general-settings-backup.json;
     # Kando menu definitions — radial menu layout and actions
-    ".config/kando/menus.json".source = ../../tuxies-wiki/resources/logitech-linux-setup/kando/menu-settings-backup.json;
+    # ".config/kando/menus.json".source = ../../tuxies-wiki/resources/logitech-linux-setup/kando/menu-settings-backup.json;
 
     # Solaar rules — Logitech button remaps and device rules
-    ".config/solaar/rules.yaml".source = ../../tuxies-wiki/resources/logitech-linux-setup/solaar/rules.yaml;
+    # ".config/solaar/rules.yaml".source = ../../tuxies-wiki/resources/logitech-linux-setup/solaar/rules.yaml;
 
   };
 }

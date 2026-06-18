@@ -37,21 +37,21 @@
       plugins = [];
     };
     ########## CLI ##########
-    eza = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    fastfetch.enable = true;
+    # eza = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    # };
+    # fastfetch.enable = true;
     fzf.fuzzyCompletion = true;
     git.enable = true;
-    yazi = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-    };
+    # yazi = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    # };
+    # zoxide = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    # };
 
   };
 
