@@ -3,22 +3,14 @@
 {
 
   environment.systemPackages = with pkgs; [
-    btrfs-assistant
-    dconf-editor
     ghostty
-    gnome-boxes
     kando
-    gnome-tweaks
     gparted
-    proton-vpn
     vscode
     ########## Programs ##########
-    dconf2nix
     ffmpeg-full
     home-manager
-    nodejs
     ntfs3g
-    python3
     usbutils # lsusb etc.
   ];
 

@@ -4,10 +4,18 @@
   ########## User Apps ##########
   home.packages = (with pkgs; [
     darktable
+    dconf-editor
+    gnome-boxes
+    gnome-tweaks
+    proton-vpn
+
     vesktop
     ########## CLI ##########
     claude-code
+    dconf2nix
+    nodejs
     openconnect
+    python3
     ########## Other Packages ##########
     adw-gtk3
     bibata-cursors
