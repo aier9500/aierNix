@@ -8,38 +8,41 @@
     gparted
     protonvpn-gui
     vscode
-    # Non graphical programs
-    fastfetch
+    ########## Programs ##########
     ffmpeg-full
     home-manager
     ntfs3g
     python3
     usbutils # lsusb etc.
-    # Shell wizardry
-    eza # Better ls
-    fd # Better find
-    ripgrep # Better grep
-    zoxide # Better cd
   ];
 
   programs = {
-    fzf.fuzzyCompletion = true;
-    git.enable = true; 
-    htop.enable = true;
-    localsend = { # Nearby Share for all
+    localsend = {
       enable = true;
       openFirewall = true; 
     };
-    java.enable = true; 
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
       plugins = [];
     };
+    ########## CLI ##########
+    fzf.fuzzyCompletion = true;
+    git.enable = true;
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    fastfetch = {
+      enable = true;
+    };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true; 
+    };
   };
 
   virtualisation = {
     libvirtd.enable = true; 
-    waydroid.enable = true; 
   };
 }

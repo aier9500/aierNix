@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }: 
+{ config, pkgs, inputs, ... }:
 
 {
-	
-	# Bootloader.
+
+	########## Bootloader ##########
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -17,11 +17,10 @@
     systemd-boot.enable = false; 
   };
 
-
-  # Enabling NTFS
+  ########## Supported Filesystems ##########
   boot.supportedFilesystems = [ "btrfs" "ext2" "ext3" "ext4" "exfat" "f2fs" "fat8" "fat16" "fat32" "ntfs" "xfs" "zfs" ];
 
-  # Enabling Flakes
+  ########## Enabling Flakes ##########
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {

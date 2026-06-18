@@ -16,9 +16,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        inherit system; 
-        modules = [ 
-          ./Default/configuration.nix 
+        inherit system;
+        modules = [
+          ./Default/configuration.nix
         ];
       };
 
