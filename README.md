@@ -74,6 +74,15 @@ Then, in `default/hardware-configuration.nix`, handle the case that matches:
   is in the file's argument set (`{ config, lib, pkgs, ... }:`). Confirm the disk
   name with `lsblk` — often `/dev/vda` or `/dev/sda` in a VM.
 
+## Setup
+
+Clone the repo to **exactly** `~/.dotfiles/aierNix` — the shell aliases `homesw` and `sysw` hard-code that path:
+
+```bash
+git clone <repo-url> ~/.dotfiles/aierNix
+cd ~/.dotfiles/aierNix
+```
+
 ## Build
 
 System:
@@ -87,3 +96,15 @@ Home-manager:
 ```bash
 home-manager switch --flake .#default
 ```
+
+## Notes & tips
+
+### Command cheatsheet
+
+| Alias   | Command                                          | Description                                                     |
+|---------|--------------------------------------------------|-----------------------------------------------------------------|
+| `homesw` | `cd ~/.dotfiles/aierNix && home-manager switch --flake .#default` | Switch home-manager generation (user config only). |
+| `sysw`  | `cd ~/.dotfiles/aierNix && sudo nixos-rebuild switch --flake .#default` | Rebuild and switch the NixOS system generation. |
+
+> **Note:** `homesw` and `sysw` both `cd` to `~/.dotfiles/aierNix`. If the repo lives anywhere else these aliases will fail — see [Setup](#setup) above.
+| `nixse` | `nix search nixpkgs <query>`                     | Search nixpkgs for a package by name or keyword.               |
