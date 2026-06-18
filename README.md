@@ -16,6 +16,23 @@ sudo nixos-generate-config --show-hardware-config > default/hardware-configurati
 
 This writes the correct `fileSystems` entries and UUIDs for that device.
 
+### Convenience script
+
+`scripts/gen-hardware-config.sh` is a thin wrapper around the manual command
+above. It resolves the repo root automatically (works from any directory),
+backs up any existing `hardware-configuration.nix` to
+`hardware-configuration.nix.bak` before overwriting, and prints the same
+ESP / bootloader checklist described below.
+
+```bash
+# Make executable once, then run from anywhere:
+chmod +x scripts/gen-hardware-config.sh
+./scripts/gen-hardware-config.sh
+```
+
+The manual `nixos-generate-config` command and the bootloader notes below
+remain the authoritative reference; the script just saves the copy-paste.
+
 ### Bootloader is machine-specific too
 
 The committed config (`default/system/system-configs.nix`) sets up GRUB with EFI

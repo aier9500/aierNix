@@ -43,6 +43,10 @@
         TIMELINE_LIMIT_YEARLY = 0;
       };
     };
+    # Boot into BTRFS snapshots via GRUB submenu (pairs with snapper above)
+    grub-btrfs = {
+      enable = true;
+    };
   };
   
   # Enabling OpenGL
@@ -55,9 +59,11 @@
   };
 
   # Input method: ibus with rime (Cantonese + Simplified Chinese)
-  # TODO: configure rime schemas in home phase — add jyut6ping3 (Cantonese) and
-  # luna_pinyin (Simplified Chinese) via rime-cantonese; place user schema YAML
-  # under ~/.config/ibus/rime/ or manage via home-manager home.file.
+  # System side: rime engine is overridden to include both base rime-data and
+  # rime-cantonese (provides jyut6ping3 / Cantonese Jyutping schema) and
+  # luna-pinyin (bundled in rime-data as luna_pinyin).
+  # Home side (separate agent): set the active schema list in
+  # ~/.config/ibus/rime/default.custom.yaml (home-manager home.file).
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
@@ -65,6 +71,7 @@
       (rime.override {
         rimeDataPkgs = [
           pkgs.rime-data
+          pkgs.rime-cantonese
         ];
       })
     ];

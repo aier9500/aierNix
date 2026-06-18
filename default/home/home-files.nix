@@ -123,5 +123,28 @@
       max_height = 1600
     '';
 
+    # ibus-rime: select active schemas for this user
+    # Rime reads ~/.config/ibus/rime/default.custom.yaml on deploy/restart.
+    # The system agent installs the schema data (rime-cantonese for jyut6ping3,
+    # rime-luna-pinyin for luna_pinyin); this file tells Rime which ones to surface.
+    ".config/ibus/rime/default.custom.yaml".text = ''
+      patch:
+        schema_list:
+          - schema: luna_pinyin
+          - schema: jyut6ping3
+    '';
+
+    # Kando radial menu — autostart at GNOME login
+    # Kando runs as a background daemon and is triggered via a global hotkey.
+    # The package is added system-wide by the companion system agent.
+    ".config/autostart/kando.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Kando
+      Exec=kando
+      X-GNOME-Autostart-enabled=true
+      Comment=Kando radial menu daemon
+    '';
+
   };
 }

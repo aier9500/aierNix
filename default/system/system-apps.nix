@@ -7,6 +7,7 @@
     dconf-editor
     ghostty
     gnome-boxes
+    kando
     gnome-tweaks
     gparted
     proton-vpn
