@@ -58,21 +58,41 @@ so the same flake later runs on baremetal.
 
 ---
 
+## Changes (2026-06-18) — declutter + hygiene session
+
+- [x] **yazi + ghostty → native HM modules** — migrated from raw `home.file` blobs to
+      `programs.yazi` / `programs.ghostty` in `home-configs.nix`; yazi config uses
+      `[mgr]` section per yazi 26.5.6 API.
+- [x] **Solaar + Kando configs declared** — `rules.yaml` (Solaar) and
+      `config.json`/`menus.json` (Kando) now sourced via `home.file .source` from
+      `tuxies-wiki/resources/`. Solaar `config.yaml` intentionally excluded (device
+      pairing state — not portable).
+- [x] **Won't-port items struck** — removed from checklist + ROADMAP: Tiling Shell,
+      v4l2loopback, Waydroid, Fluent icons & cursor. Howdy kept deferred (D6); Bibata
+      cursor kept.
+- [x] **3 subfolder READMEs added** — `default/`, `default/system/`, `default/home/`.
+
+---
+
 ## Open work (next rounds)
 
 ### Checklist items still NOT in Nix
-- [ ] **Tiling Shell** GNOME extension (checklist lists; not yet configured).
-- [ ] **v4l2loopback** virtual camera module (deferred D6) — `boot.extraModulePackages` + `kernelModules`.
-- [ ] **Waydroid** (Android-on-Linux) — deferred D6.
 - [ ] **Howdy** facial login — deferred D6 (fiddly PAM; not for VM).
-- [ ] **Fluent icons & cursor** — deferred D6 (theming kept current per D5).
 - [ ] Solaar **rules** + Kando **menu/trigger** — inherently manual GUI; document, can't fully declare.
 
 ### Repo hygiene
-- [ ] Declutter `home-files.nix`: migrate program-related `home.file` blobs (yazi rice, ghostty) to
+- [x] Declutter `home-files.nix`: migrate program-related `home.file` blobs (yazi rice, ghostty) to
       native HM program modules where an option exists, instead of raw config files.
-- [ ] Add subfolder `README.md` to `default/`, `default/system/`, `default/home/` (subdir-readme-author).
-- [ ] README: finish "Notes & tips" command cheatsheet (homesw/sysw/nixse aliases).
+      → yazi → `programs.yazi`; ghostty → `programs.ghostty` (home-configs.nix).
+- [x] Add subfolder `README.md` to `default/`, `default/system/`, `default/home/` (subdir-readme-author).
+- [x] README: finish "Notes & tips" command cheatsheet (homesw/sysw/nixse aliases).
+      → Cheatsheet added + install-path note (repo must live at `~/.dotfiles/aierNix`).
+
+### Flake inputs
+- [ ] Run `nix flake update` (bump nixpkgs + home-manager to latest) then rebuild —
+      REQUIRED: `programs.ghostty` does not exist at the old locked HM rev (2024-11-10;
+      module landed 2024-12-26), and latest yazi (26.5.6) is what the `[mgr]` config
+      targets. Build will fail until inputs are bumped.
 
 ### Verify phase
 - [ ] `nix flake check` clean.
