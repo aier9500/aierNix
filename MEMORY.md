@@ -14,8 +14,10 @@ Personal **NixOS + home-manager flake**, single host `nixosConfigurations.defaul
 - **No builds in-harness.** The sandbox cannot run `nixos-rebuild` / `nix build` / `nix flake check`.
   Agents make **static edits + static review only**; the **user builds** in their own terminal.
   Never instruct an agent to build — surface build-time checks to the user instead.
-- **Device-portable.** `default/hardware-configuration.nix` is **gitignored**, generated per machine
-  via `scripts/gen-hardware-config.sh`. Do not commit or hardcode device-specific hardware config.
+- **Device-portable.** `default/hardware-configuration.nix` is **tracked** (Nix flakes only copy
+  git-tracked files — gitignoring it breaks the build), regenerated + `git add`-ed per machine via
+  `scripts/gen-hardware-config.sh`. Single tracked file = one machine at a time; per-host folders
+  deferred until a 2nd device. Don't hardcode device-specific values into shared modules.
 
 ## Locked decisions (2026-06-18)
 

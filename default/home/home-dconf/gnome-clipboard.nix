@@ -8,10 +8,12 @@ with lib.hm.gvariant;
       toggle-message-tray = [ "<Super>M" ];
     };
 
-    "org/gnome/shell/extensions/copyous" = {
-      open-clipboard-dialog-shortcut = [ "<Super>V" ];
-      clipboard-history = "keep-all";
-      clipboard-position-vertical = "bottom";
-    };
+    # copyous extension settings removed — manage in-extension to avoid
+    # version-mismatch crashes on rebuild.
+    # "org/gnome/shell/extensions/copyous" = {
+    #   open-clipboard-dialog-shortcut = [ "<Super>V" ];
+    #   clipboard-history = "keep-all";
+    #   clipboard-position-vertical = "bottom";
+    # };
   };
 }

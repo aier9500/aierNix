@@ -2,9 +2,10 @@
 # gen-hardware-config.sh
 #
 # Generates the per-device hardware-configuration.nix for this flake.
-# default/hardware-configuration.nix is gitignored — it contains machine-specific
-# data (disk UUIDs, ESP mount point, kernel modules) and must be regenerated on
-# each machine before the first build.
+# default/hardware-configuration.nix is TRACKED in git (Nix flakes only copy
+# git-tracked files — an untracked file is invisible to the build). It contains
+# machine-specific data (disk UUIDs, ESP mount point, kernel modules) and must be
+# regenerated, then `git add`-ed, on each machine before the first build.
 #
 # Usage: scripts/gen-hardware-config.sh
 # Run from anywhere; the script resolves the repo root relative to itself.
@@ -61,4 +62,10 @@ echo "    (Confirm disk name with lsblk — often /dev/vda or /dev/sda in a VM.)
 echo "    (lib.mkForce is required to override the committed config defaults.)"
 echo ""
 echo "See README.md for full details on each case."
+echo "----------------------------------------------------------------------"
+echo ""
+echo "IMPORTANT: stage the file so the flake can see it (untracked = invisible):"
+echo "  git add ${TARGET}"
+echo "Then build:"
+echo "  sudo nixos-rebuild switch --flake .#default"
 echo "----------------------------------------------------------------------"

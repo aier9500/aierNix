@@ -99,7 +99,7 @@ sysw     # runs ~/MyBash/sysw.sh
 - **`system-modules/` for daemons** — system services that need their own file get a file under `system/system-modules/` and are collected by `system/system-modules.nix`. Mirror this for new services.
 - **`home-dconf/` for GNOME settings** — each logical group of dconf keys gets its own file under `home/home-dconf/`, collected by `home/home-dconf.nix`.
 - **`home-files.nix` for static dotfiles** — files placed verbatim into `$HOME` go here, including symlinks into `../../tuxies-wiki/resources/` for Kando and Solaar configs.
-- **`hardware-configuration.nix` is device-specific** — it is git-ignored per-device (see [`../.gitignore`](../.gitignore)); regenerate with [`../scripts/gen-hardware-config.sh`](../scripts/gen-hardware-config.sh) on a new machine.
+- **`hardware-configuration.nix` is device-specific but tracked** — Nix flakes only copy git-tracked files, so it is committed, not ignored; regenerate with [`../scripts/gen-hardware-config.sh`](../scripts/gen-hardware-config.sh) then `git add` it on a new machine.
 
 ---
 

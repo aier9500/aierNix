@@ -2,25 +2,19 @@
 
 {
   ########## User Apps ##########
-  home.packages = (with pkgs; [    
+  home.packages = (with pkgs; [
     claude-code
     darktable
     vesktop
     openconnect
+  ]);
 
   ########## Gnome Extensions ##########
-  ]) ++ (with pkgs.gnomeExtensions; [
-
-    appindicator
-    blur-my-shell
-    caffeine
-    copyous
-    fuzzy-app-search
-    just-perfection
-    kando-integration
-    night-theme-switcher
-    shotzy
-  ]);
+  # Installed IMPERATIVELY (GNOME Extensions app / extensions.gnome.org).
+  # Declarative install + dconf enable crashed on baremetal from extension
+  # version mismatch. Reinstall by hand:
+  #   appindicator, blur-my-shell, caffeine, copyous, fuzzy-app-search,
+  #   just-perfection, kando-integration, night-theme-switcher, shotzy
 
   services = {
     flatpak.enable = true; 
