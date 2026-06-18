@@ -25,10 +25,24 @@
 
   services = {
     # Enabling Flatpak
-    flatpak.enable = true; 
+    flatpak.enable = true;
     # Enabling power control
-    power-profiles-daemon.enable = true; 
-    tlp.enable = false; 
+    power-profiles-daemon.enable = true;
+    tlp.enable = false;
+    # BTRFS timeline snapshots
+    snapper = {
+      configs.root = {
+        SUBVOLUME = "/";
+        ALLOW_USERS = [ "aier" ];
+        TIMELINE_CREATE = true;
+        TIMELINE_CLEANUP = true;
+        TIMELINE_LIMIT_HOURLY = 5;
+        TIMELINE_LIMIT_DAILY = 7;
+        TIMELINE_LIMIT_WEEKLY = 2;
+        TIMELINE_LIMIT_MONTHLY = 2;
+        TIMELINE_LIMIT_YEARLY = 0;
+      };
+    };
   };
   
   # Enabling OpenGL

@@ -9,6 +9,9 @@
     protonvpn-gui
     vscode
     ########## Programs ##########
+    btrfs-assistant
+    eza
+    fastfetch
     ffmpeg-full
     home-manager
     ntfs3g
@@ -29,16 +32,9 @@
     ########## CLI ##########
     fzf.fuzzyCompletion = true;
     git.enable = true;
-    eza = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    fastfetch = {
-      enable = true;
-    };
     zoxide = {
       enable = true;
-      enableBashIntegration = true; 
+      enableBashIntegration = true;
     };
   };
 
