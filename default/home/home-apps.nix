@@ -23,6 +23,7 @@
   ]);
 
   services = {
+    flatpak.enable = true; 
     flatpak.packages = [
       "app.zen_browser.zen"
       "be.alexandervanhee.gradia"
