@@ -29,6 +29,7 @@
       "be.alexandervanhee.gradia"
       "com.bitwarden.desktop"
       "com.github.tchx84.Flatseal"
+      "com.mattjakeman.ExtensionManager"
       "io.github.seadve.Kooha"
       "io.github.zarestia_dev.rclone-manager"
       "io.missioncenter.MissionCenter"
