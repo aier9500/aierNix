@@ -26,33 +26,13 @@
   ];
 
   programs = {
-    
+    git.enable = true;
     localsend = {
       enable = true;
       openFirewall = true; 
     };
-    obs-studio = {
-      enable = true;
-      enableVirtualCamera = true;
-      plugins = [];
-    };
-    ########## CLI ##########
-    # eza = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    # };
-    # fastfetch.enable = true;
-    fzf.fuzzyCompletion = true;
-    git.enable = true;
-    # yazi = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    # };
-    # zoxide = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    # };
-
+    nautilus-open-any-terminal.enable = true; 
+    appimage.enable = true; 
   };
 
   virtualisation = {

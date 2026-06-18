@@ -45,45 +45,8 @@
         TIMELINE_LIMIT_YEARLY = 0;
       };
     };
-    # Boot into BTRFS snapshots via GRUB submenu (pairs with snapper above)
-    # grub-btrfs = {
-    #   enable = true;
-    # };
-  };
-  
-  # Enabling OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-        intel-compute-runtime
-    ];
-  };
 
-  # Input method: ibus with rime (Cantonese + Simplified Chinese)
-  # System side: rime engine is overridden to include both base rime-data and
-  # rime-cantonese (provides jyut6ping3 / Cantonese Jyutping schema) and
-  # luna-pinyin (bundled in rime-data as luna_pinyin).
-  # Home side (separate agent): set the active schema list in
-  # ~/.config/ibus/rime/default.custom.yaml (home-manager home.file).
-  i18n.inputMethod = {
-    enable = true;
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      (rime.override {
-        rimeDataPkgs = [
-          pkgs.rime-data
-          # pkgs.rime-cantonese
-        ];
-      })
-    ];
-  };
-
-  programs = {
-    nautilus-open-any-terminal.enable = true; 
-    appimage.enable = true; 
-  };
-
+  ########## Exclude default Gnome extensions ##########
   environment.gnome.excludePackages = (with pkgs; [
     gnome-shell-extensions
   ]);
