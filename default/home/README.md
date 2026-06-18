@@ -13,11 +13,12 @@ home/
 ├── home-modules.nix     # Stub for future HM module imports
 └── home-dconf/
     ├── gnome-desktop-interface.nix  # Fonts (IBM Plex), cursor (Bibata-Original-Ice), clock, scaling
-    ├── gnome-shell.nix              # Enabled extensions list + Just Perfection tweaks
-    ├── gnome-clipboard.nix          # Copyous clipboard extension keybinding (<Super>V)
-    ├── gnome-input-sources.nix      # Keyboard layout: us+colemak_dh via xkb
-    ├── gnome-keybindings.nix        # Custom keybinding: <Super>Return → Ghostty
-    └── gnome-night-theme.nix        # Night Theme Switcher commands for auto dark/light
+    ├── gnome-shell.nix              # Enabled extensions list + Just Perfection tweaks (import disabled)
+    ├── gnome-clipboard.nix          # Shell keybinding: <Super>M → message tray (Copyous commented out)
+    ├── gnome-input-sources.nix      # Keyboard input sources (currently empty)
+    ├── gnome-keybindings.nix        # WM + media-key shortcuts and custom launchers (Ghostty, Mission Center)
+    ├── gnome-tweaks.nix             # Titlebar buttons, volume >100%, fractional-scaling flag
+    └── gnome-night-theme.nix        # Night Theme Switcher commands for auto dark/light (import disabled)
 ```
 
 ## Key Files
@@ -57,7 +58,7 @@ Raw `home.file` declarations for configs that have no home-manager module:
 Kando and Solaar configs are sourced from the sibling `tuxies-wiki/` repo at `../../tuxies-wiki/resources/logitech-linux-setup/`.
 
 ### [`home-dconf.nix`](./home-dconf.nix)
-Pure import aggregator — no settings of its own. Imports all six files under `home-dconf/`.
+Pure import aggregator — no settings of its own. Imports the five active files under `home-dconf/` (`gnome-shell.nix` and `gnome-night-theme.nix` are left out — extensions are managed imperatively to avoid version-mismatch crashes).
 
 ### [`home-dconf/`](./home-dconf/)
 GNOME dconf settings, one file per concern. Each file uses `dconf.settings` with typed GVariant values via `lib.hm.gvariant`. Notable settings:
@@ -65,7 +66,8 @@ GNOME dconf settings, one file per concern. Each file uses `dconf.settings` with
 - **Cursor:** `Bibata-Original-Ice` (set in `gnome-desktop-interface.nix`)
 - **Fonts:** IBM Plex Sans/Serif/Mono at 11pt system-wide
 - **Keyboard:** `us+colemak_dh` layout (Colemak-DH, no other layouts)
-- **Hotkeys:** `<Super>Return` opens Ghostty; `<Super>V` opens Copyous clipboard history; `<Super>M` toggles notification tray
+- **Hotkeys (`gnome-keybindings.nix`):** workspace/window/app navigation (`Ctrl+Super+Arrow`, `Super+[` / `]`, `Alt+Tab`, `Super+Tab`), launchers (`Super+I`/`;` Settings, `Super+E` Files, `Super+R` run dialog, `Super+Return` Ghostty, `Ctrl+Shift+Esc` Mission Center), and window actions (`Super+Shift+Return` center, `Super+F` fullscreen, `Super+X` close); `<Super>M` toggles the notification tray (`gnome-clipboard.nix`)
+- **Tweaks (`gnome-tweaks.nix`):** titlebar minimize/maximize buttons, volume amplification above 100%, and the `scale-monitor-framebuffer` fractional-scaling flag
 - **Night Theme Switcher:** runs `dconf write` commands at sunrise/sunset to switch color scheme
 
 ### [`home-modules.nix`](./home-modules.nix)

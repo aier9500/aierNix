@@ -47,6 +47,28 @@ only copy git-tracked files, so an ignored hardware config builds with a "file n
 
 ---
 
+## Changes (2026-06-18) — ported gnome.md guide shortcuts/tweaks into dconf
+
+Ported the `tuxies-wiki` **gnome.md** declarative settings into home dconf:
+
+- [x] **`home-dconf/gnome-keybindings.nix`** — added the guide's WM keybindings
+      (`switch-to-workspace-left/right`, `move-to-workspace-left/right`,
+      `switch-windows(-backward)`, `switch-applications(-backward)`,
+      `panel-run-dialog`, `move-to-center`, `toggle-fullscreen`, `close`) and
+      media-key launchers (`control-center` = `<Super>I`/`;`, `home` = `<Super>E`).
+      Custom launchers: kept existing **Ghostty** on `<Super>Return` (guide used
+      Ptyxis — we don't ship it) and added **Mission Center** `<Ctrl><Shift>Esc`
+      (`custom1`, flatpak already in `home-apps.nix`).
+- [x] **`home-dconf/gnome-tweaks.nix`** (new) — guide "Basics": titlebar
+      `button-layout = :minimize,maximize,close`, `allow-volume-above-100-percent`,
+      and mutter `experimental-features = [scale-monitor-framebuffer]`. Registered
+      in `home-dconf.nix`.
+- [x] **Verified** — full `homeConfigurations.default` activation derivation
+      evaluates (drvPath resolves); all 7 new dconf schema sections merge cleanly.
+      `gnome-tweaks.nix` `git add`-ed so the flake can see it.
+- Out of scope (not dconf): guide's GUI Settings steps and app installs
+  (gnome-tweaks/dconf-editor/extension-manager/ptyxis) — those are package concerns.
+
 ## Current stage (verified 2026-06-18)
 
 | Layer | State | Notes |
