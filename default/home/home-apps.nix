@@ -3,8 +3,10 @@
 {
   ########## User Apps ##########
   home.packages = (with pkgs; [    
+    claude-code
     darktable
     vesktop
+    openconnect
 
   ########## Gnome Extensions ##########
   ]) ++ (with pkgs.gnomeExtensions; [
