@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-
-  home.packages = (with pkgs; [    # User Apps
+  ########## User Apps ##########
+  home.packages = (with pkgs; [    
 
     adw-gtk3
     bibata-cursors
@@ -16,7 +16,8 @@
     vesktop
     yazi
 
-  ]) ++ (with pkgs.gnomeExtensions; [    # Gnome Extensions
+  ########## Gnome Extensions ##########
+  ]) ++ (with pkgs.gnomeExtensions; [
 
     appindicator
     blur-my-shell
@@ -45,9 +46,18 @@
       "io.missioncenter.MissionCenter"
       "md.obsidian.Obsidian"
     ];
+
   };
 
   programs = {
-
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    fastfetch.enable = true;
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
 }

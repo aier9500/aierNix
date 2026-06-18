@@ -10,8 +10,6 @@
     vscode
     ########## Programs ##########
     btrfs-assistant
-    eza
-    fastfetch
     ffmpeg-full
     home-manager
     ntfs3g
@@ -32,10 +30,6 @@
     ########## CLI ##########
     fzf.fuzzyCompletion = true;
     git.enable = true;
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-    };
   };
 
   virtualisation = {
