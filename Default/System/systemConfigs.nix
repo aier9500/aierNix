@@ -41,11 +41,20 @@
     ];
   };
 
-  # Adding Chinese ibus (pinyin input)
+  # Input method: ibus with rime (Cantonese + Simplified Chinese)
+  # TODO: configure rime schemas in home phase — add jyut6ping3 (Cantonese) and
+  # luna_pinyin (Simplified Chinese) via rime-cantonese; place user schema YAML
+  # under ~/.config/ibus/rime/ or manage via home-manager home.file.
   i18n.inputMethod = {
-    enable = true; 
+    enable = true;
     type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ libpinyin typing-booster ];
+    ibus.engines = with pkgs.ibus-engines; [
+      (rime.override {
+        rimeDataPkgs = [
+          pkgs.rime-data
+        ];
+      })
+    ];
   };
 
   programs = {

@@ -6,11 +6,7 @@
     dconf-editor
     gnome-tweaks
     gparted
-    handbrake
     protonvpn-gui
-    resources
-    scrcpy
-    shutter
     vscode
     # Non graphical programs
     fastfetch
@@ -27,8 +23,6 @@
   ];
 
   programs = {
-    adb.enable = true; # Android USB Debugging
-    droidcam.enable = true; 
     fzf.fuzzyCompletion = true;
     git.enable = true; 
     htop.enable = true;
@@ -39,12 +33,9 @@
     java.enable = true; 
     obs-studio = {
       enable = true;
-      enableVirtualCamera = true; 
-      plugins = [
-        pkgs.obs-studio-plugins.droidcam-obs
-      ];
+      enableVirtualCamera = true;
+      plugins = [];
     };
-    thunderbird.enable = true; 
   };
 
   virtualisation = {
