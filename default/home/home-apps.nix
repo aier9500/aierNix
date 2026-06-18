@@ -32,6 +32,25 @@
   };
 
   programs = {
-
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = [];
+    };
+    ########## CLI ##########
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    fastfetch.enable = true;
+    fzf.enable = true;
+    yazi = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
 }
