@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./SystemModules/systemKeyd.nix
+    ./system-modules/system-keyd.nix
   ];
 }

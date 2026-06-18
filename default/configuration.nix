@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./Imports/systemImports.nix
+      ./imports/system-imports.nix
     ];
 
   # Configure network proxy if necessary

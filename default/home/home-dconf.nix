@@ -5,6 +5,6 @@ with lib.hm.gvariant;
 {
   
   imports = [
-    ./HomeDconf/gnomeDesktopInterface.nix
+    ./home-dconf/gnome-desktop-interface.nix
   ];
 }

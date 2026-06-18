@@ -18,14 +18,14 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./Default/configuration.nix
+          ./default/configuration.nix
         ];
       };
 
       homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./Default/home.nix
+          ./default/home.nix
           nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
