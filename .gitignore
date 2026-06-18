@@ -1,2 +1,4 @@
-# Per-device hardware config — generate on each machine, never commit.
-# See README.md.
+# hardware-configuration.nix is TRACKED, not ignored — Nix flakes only copy
+# git-tracked files, so an ignored hardware config breaks the build.
+# See README → "Per-device hardware config". Only the generator's backup is ignored.
+default/hardware-configuration.nix.bak
