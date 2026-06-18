@@ -16,7 +16,7 @@
     dconf2nix
     ffmpeg-full
     home-manager
-    node
+    nodejs
     ntfs3g
     python3
     usbutils # lsusb etc.
