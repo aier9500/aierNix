@@ -16,19 +16,46 @@ sudo nixos-generate-config --show-hardware-config > default/hardware-configurati
 
 This writes the correct `fileSystems` entries and UUIDs for that device.
 
-### EFI mount point
+### Bootloader is machine-specific too
 
-The bootloader (`default/system/system-configs.nix`) uses GRUB with EFI. GRUB
-installs to `boot.loader.efi.efiSysMountPoint`, which defaults to `/boot`.
+The committed config (`default/system/system-configs.nix`) sets up GRUB with EFI
+and **defaults the EFI partition mount point to `/boot`**. Where the EFI System
+Partition (ESP) actually lives is a hardware fact — like disk UUIDs — so any
+per-device override belongs in this machine's git-ignored
+`hardware-configuration.nix`, **not** in the committed files. That keeps the repo
+portable: clone → generate hardware config → (maybe add one line) → build.
 
-If a device mounts its EFI System Partition at `/boot/efi` instead of `/boot`
-(check `findmnt /boot/efi`), set on that device:
+`nixos-generate-config` writes `fileSystems` but does **not** write
+`boot.loader.efi.efiSysMountPoint`. So after generating, check where this machine
+mounts its ESP:
 
-```nix
-boot.loader.efi.efiSysMountPoint = "/boot/efi";
+```bash
+findmnt /boot /boot/efi
+lsblk -f
 ```
 
-Otherwise `grub-install` fails with `/boot doesn't look like an EFI partition`.
+Then, in `default/hardware-configuration.nix`, handle the case that matches:
+
+- **ESP mounted at `/boot`** (default): add nothing. Works as-is.
+- **ESP mounted at `/boot/efi`** (separate ESP): add
+  ```nix
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  ```
+  Otherwise `grub-install` fails with `/boot doesn't look like an EFI partition`.
+- **Single partition / no separate ESP (e.g. a BIOS/legacy-boot VM):** the
+  machine is not EFI-booting at all. EFI GRUB cannot install. Either give the VM
+  firmware an EFI ESP, or switch that device to BIOS GRUB by setting in its
+  `hardware-configuration.nix`:
+  ```nix
+  boot.loader.grub.efiSupport = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  boot.loader.grub.devices = lib.mkForce [ "/dev/vda" ];  # whole disk
+  ```
+  `lib.mkForce` is required: the committed config already sets these (e.g.
+  `efiSupport = true`, `devices = [ "nodev" ]`), and two equal-priority
+  definitions error out — `mkForce` makes the per-device value win. Ensure `lib`
+  is in the file's argument set (`{ config, lib, pkgs, ... }:`). Confirm the disk
+  name with `lsblk` — often `/dev/vda` or `/dev/sda` in a VM.
 
 ## Build
 
