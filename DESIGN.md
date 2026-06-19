@@ -199,7 +199,7 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | L1 | nixos-unstable channel | Access to latest packages; consistent with wiki spec |
 | L2 | GRUB (not systemd-boot) | EFI + OS prober for dual-boot; Catppuccin GRUB theme removed (caused grub activation failure — legacy theme; kept 1920x1080 resolution) |
 | L3 | GDM Wayland | Drop X11 session; keyboard layout via GNOME input-sources dconf |
-| L4 | Colemak DH via keyd | keyd operates at evdev level — layout-independent, works on Wayland without X11 xkb config |
+| L4 | Colemak-DH via GNOME xkb input source (`us+colemak_dh`); keyd for modifiers only | The letter layout is the GNOME xkb `us+colemak_dh` source (gnome-input-sources dconf, home). keyd operates at evdev level for **modifier** remaps only (capslock→backspace, shift+shift→capslock) — it does NOT remap letters. (Earlier docs wrongly attributed the layout to keyd.) |
 | L5 | Bash (not zsh/fish/starship) | Custom PS1 already tuned; no reason to switch |
 | L6 | ibus-rime for CJK input | luna_pinyin + jyut6ping3; system engine + user schema config file |
 | L7 | hardware-configuration.nix tracked in git | Nix flakes only copy git-tracked files; ignored hardware-config causes build failures |
