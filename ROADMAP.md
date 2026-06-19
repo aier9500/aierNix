@@ -54,6 +54,10 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 
 ## Changelog
 
+### 2026-06-19 — Claude Code image paste (clipboard tools)
+
+- **Fixed** Claude Code's terminal image paste failing with "no image found in clipboard" on the Wayland GNOME session: added `wl-clipboard` + `xclip` to `home-pkgs.nix` (CLI/dev tools). Claude Code reads pasted images via `xclip … || wl-paste …` and NixOS ships neither by default (Fedora/Ubuntu do). `wl-clipboard` handles the Wayland clipboard; `xclip` covers XWayland-sourced images. Confirmed working after `nh home switch`. Home-side change (ungated). NixOS-specific, so **not** mirrored to the wiki.
+
 ### 2026-06-19 — Colemak-DH layout fix, fastfetch de-box, yazi g→.; repo rules
 
 - **Colemak-DH:** set the GNOME xkb input source to `us+colemak_dh` (the rime input-source change had clobbered it to plain `us`). Corrected the doctrine — Colemak letters come from this xkb source, **not** keyd (keyd only remaps modifiers); DESIGN L4 fixed.

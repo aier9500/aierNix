@@ -60,7 +60,7 @@ General-purpose package bucket for GUI and CLI applications that need no Nix-man
 | Screen recording | `kooha` |
 | Networking | `proton-vpn` |
 | Communication | `vesktop` |
-| CLI / dev tools | `claude-code`, `dconf2nix`, `nodejs`, `openconnect`, `python3` |
+| CLI / dev tools | `claude-code`, `wl-clipboard`, `xclip`, `dconf2nix`, `nodejs`, `openconnect`, `python3` |
 | Theming | `adw-gtk3` |
 
 Several of these were migrated from `flatpak-home.nix` on 2026-06-19 (`obsidian`, `mission-center`, `kooha`, `gnome-extension-manager`, `gradia`) once their nixpkgs packages were confirmed clean.
@@ -119,6 +119,7 @@ Declarative Flatpak user packages. After the 2026-06-19 migration, exactly four 
 ## Notes
 
 - **`gnome-extension-manager`** is installed as a nixpkgs package but GNOME extensions themselves remain **imperative** — install and enable them through the Extensions app. Declarative extension enables caused crashes on bare metal due to version mismatches (DESIGN.md L8).
+- **`wl-clipboard` + `xclip`** back Claude Code's terminal **image paste**, which shells out to `xclip … || wl-paste …` to read clipboard image data. NixOS ships neither by default (Fedora/Ubuntu do), so without them paste fails with "no image found in clipboard". `wl-clipboard` covers the Wayland session; `xclip` covers XWayland-sourced images.
 - **`obsidian`** requires `nixpkgs.config.allowUnfree = true`, which is already set in `modules/system/nix.nix`.
 - **`kooha`** records via the PipeWire screencast portal; PipeWire must be enabled (`mySystem.desktop.pipewire`) for it to work.
 - **`obs-studio.nix`** uses `programs.obs-studio` rather than bare `home.packages` so the plugin list is managed in one place and HM integration hooks can be added without restructuring the file.
