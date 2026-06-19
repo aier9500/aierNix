@@ -1,167 +1,242 @@
 # aierNix
 
-Personal NixOS + home-manager flake.
+Personal NixOS + home-manager flake. Declarative config transferred from the
+[tuxies-wiki](https://github.com/theory-y/tuxies-wiki) aiers-fedora-checklist,
+restructured into a best-practice `hosts/` + `modules/` layout with standalone
+home-manager and a local quality gate.
+
+Doctrine lives in `DESIGN.md`. Rebuild plan and changelog live in `ROADMAP.md`.
 
 ---
 
-## Install on a fresh machine
+## Layout
 
-Run each step in order, top to bottom.
+```
+flake.nix                          # inputs + outputs (nixosConfigurations.aierNixOS, homeConfigurations.aier)
+flake.lock
+.envrc                             # use flake (nix-direnv auto-loads devShell on cd)
+
+lib/
+  default.nix                      # mkHost + mkHome helper functions
+
+hosts/
+  aierNixOS/
+    default.nix                    # sets myConfig.* values, flips feature toggles on, imports core modules
+    home.nix                       # home-manager entry: sets myConfig.*, enables home toggles, imports home modules
+    hardware-configuration.nix     # machine-specific (tracked — flakes only see git-tracked files)
+
+modules/
+  options.nix                      # myConfig.* cross-cutting values (user, hostname, timezone, locale, themeName)
+  system/
+    core/                          # always-on (no enable option) — always imported by host
+      boot.nix                     # GRUB EFI + Catppuccin theme, grub-btrfs, btrfs fs-support
+      fs.nix                       # snapper btrfs timeline snapshots
+      networking.nix               # hostname, networkmanager, hostId
+      locale.nix                   # timezone, i18n, LC_* settings
+      users.nix                    # users.users.aier definition, extraGroups
+    desktop/
+      gnome.nix                    # GNOME + GDM + Wayland + excludePackages  [mySystem.desktop.gnome.enable]
+      pipewire.nix                 # pipewire stack, disable pulseaudio         [mySystem.desktop.pipewire.enable]
+      fonts.nix                    # system-level font packages                 [mySystem.desktop.fonts.enable]
+    keyd.nix                       # Colemak DH evdev remap                     [mySystem.keyd.enable]
+    snapper.nix                    # btrfs timeline snapshots for root           [mySystem.snapper.enable]
+    virtualisation.nix             # libvirtd                                    [mySystem.virtualisation.enable]
+    flatpak.nix                    # services.flatpak system-level enablement    [mySystem.flatpak.enable]
+    power.nix                      # power-profiles-daemon                       [mySystem.power.enable]
+    printing.nix                   # CUPS                                        [mySystem.printing.enable]
+    nix.nix                        # nix.settings, programs.nh, allowUnfree, stateVersion
+    system-pkgs.nix                # environment.systemPackages (git, gparted, ffmpeg-full, home-manager, …)
+  home/
+    shell/
+      bash.nix                     # PS1, aliases, yazi y(), fastfetch call      [myHome.shell.bash.enable]
+    cli/
+      eza.nix                      #                                             [myHome.cli.eza.enable]
+      fzf.nix                      #                                             [myHome.cli.fzf.enable]
+      zoxide.nix                   #                                             [myHome.cli.zoxide.enable]
+      yazi.nix                     # settings, keymap, theme                     [myHome.cli.yazi.enable]
+      fastfetch.nix                #                                             [myHome.cli.fastfetch.enable]
+    terminal/
+      ghostty.nix                  # theme, opacity, blur, window size           [myHome.terminal.ghostty.enable]
+    apps/
+      vscode.nix                   # install-only; Settings Sync handles config  [myHome.apps.vscode.enable]
+      obs-studio.nix               #                                             [myHome.apps.obsStudio.enable]
+      flatpak-home.nix             # nix-flatpak packages list                   [myHome.apps.flatpak.enable]
+      home-pkgs.nix                # general home packages (darktable, vesktop, claude-code, …)
+    theming/
+      dconf.nix                    # aggregator for gnome-dconf/*                [myHome.theming.gnome.enable]
+      gnome-dconf/                 # desktop-interface, clipboard, keybindings, tweaks, input-sources, shell, night-theme
+      cursors.nix                  # bibata-cursors                              [myHome.theming.cursors.enable]
+    misc/
+      kando.nix                    # autostart .desktop + package               [myHome.kando.enable]
+      fonts-home.nix               # home.file font symlinks                    [myHome.fonts.enable]
+
+overlays/
+  default.nix                      # overlay scaffold (empty)
+
+pkgs/
+  default.nix                      # custom packages scaffold (empty)
+```
+
+Each subdirectory has its own README for detail. See `DESIGN.md` for doctrine
+(feature-toggle convention, system/home split, standalone HM, quality gate).
+
+---
+
+## Output names
+
+| Flake output | Command target |
+|---|---|
+| `nixosConfigurations.aierNixOS` | `nh os switch` / `sudo nixos-rebuild switch --flake .#aierNixOS` |
+| `homeConfigurations.aier` | `nh home switch` / `home-manager switch --flake .#aier` |
+
+---
+
+## Install on a new machine
+
+Run each step in order.
 
 ### 1. Get `git`
 
-A fresh NixOS install has no `git`. Drop into a temporary shell that has it:
+A fresh NixOS install has no `git`. Drop into a temporary shell:
 
 ```bash
 nix-shell -p git
 ```
 
 Stay in this shell for the next steps. It vanishes when you `exit` — `git`
-becomes permanent once you build the config below.
+becomes permanent once you build the config.
 
-### 2. Turn on flakes for this terminal
+### 2. Enable flakes for this terminal
 
-This repo is a **flake**. Flakes are still an "experimental" Nix feature and are
-**off by default** on a fresh system. The config you are about to build turns
-them on permanently — but the first few commands run *before* that, so switch
-them on just for this terminal:
+Flakes are off by default on a fresh system. The config you are about to build
+turns them on permanently — but the first few commands run before that:
 
 ```bash
 export NIX_CONFIG="experimental-features = nix-command flakes"
 ```
 
-Now every `nix` and `nixos-rebuild` command in this terminal understands flakes.
-After the first build (step 6) flakes are on system-wide and you never set this
-again. (If you prefer, add `--experimental-features 'nix-command flakes'` to each
-command instead of exporting it.)
+After the first system switch (step 5) flakes are on system-wide and you never
+set this again.
 
 ### 3. Clone the repo
 
-Clone to **exactly** `~/.dotfiles/aierNix` — the `homesw` / `sysw` aliases
-hard-code that path.
+Clone to exactly `~/.dotfiles/aierNix` — this is the path `programs.nh.flake`
+exports as `NH_FLAKE` and the path the `homesw`/`sysw` aliases resolve to.
 
 ```bash
 git clone <repo-url> ~/.dotfiles/aierNix
 cd ~/.dotfiles/aierNix
 ```
 
-### 4. Generate this machine's hardware config
+### 4. Generate and track this machine's hardware config
 
 Every machine has different disks, so each needs its own
-`hardware-configuration.nix`. The helper script generates it (and backs up any
-existing one, then prints a bootloader checklist):
+`hardware-configuration.nix`. Generate it directly:
 
 ```bash
-chmod +x scripts/gen-hardware-config.sh
-./scripts/gen-hardware-config.sh
+sudo nixos-generate-config --show-hardware-config > hosts/aierNixOS/hardware-configuration.nix
 ```
 
-Read the notes it prints. If your `/boot` is unusual, see
-[Bootloader notes](#bootloader-notes) below.
-
-### 5. Let the flake see the new file
-
-Nix flakes only read files that **git tracks**. The file you just generated is
-brand new and untracked, so the build can't see it yet. Stage it (no commit
-needed yet):
+Then **git-add it** — Nix flakes only copy git-tracked files; an untracked
+hardware config causes a "file not found" build failure:
 
 ```bash
-git add default/hardware-configuration.nix
+git add hosts/aierNixOS/hardware-configuration.nix
 ```
 
-### 6. Update inputs, then build the system
-
-```bash
-nix flake update          # pull latest pinned versions
-sudo nixos-rebuild switch --flake .#default
-```
-
-This first build enables flakes permanently, so plain commands work from now on.
-
-### 7. Build your home-manager config
-
-```bash
-home-manager switch --flake .#default
-```
-
-### 8. Save this machine's hardware config
-
-```bash
-git commit -m "hardware-config for <this machine>"
-```
-
-Done. Reboot if the build changed the bootloader or kernel.
-
----
-
-## Per-device hardware config
-
-`default/hardware-configuration.nix` is machine-specific (disk UUIDs, ESP mount
-point, kernel modules). Two things to know:
-
-- **It is tracked in git, not ignored.** Flakes copy only git-tracked files, so
-  ignoring it would break the build with a "file not found" error. Always
-  `git add` it after generating (step 5).
-- **One machine at a time.** This repo keeps a single
-  `default/hardware-configuration.nix`. On each new device you regenerate it and
-  commit — the new config replaces the old one in history. Fine for one device at
-  a time. For two devices at once, switch to per-host folders
-  (`hosts/<hostname>/hardware-configuration.nix`) — see ROADMAP open question 3.
-
-Without the script, the raw command is:
-
-```bash
-sudo nixos-generate-config --show-hardware-config > default/hardware-configuration.nix
-```
-
-### Bootloader notes
-
-The committed config (`default/system/system-configs.nix`) uses GRUB with EFI and
-defaults the EFI partition mount point to `/boot`. Where the EFI System Partition
-(ESP) actually lives is a hardware fact, so any override goes in this machine's
-`hardware-configuration.nix`, **not** the shared modules.
-
-`nixos-generate-config` writes `fileSystems` but **not**
-`boot.loader.efi.efiSysMountPoint`. So after generating, check where the ESP is:
+Check where the EFI System Partition (ESP) is and add an override if needed:
 
 ```bash
 findmnt /boot /boot/efi
 lsblk -f
 ```
 
-Then handle the case that matches in `default/hardware-configuration.nix`:
-
-- **ESP at `/boot`** (default): add nothing. Works as-is.
-- **ESP at `/boot/efi`** (separate ESP): add
+- **ESP at `/boot`** (default): nothing to add — works as-is.
+- **ESP at `/boot/efi`** (separate): add to `hardware-configuration.nix`:
   ```nix
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   ```
-  Otherwise `grub-install` fails with `/boot doesn't look like an EFI partition`.
-- **No EFI / BIOS-only (e.g. a legacy-boot VM):** the machine is not EFI-booting,
-  so EFI GRUB cannot install. Either give the VM an EFI ESP, or switch that device
-  to BIOS GRUB in its `hardware-configuration.nix`:
+- **BIOS/legacy-boot VM**: add to `hardware-configuration.nix`:
   ```nix
   boot.loader.grub.efiSupport = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
-  boot.loader.grub.devices = lib.mkForce [ "/dev/vda" ];  # whole disk
+  boot.loader.grub.devices = lib.mkForce [ "/dev/vda" ];
   ```
-  `lib.mkForce` is required because the committed config already sets these
-  (`efiSupport = true`, `devices = [ "nodev" ]`) and two equal-priority values
-  error out. Make sure `lib` is in the file's arguments
-  (`{ config, lib, pkgs, ... }:`). Confirm the disk with `lsblk` — often
-  `/dev/vda` or `/dev/sda` in a VM.
+
+### 5. First-switch bootstrap
+
+On a machine that does not yet have `nh` installed, bootstrap with raw commands:
+
+```bash
+# Home-manager first (-b backup keeps any pre-existing dotfiles)
+home-manager switch --flake .#aier -b backup
+
+# Then system
+sudo nixos-rebuild switch --flake .#aierNixOS
+```
+
+After the system switch, `nh` is installed and `programs.nh.flake` exports
+`NH_FLAKE=/home/aier/.dotfiles/aierNix` into `/etc/set-environment`. This file
+is loaded at **login**, so the bare `nh` form and the `homesw`/`sysw` aliases
+become available on the next login (or after `source /etc/set-environment` in
+your current shell).
+
+### 6. Commit the hardware config
+
+```bash
+git commit -m "hardware-config for <hostname>"
+```
+
+Done. Reboot if the build changed the bootloader or kernel.
 
 ---
 
-## Day-to-day
+## Day-to-day cheatsheet
 
-Once installed, these aliases rebuild from `~/.dotfiles/aierNix`:
+After the bootstrap, all switches go through `nh`:
 
-| Alias   | Command                                                                  | What it does                                  |
-|---------|--------------------------------------------------------------------------|-----------------------------------------------|
-| `sysw`  | `cd ~/.dotfiles/aierNix && sudo nixos-rebuild switch --flake .#default`   | Rebuild + switch the **system** generation.   |
-| `homesw`| `cd ~/.dotfiles/aierNix && home-manager switch --flake .#default`         | Switch the **home-manager** (user) config.    |
-| `nixse` | `nix search nixpkgs <query>`                                             | Search nixpkgs for a package.                 |
+| Task | Command |
+|---|---|
+| Rebuild + switch system | `nh os switch` (alias: `sysw`) |
+| Rebuild + switch home | `nh home switch` (alias: `homesw`) |
+| Build system (no switch) | `nh os build` |
+| Build home (no switch) | `nh home build` |
+| GC old generations | `nh clean all` |
+| Search packages | `nix search nixpkgs <term>` (alias: `nixse`) |
+| Enter dev shell | `nix develop` |
+| Run formatter | `nix fmt` |
 
-> `homesw` and `sysw` both `cd` to `~/.dotfiles/aierNix`. If the repo lives
-> anywhere else they fail — clone to that exact path (install step 3).
+### Flake path behavior
+
+`nh os switch` and `nh home switch` take a flake path. From inside the repo
+the path is `.`. The **bare form** (no path argument) works from anywhere because
+`programs.nh.flake` sets `NH_FLAKE=/home/aier/.dotfiles/aierNix` in
+`/etc/set-environment`, which is loaded at login. If you just ran a system
+switch in a fresh terminal you may need a new login (or
+`source /etc/set-environment`) before the bare form resolves.
+
+### Aliases
+
+```
+homesw  →  nh home switch
+sysw    →  nh os switch
+nixse   →  nix search nixpkgs
+```
+
+These are declared in `modules/home/shell/bash.nix`.
+
+---
+
+## Quality gate
+
+All tooling is available in the devShell. `.envrc` (`use flake`) auto-loads it
+via nix-direnv on `cd`.
+
+| Tool | Role | How to run |
+|---|---|---|
+| nixfmt-rfc-style | Formatter | `nix fmt` |
+| statix | Linter (anti-patterns, `with pkgs;` detection) | `statix check .` |
+| deadnix | Dead code elimination | `deadnix .` |
+| git-hooks.nix | Pre-commit: runs all three on staged `.nix` files | automatic on `git commit` |
+
+`nix flake check` must pass before any merge to `main`.

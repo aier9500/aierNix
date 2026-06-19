@@ -2,3 +2,6 @@
 # git-tracked files, so an ignored hardware config breaks the build.
 # See README → "Per-device hardware config". Only the generator's backup is ignored.
 default/hardware-configuration.nix.bak
+
+# nixos-rebuild / nh build output symlink
+result

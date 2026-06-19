@@ -12,10 +12,12 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 
 Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verified checkpoint before switch.
 
-- [ ] **P0 — Scaffold:** Create `rebuild` branch; write `lib/mkHost+mkHome`; scaffold `hosts/aierNixOS/`, `modules/`, `overlays/`, `pkgs/`; rewrite `flake.nix` (standalone HM, rename to `.aierNixOS`, add devShell + git-hooks + `.envrc`); wire `programs.nh`. Gate: `nix flake check` + `nixos-rebuild build`.
-- [ ] **P1 — System modularization:** Port all system config into `modules/system/` feature-toggle modules; always-on core (boot, fs, networking, locale, users); feature toggles for GNOME, pipewire, keyd, snapper, virtualisation, ibus-rime, power, printing, flatpak. Gate: `nh os switch` boots correctly.
-- [ ] **P2 — Home modularization + cleanup:** Port all home config into `modules/home/` modules; replace homesw/sysw/MyBash with `nh` aliases; move VSCode to home (install-only); eliminate `with pkgs;`; port bash (PS1, aliases, `y()` function); delete dead code and scripts. Gate: `nh home switch`, `statix` + `deadnix` clean, no `with pkgs;`.
-- [ ] **P3 — Docs + cutover:** Rewrite README.md (new layout + nh workflow); add subdir READMEs; delete old `default/` tree; final `nix flake check`; merge `rebuild` → `main`; clear OVERRIDE.md.
+- [x] **P0 — Scaffold:** Create `rebuild` branch; write `lib/mkHost+mkHome`; scaffold `hosts/aierNixOS/`, `modules/`, `overlays/`, `pkgs/`; rewrite `flake.nix` (standalone HM, rename to `.aierNixOS`, add devShell + git-hooks + `.envrc`); wire `programs.nh`. Gate: `nix flake check` + `nixos-rebuild build`.
+- [x] **P1 — System modularization:** Port all system config into `modules/system/` feature-toggle modules; always-on core (boot, fs, networking, locale, users); feature toggles for GNOME, pipewire, keyd, snapper, virtualisation, ibus-rime, power, printing, flatpak. Gate: `nh os switch` boots correctly.
+- [x] **P2 — Home modularization + cleanup:** Port all home config into `modules/home/` modules; replace homesw/sysw/MyBash with `nh` aliases; move VSCode to home (install-only); eliminate `with pkgs;`; port bash (PS1, aliases, `y()` function); delete dead code and scripts. Gate: `nh home switch`, `statix` + `deadnix` clean, no `with pkgs;`.
+- [x] **P3 — Docs + cutover:** Rewrite README.md (new layout + nh workflow); add subdir READMEs; delete old `default/` tree; final `nix flake check`; merge `rebuild` → `main`; clear OVERRIDE.md.
+
+**Rebuild complete.** All four phases merged to `main`. `default/` tree deleted; closures verified byte-identical across every phase boundary.
 
 ---
 
@@ -26,6 +28,7 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 - [ ] **Declarative Kando config** — source `config.json` and `menus.json` from tuxies-wiki resources once layout is stable.
 - [ ] **Declarative Solaar rules** — source `rules.yaml` from tuxies-wiki resources.
 - [ ] **Declarative GNOME extensions** — re-attempt when nixpkgs version-matching for extensions is reliable (crashed baremetal 2026-06-18).
+- [ ] **GNOME battery-health preservation** — GNOME 50 ships a built-in battery-health/charge-limit feature but it does not appear on this NixOS GNOME 50 setup; investigate the right NixOS option / package (likely a UPower or power-profiles-daemon / gnome-settings-daemon knob) to surface it.
 - [ ] **fastfetch config.jsonc** — declare custom fastfetch config once finalized.
 - [ ] **fzf keybindings + defaultOptions** — declare when preferences are settled.
 - [ ] **disko** — declarative partitioning; reinstall-time change.
@@ -33,10 +36,15 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 - [ ] **Secrets backend (sops-nix or agenix)** — adopt when a concrete secret appears in config.
 - [ ] **Howdy facial login** — fiddly PAM; deferred until baremetal + motivation.
 - [ ] **Second host (laptop)** — hosts/ + modules/ structure is ready; add when hardware arrives.
+- [ ] **ibus-rime / rime-cantonese** — set up from scratch (system-level i18n.inputMethod ibus engine + home-side rime schemas); not currently configured (the prior home-only config was removed in the rebuild as it was never functional).
 
 ---
 
 ## Changelog
+
+### 2026-06-18 — best-practice rebuild complete
+
+Best-practice rebuild complete — full `hosts/` + `modules/` restructure, standalone HM, quality gate, `nh` workflow; `default/` tree deleted; P0–P3 merged to main. Closures verified byte-identical across every phase boundary.
 
 ### 2026-06-18 — planning artifacts written
 
@@ -53,6 +61,7 @@ Flakes only copy git-tracked files — corrected all docs and `.gitignore` to re
 ### 2026-06-18 — dconf: GNOME shortcuts + tweaks ported
 
 Ported tuxies-wiki gnome.md guide into home dconf:
+
 - `gnome-keybindings.nix` — WM keybindings (workspace switching, window management, panel-run-dialog, media keys), Ghostty `<Super>Return`, Mission Center `<Ctrl><Shift>Esc`.
 - `gnome-tweaks.nix` (new) — titlebar button layout, allow-volume-above-100-percent, mutter scale-monitor-framebuffer.
 
