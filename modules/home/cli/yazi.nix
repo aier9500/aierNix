@@ -108,30 +108,6 @@ in
           }
         ];
       };
-
-      theme = {
-        # theme.toml
-        which = {
-          cols = 3;
-          mask = {
-            bg = "#2e383c";
-          };
-          cand = {
-            fg = "#dbbc7f";
-            bold = true;
-          };
-          rest = {
-            fg = "#a6b0a0";
-          };
-          desc = {
-            fg = "#d3c6aa";
-          };
-          separator = "  ";
-          separator_style = {
-            fg = "#7a8478";
-          };
-        };
-      };
     };
   };
 }

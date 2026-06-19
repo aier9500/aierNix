@@ -23,7 +23,7 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 
 ## Future / Deferred
 
-- [ ] **Partial Stylix theming** — add stylix input; target GTK/cursor/fonts/ghostty/yazi; keep dconf for gnome-shell and night-theme-switcher (see DESIGN.md for scoping).
+- [ ] **Stylix multi-theme theming** — trialled partial Stylix (Everforest) and reverted (vanilla preferred for now). Future: define several base16 schemes and/or wallpaper-derived palettes (`stylix.image`), selectable via the reserved `myConfig.themeName` hook, switchable by rebuild (or runtime via NixOS specialisations). Scope GTK/cursor/fonts/ghostty/yazi; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
 - [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged; Zen stays flatpak; see DESIGN.md minimize-policy.
 - [ ] **Declarative Kando config** — source `config.json` and `menus.json` from tuxies-wiki resources once layout is stable.
 - [ ] **Declarative Solaar rules** — source `rules.yaml` from tuxies-wiki resources.
@@ -39,6 +39,10 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 ---
 
 ## Changelog
+
+### 2026-06-18 — Stylix trialled and reverted; vanilla preferred
+
+Trialled Stylix partial theming (Everforest Dark Hard, home-only); reverted to vanilla per preference. Ghostty and yazi now use their default themes. Multi-theme switching deferred (see Future).
 
 ### 2026-06-18 — GNOME battery charge-limit enabled
 

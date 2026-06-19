@@ -10,8 +10,6 @@ in
     programs.ghostty = {
       enable = true;
       settings = {
-        theme = "Everforest Dark Hard";
-
         # transparency: lower is more transparent (blur needs Blur my Shell on GNOME)
         background-opacity = 0.8;
         background-blur = true;
