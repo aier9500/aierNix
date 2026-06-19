@@ -19,8 +19,17 @@ in
       # GNOME utilities
       pkgs.dconf-editor
       pkgs.gnome-boxes
-      pkgs.gnome-extension-manager # migrated from flatpak; GNOME extensions stay imperative (L8)
+      pkgs.gnome-extension-manager # migrated from flatpak; extension *enablement* stays imperative (L8)
       pkgs.gnome-tweaks
+      # GNOME Shell extensions — Phase 0: packages declarative (home.packages → HM profile share,
+      # which gnome-shell's XDG_DATA_DIRS already includes); enablement still imperative via live dconf.
+      # kando-integration deliberately excluded (stays fully imperative — leanness / GUI-owned rationale).
+      pkgs.gnomeExtensions.appindicator
+      pkgs.gnomeExtensions.blur-my-shell
+      pkgs.gnomeExtensions.caffeine
+      pkgs.gnomeExtensions.copyous
+      pkgs.gnomeExtensions.focus-changer
+      pkgs.gnomeExtensions.dash-to-dock
       pkgs.mission-center # system monitor (migrated from flatpak)
       # Notes
       pkgs.obsidian # migrated from flatpak; re-open vault after switch
