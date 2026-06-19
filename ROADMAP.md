@@ -25,8 +25,6 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 
 - [ ] **Stylix multi-theme theming** — framework is in: `myConfig.themeName` selector wired up; `vanilla` profile active in `modules/home/theming/stylix.nix` (cursor kept GNOME-owned via dconf). Remaining work: add colorful theme profiles (Everforest/Catppuccin/wallpaper-based via `stylix.image`), switchable by rebuild or NixOS specialisations. Scope GTK/cursor/fonts/ghostty/yazi; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
 - [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged; Zen stays flatpak; see DESIGN.md minimize-policy.
-- [ ] **Declarative Kando config** — source `config.json` and `menus.json` from tuxies-wiki resources once layout is stable.
-- [ ] **Declarative Solaar rules** — source `rules.yaml` from tuxies-wiki resources.
 - [ ] **Declarative GNOME extensions** — re-attempt when nixpkgs version-matching for extensions is reliable (crashed baremetal 2026-06-18).
 - [ ] **disko** — declarative partitioning; reinstall-time change.
 - [ ] **impermanence** — ephemeral root; requires disko first.
@@ -37,6 +35,10 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 ---
 
 ## Changelog
+
+### 2026-06-19 — Declared Solaar + Kando; cursor DRY; catppuccin-grub removed
+
+Declared Solaar (hardware.logitech.wireless + rules.yaml) and Kando (config.json/menus.json) from the Theory-Y/tuxies-wiki Logitech setup, via in-repo .source; dconf cursor-theme now reads config.stylix.cursor.name (DRY); removed legacy catppuccin-grub theme (kept 1920x1080 resolution).
 
 ### 2026-06-19 — Stylix theme-selector framework + vanilla profile; fonts + cli hygiene
 
