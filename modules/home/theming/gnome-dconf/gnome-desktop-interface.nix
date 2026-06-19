@@ -1,4 +1,8 @@
-{ lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 with lib.hm.gvariant;
 
@@ -12,7 +16,7 @@ with lib.hm.gvariant;
       # So this key and stylix.cursor coexist without conflict.
       # Parallel to how font-name/document-font-name/monospace-font-name work here
       # alongside stylix.fonts: dconf = GNOME Shell; stylix = GTK/X/packages.
-      cursor-theme = "Bibata-Original-Ice";
+      cursor-theme = config.stylix.cursor.name;
       document-font-name = "IBM Plex Serif 11";
       enable-hot-corners = false;
       font-name = "IBM Plex Sans 11";

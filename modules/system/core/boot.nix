@@ -1,5 +1,5 @@
 # modules/system/core/boot.nix — always-on bootloader + filesystem support
-{ pkgs, ... }:
+_:
 
 {
   boot = {
@@ -11,7 +11,6 @@
         enable = true;
         gfxmodeBios = "1920x1080";
         gfxmodeEfi = "1920x1080";
-        theme = "${pkgs.catppuccin-grub}";
         useOSProber = true;
       };
       systemd-boot.enable = false;
