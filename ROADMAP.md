@@ -23,13 +23,11 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 
 ## Future / Deferred
 
-- [ ] **Stylix multi-theme theming** — trialled partial Stylix (Everforest) and reverted (vanilla preferred for now). Future: define several base16 schemes and/or wallpaper-derived palettes (`stylix.image`), selectable via the reserved `myConfig.themeName` hook, switchable by rebuild (or runtime via NixOS specialisations). Scope GTK/cursor/fonts/ghostty/yazi; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
+- [ ] **Stylix multi-theme theming** — framework is in: `myConfig.themeName` selector wired up; `vanilla` profile active in `modules/home/theming/stylix.nix` (cursor kept GNOME-owned via dconf). Remaining work: add colorful theme profiles (Everforest/Catppuccin/wallpaper-based via `stylix.image`), switchable by rebuild or NixOS specialisations. Scope GTK/cursor/fonts/ghostty/yazi; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
 - [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged; Zen stays flatpak; see DESIGN.md minimize-policy.
 - [ ] **Declarative Kando config** — source `config.json` and `menus.json` from tuxies-wiki resources once layout is stable.
 - [ ] **Declarative Solaar rules** — source `rules.yaml` from tuxies-wiki resources.
 - [ ] **Declarative GNOME extensions** — re-attempt when nixpkgs version-matching for extensions is reliable (crashed baremetal 2026-06-18).
-- [ ] **fastfetch config.jsonc** — declare custom fastfetch config once finalized.
-- [ ] **fzf keybindings + defaultOptions** — declare when preferences are settled.
 - [ ] **disko** — declarative partitioning; reinstall-time change.
 - [ ] **impermanence** — ephemeral root; requires disko first.
 - [ ] **Howdy facial login** — fiddly PAM; deferred until baremetal + motivation.
@@ -39,6 +37,10 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 ---
 
 ## Changelog
+
+### 2026-06-19 — Stylix theme-selector framework + vanilla profile; fonts + cli hygiene
+
+Stylix theme-selector framework + vanilla profile (`themeName` selector in `myConfig`; `vanilla` profile in `modules/home/theming/stylix.nix`); cursor kept GNOME-owned via dconf (no Stylix cursor target); fonts module moved from `misc/` to `theming/` (`modules/home/theming/fonts.nix`); fastfetch declared via `programs.fastfetch.settings` (root dotfile removed); fzf default options declared.
 
 ### 2026-06-18 — Stylix trialled and reverted; vanilla preferred
 
