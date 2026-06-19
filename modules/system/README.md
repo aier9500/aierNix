@@ -23,6 +23,7 @@ modules/system/
 ├── power.nix              # mySystem.power — power-profiles-daemon
 ├── printing.nix           # mySystem.printing — CUPS
 ├── snapper.nix            # mySystem.snapper — Btrfs timeline snapshots
+├── solaar.nix             # mySystem.solaar — Logitech (hardware.logitech.wireless) + udev
 ├── system-pkgs.nix        # Core system packages + programs.*
 └── virtualisation.nix     # mySystem.virtualisation — libvirtd
 ```
@@ -93,6 +94,7 @@ The module is silent unless the host sets `mySystem.<feature>.enable = true`. Th
 | `flatpak.nix` | `mySystem.flatpak` | `services.flatpak.enable` — system-level service required for nix-flatpak to install user packages (see `modules/home/apps/flatpak-home.nix`) |
 | `power.nix` | `mySystem.power` | `power-profiles-daemon`; explicitly disables `tlp` to prevent conflict |
 | `printing.nix` | `mySystem.printing` | CUPS printing service |
+| `solaar.nix` | `mySystem.solaar` | Logitech device manager: `hardware.logitech.wireless` (install + udev). Device rules are imperative (Solaar GUI) — see `DESIGN.md` GUI-Owned Config |
 
 ---
 

@@ -31,7 +31,8 @@ Philosophy, conventions, and locked decisions for the aierNix dotfiles repo. Rea
 - `git` — system (`programs.git.enable = true`), because it is needed to manage the flake itself
 - `home-manager` — system packages (bootstrap requirement)
 - `vscode` — home only (install-only; Settings Sync handles config; no Nix-managed settings)
-- `kando` — home (autostart .desktop + package install; user-space daemon)
+- `kando` — home (package install + autostart .desktop; user-space daemon). Menus/settings stay **imperative** (Kando's editor owns `config.json`/`menus.json`); the GNOME Shell integration extension is also **imperative** (install + enable via the GNOME Extensions app — declarative install would need a system module, declined to keep system config lean; L8). See GUI-Owned Config doctrine below
+- `solaar` — split: system installs the app + udev rules (`hardware.logitech.wireless`); device rules (`rules.yaml`) are **imperative** (Solaar GUI owns them) — no home module
 - `ghostty` — home (terminal emulator; user config)
 - `ibus-rime` — split: system installs engines; home writes the user config file (`default.custom.yaml`)
 - Font symlinks — home (`home.file` pointing into nix store font paths)
@@ -153,6 +154,21 @@ No declarative secrets backend (no sops-nix / agenix). Secrets are managed by th
 
 ---
 
+## GUI-Owned Config — Imperative by Design
+
+Some apps own their config files and rewrite them through their own GUI at runtime — Kando's menu editor writes `config.json`/`menus.json`; Solaar's rule editor writes `rules.yaml`. For these, do **not** manage the config with `home.file` / `xdg.configFile` at all. This is **stronger** than the "`home.file` is a last resort" guideline above: a `.source` link is a *read-only symlink into the Nix store*, so the instant the app tries to save, it fails. Declare only install and enablement (package, autostart `.desktop`, `hardware.logitech.wireless`, udev); let the app own the config file.
+
+Same install-only philosophy as VS Code (L10) and the secrets-imperative policy above. The one-time setup on a new machine is documented in the README "Manual setup (imperative)" section. Prior config is preserved in git history and in Theory-Y/tuxies-wiki.
+
+| App | Declarative (this flake) | Imperative (the app / the user) |
+|---|---|---|
+| Kando | `pkgs.kando` + autostart `.desktop` | `config.json`, `menus.json` (settings editor) + the Kando Integration GNOME extension |
+| Solaar | `hardware.logitech.wireless` (install + udev) | `rules.yaml` (rule editor) |
+
+GNOME extensions land on the imperative side for a *different* reason — *enabling* them via dconf risks version-mismatch crashes (L8), not file ownership. *Installing* a version-matched extension (e.g. `gnomeExtensions.kando-integration`) is technically viable, but only from a system module (gnome-shell doesn't scan the standalone home-manager profile); declined to keep the system config lean (L8), so extensions are installed + enabled via the GNOME Extensions app.
+
+---
+
 ## Partial Stylix Policy (Deferred)
 
 Stylix will be adopted for theming when implemented, but only for a targeted subset of themes. The goal is NOT to let Stylix manage everything.
@@ -184,9 +200,10 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | L5 | Bash (not zsh/fish/starship) | Custom PS1 already tuned; no reason to switch |
 | L6 | ibus-rime for CJK input | luna_pinyin + jyut6ping3; system engine + user schema config file |
 | L7 | hardware-configuration.nix tracked in git | Nix flakes only copy git-tracked files; ignored hardware-config causes build failures |
-| L8 | GNOME extensions — imperative | Declarative enable via dconf crashed on baremetal (extension version mismatch, 2026-06-18); manage via GNOME Extensions app |
+| L8 | GNOME extensions — imperative (install + enable) | Declarative *enable* via dconf crashed on baremetal (version mismatch, 2026-06-18); manage on/off via the GNOME Extensions app. Declarative *install* is technically viable for a version-matched extension (e.g. `gnomeExtensions.kando-integration`) but needs a **system** module — gnome-shell doesn't scan the standalone home-manager profile; declined 2026-06-19 to keep the system config lean. *Enable* would stay imperative regardless (home-manager dconf sets the whole `enabled-extensions` list and would clobber hand-enabled extensions) |
 | L9 | No CI | Local quality gate (pre-commit + `nix flake check`) is sufficient for a single-person dotfiles repo |
 | L10 | VSCode install-only in home | Settings managed via VS Code Settings Sync / GitHub Gist; Nix-managed settings would conflict |
+| L11 | GUI-owned config (Kando menus, Solaar rules) imperative | A declarative `xdg.configFile`/`.source` link is a read-only Nix-store symlink — the app's own editor cannot save to it. Install + enablement declarative; config owned by the app. See GUI-Owned Config doctrine |
 
 ---
 

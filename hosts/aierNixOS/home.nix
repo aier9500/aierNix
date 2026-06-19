@@ -28,7 +28,6 @@
     # Misc
     ../../modules/home/theming/fonts.nix
     ../../modules/home/misc/kando.nix
-    ../../modules/home/misc/solaar.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -77,6 +76,7 @@
     };
     fonts.enable = true;
     kando.enable = true;
-    solaar.enable = true;
+    # Solaar: install + udev are system-level (mySystem.solaar); device rules are
+    # configured imperatively in the Solaar GUI — no home module. See README.
   };
 }

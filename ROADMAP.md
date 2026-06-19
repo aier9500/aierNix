@@ -13,12 +13,12 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 ### What's done
 
 - **Best-practice rebuild (P0–P3) is complete and merged to `main`.** Layout is `hosts/` + `modules/` with standalone home-manager and `nh`. `default/` tree is deleted. See Changelog below for the full history.
-- **This session (2026-06-19) completed:** Stylix theme-selector framework + vanilla profile; fastfetch via `programs.fastfetch.settings`; fzf default options; cursor DRY (dconf reads stylix cursor name); Kando + Solaar declared in-repo (config files embedded under `modules/home/misc/`); legacy catppuccin-grub theme removed; secrets imperative-by-design formally documented; GNOME battery charge-limit active on ASUS Zenbook S 16.
+- **This session (2026-06-19) completed:** Stylix theme-selector framework + vanilla profile; fastfetch via `programs.fastfetch.settings`; fzf default options; cursor DRY (dconf reads stylix cursor name); Kando + Solaar installed but their app-owned configs kept **imperative** (no embedded config files — see GUI-Owned Config doctrine); README "Manual setup (imperative)" section added; legacy catppuccin-grub theme removed; secrets imperative-by-design formally documented; GNOME battery charge-limit active on ASUS Zenbook S 16.
 - **Local `tuxies-wiki/` clone is already gone** — the directory does not exist. Everything needed was ported in-repo. The canonical reference wiki lives at GitHub `Theory-Y/tuxies-wiki`.
 
 ### Items of notice for the incoming agent
 
-- **Kando + Solaar are declared** but the Kando setup requires one manual step: install the "Kando Integration" GNOME extension via GNOME Extensions app, then restart Kando. The Haptic-button → pie-menu chain won't work until that extension is active.
+- **Kando + Solaar configs are imperative** (2026-06-19 refactor). The flake installs the Kando package + autostart and Solaar via `hardware.logitech.wireless`, but the menus (`config.json`/`menus.json`) and Solaar rules (`rules.yaml`) are owned by the apps' GUIs — a declarative symlink is read-only and blocks the editor's save (DESIGN.md L11). **Every manual post-install step now lives in README → "Manual setup (imperative)"** (Kando, Solaar, GNOME extensions, Bitwarden, VS Code). The **Kando Integration** GNOME extension stays **imperative** — install + enable it via the GNOME Extensions app before the Haptic-button → pie-menu chain works. (It is version-matched in nixpkgs and could be installed declaratively, but only via a system module, which was declined 2026-06-19 to keep the system config lean — see L8.) After a fresh `nh home switch` Kando/Solaar configs reset to defaults; prior config is in git history + the wiki.
 - **Stylix colorful themes:** the framework is already in place (`myConfig.themeName` selector in `hosts/aierNixOS/home.nix`, theme registry + `vanilla` profile in `modules/home/theming/stylix.nix`, with a commented `everforest` stub showing the full pattern). Adding a colorful theme = add an entry to the `themes` attrset + flip `themeName`. See the file header for step-by-step instructions.
 - **Working pattern:** the agent builds and verifies in-harness (`nix flake check`, `nh os build`, `nh home build`, `nix store diff-closures`). The USER runs the live `nh os switch` / `nh home switch` in their own terminal. Never auto-activate. See `MEMORY.md` for the full pattern.
 - **High-stakes deferred items** (Howdy, declarative GNOME extensions) require explicit user go-ahead before any work is started. See annotations in Future/Deferred below.
@@ -46,12 +46,21 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 - [ ] **Declarative GNOME extensions** — **requires explicit user go-ahead before starting.** Previously crashed baremetal (extension version mismatch, 2026-06-18). Re-attempt only when nixpkgs version-matching for extensions is reliable.
 - [ ] **Howdy facial login** — **requires explicit user go-ahead before starting; highest-stakes item (PAM integration, lockout risk).** Deferred until baremetal + user motivation.
 - [ ] **Second host (laptop)** — **blocked on hardware (not present).** `hosts/` + `modules/` structure is ready; add when the device arrives.
+- [ ] **nixfmt deprecation warning** — `nix flake check` emits `nixfmt-rfc-style is now the same as pkgs.nixfmt which should be used instead` on every run. Low-priority hygiene: switch the formatter/devShell reference from `nixfmt-rfc-style` to `pkgs.nixfmt`.
 - [ ] **disko** — declarative partitioning; reinstall-time change. **Deferred indefinitely — do NOT raise unless the user explicitly asks.**
 - [ ] **impermanence** — ephemeral root; requires disko first. **Deferred indefinitely — do NOT raise unless the user explicitly asks.**
 
 ---
 
 ## Changelog
+
+### 2026-06-19 — Kando Integration extension kept imperative (declarative install evaluated, declined)
+
+Evaluated installing the Kando Integration GNOME extension declaratively, then declined to keep the system config lean. Findings (recorded so this isn't re-litigated): the extension is version-matched in nixpkgs (`gnomeExtensions.kando-integration`, metadata `shell-version` includes our GNOME 50), and a working declarative path was verified — a **system** module (`environment.systemPackages`), required because gnome-shell scans `/run/current-system/sw/share` but **not** the standalone home-manager profile (a `home.packages` copy is invisible to the shell). That means declarative install can't live in the home Kando module; it would add a system module. Declined per "keep system configs lean." The extension stays **imperative** (install + enable via the GNOME Extensions app), consistent with L8 — and *enable* was never going to be declarative anyway (home-manager dconf would clobber the other hand-enabled extensions).
+
+### 2026-06-19 — Kando + Solaar configs made imperative; README "Manual setup" section
+
+Reverted the declarative config-file management for Kando and Solaar. A declarative `xdg.configFile`/`.source` link is a read-only Nix-store symlink, so the apps' own editors cannot save to it. Now: install + enablement stay declarative (Kando package + autostart `.desktop`; Solaar via `hardware.logitech.wireless` + udev), but `kando-config.json`, `kando-menus.json`, and `solaar-rules.yaml` were deleted and those configs are owned imperatively by the app GUIs. Deleted the Solaar home module (`modules/home/misc/solaar.nix`) entirely + removed its import/toggle; the system module stays. Added DESIGN.md "GUI-Owned Config — Imperative by Design" doctrine + L11. New README section **"Manual setup (imperative)"** documents every manual post-install step (Kando, Solaar, GNOME extensions, Bitwarden, VS Code). Fixed adjacent README layout drift (gh.nix, theming fonts/stylix, system solaar). Prior config preserved in git history + Theory-Y/tuxies-wiki. Gate: `nix flake check` passed.
 
 ### 2026-06-19 — Secrets: imperative-by-design
 
