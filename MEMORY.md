@@ -62,10 +62,10 @@ modules/
     theming/
       dconf.nix                    # aggregator for gnome-dconf/*  [myHome.theming.gnome.enable]
       gnome-dconf/                 # desktop-interface, clipboard, keybindings, tweaks, input-sources
-      cursors.nix                  # [myHome.theming.cursors.enable]
-    misc/                          # kando, fonts-home  [myHome.kando.enable / myHome.fonts.enable]
+      stylix.nix                   # theme-selector framework (themeName → vanilla/colorful)
+      fonts.nix                    # font packages [myHome.fonts.enable]
+    misc/                          # kando, solaar  [myHome.kando.enable / myHome.solaar.enable]
 overlays/ pkgs/                    # empty scaffolds
-tuxies-wiki/                       # embedded docs source
 ```
 
 ## Conventions
@@ -92,7 +92,7 @@ tuxies-wiki/                       # embedded docs source
 | Theming | bibata cursors, Plex Serif, Catppuccin GRUB |
 | Standalone HM | home-manager runs standalone (`homeConfigurations.aier`), not as a NixOS module |
 | GNOME extensions | Fully imperative (GNOME Extensions app) — declarative crashed baremetal 2026-06-18 |
-| Deferred | Howdy, v4l2loopback, Waydroid, Fluent icons/cursor, Stylix |
+| Deferred | Howdy, v4l2loopback, Waydroid, Fluent icons/cursor |
 | IME (ibus-rime) | **Removed in rebuild** (prior home-only config was never functional). Greenfield future item — see ROADMAP. |
 
 ## Day-to-day cheatsheet

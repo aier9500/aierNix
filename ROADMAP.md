@@ -2,15 +2,32 @@
 
 Transfer the `tuxies-wiki` aiers-fedora-checklist setup into a clean, maintainable declarative Nix config. My preferences are canonical; the wiki is the starting point.
 
-Design decisions and doctrine live in `DESIGN.md`. Active rebuild plan lives in `action-plans/nix-structuring-rebuild.md`.
+Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientation details live in `MEMORY.md`.
+
+---
+
+## Current State / Next Pickup
+
+**For a fresh agent picking this up cold:** read this section first, then the detailed lists below.
+
+### What's done
+
+- **Best-practice rebuild (P0–P3) is complete and merged to `main`.** Layout is `hosts/` + `modules/` with standalone home-manager and `nh`. `default/` tree is deleted. See Changelog below for the full history.
+- **This session (2026-06-19) completed:** Stylix theme-selector framework + vanilla profile; fastfetch via `programs.fastfetch.settings`; fzf default options; cursor DRY (dconf reads stylix cursor name); Kando + Solaar declared in-repo (config files embedded under `modules/home/misc/`); legacy catppuccin-grub theme removed; secrets imperative-by-design formally documented; GNOME battery charge-limit active on ASUS Zenbook S 16.
+- **Local `tuxies-wiki/` clone is already gone** — the directory does not exist. Everything needed was ported in-repo. The canonical reference wiki lives at GitHub `Theory-Y/tuxies-wiki`.
+
+### Items of notice for the incoming agent
+
+- **Kando + Solaar are declared** but the Kando setup requires one manual step: install the "Kando Integration" GNOME extension via GNOME Extensions app, then restart Kando. The Haptic-button → pie-menu chain won't work until that extension is active.
+- **Stylix colorful themes:** the framework is already in place (`myConfig.themeName` selector in `hosts/aierNixOS/home.nix`, theme registry + `vanilla` profile in `modules/home/theming/stylix.nix`, with a commented `everforest` stub showing the full pattern). Adding a colorful theme = add an entry to the `themes` attrset + flip `themeName`. See the file header for step-by-step instructions.
+- **Working pattern:** the agent builds and verifies in-harness (`nix flake check`, `nh os build`, `nh home build`, `nix store diff-closures`). The USER runs the live `nh os switch` / `nh home switch` in their own terminal. Never auto-activate. See `MEMORY.md` for the full pattern.
+- **High-stakes deferred items** (Howdy, declarative GNOME extensions) require explicit user go-ahead before any work is started. See annotations in Future/Deferred below.
 
 ---
 
 ## Active Plan — Best-Practice Rebuild
 
 Full restructure into `hosts/` + `modules/` layout with standalone home-manager and quality gate. See `action-plans/nix-structuring-rebuild.md` for the complete phase breakdown, step-by-step instructions, and file mapping table.
-
-Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verified checkpoint before switch.
 
 - [x] **P0 — Scaffold:** Create `rebuild` branch; write `lib/mkHost+mkHome`; scaffold `hosts/aierNixOS/`, `modules/`, `overlays/`, `pkgs/`; rewrite `flake.nix` (standalone HM, rename to `.aierNixOS`, add devShell + git-hooks + `.envrc`); wire `programs.nh`. Gate: `nix flake check` + `nixos-rebuild build`.
 - [x] **P1 — System modularization:** Port all system config into `modules/system/` feature-toggle modules; always-on core (boot, fs, networking, locale, users); feature toggles for GNOME, pipewire, keyd, snapper, virtualisation, ibus-rime, power, printing, flatpak. Gate: `nh os switch` boots correctly.
@@ -23,26 +40,30 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 
 ## Future / Deferred
 
-- [ ] **Stylix multi-theme theming** — framework is in: `myConfig.themeName` selector wired up; `vanilla` profile active in `modules/home/theming/stylix.nix` (cursor kept GNOME-owned via dconf). Remaining work: add colorful theme profiles (Everforest/Catppuccin/wallpaper-based via `stylix.image`), switchable by rebuild or NixOS specialisations. Scope GTK/cursor/fonts/ghostty/yazi; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
-- [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged; Zen stays flatpak; see DESIGN.md minimize-policy.
-- [ ] **Declarative GNOME extensions** — re-attempt when nixpkgs version-matching for extensions is reliable (crashed baremetal 2026-06-18).
-- [ ] **disko** — declarative partitioning; reinstall-time change.
-- [ ] **impermanence** — ephemeral root; requires disko first.
-- [ ] **Howdy facial login** — fiddly PAM; deferred until baremetal + motivation.
-- [ ] **Second host (laptop)** — hosts/ + modules/ structure is ready; add when hardware arrives.
-- [ ] **ibus-rime / rime-cantonese** — set up from scratch (system-level i18n.inputMethod ibus engine + home-side rime schemas); not currently configured (the prior home-only config was removed in the rebuild as it was never functional).
+- [ ] **Stylix colorful theme profiles** — framework is already in place (see Current State above). Remaining work: add a colorful theme entry (e.g. Everforest/Catppuccin/wallpaper-based via `stylix.image`) and flip `themeName`. Scope: GTK/cursor/fonts/ghostty/yazi targets; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
+- [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged in nixpkgs; Zen stays flatpak. See DESIGN.md minimize-policy.
+- [ ] **rime-cantonese** — greenfield IME: system-level `i18n.inputMethod` ibus engine + home-side rime schemas (luna_pinyin + jyut6ping3). Prior home-only config was removed in the rebuild as it was never functional. Start fresh.
+- [ ] **Declarative GNOME extensions** — **requires explicit user go-ahead before starting.** Previously crashed baremetal (extension version mismatch, 2026-06-18). Re-attempt only when nixpkgs version-matching for extensions is reliable.
+- [ ] **Howdy facial login** — **requires explicit user go-ahead before starting; highest-stakes item (PAM integration, lockout risk).** Deferred until baremetal + user motivation.
+- [ ] **Second host (laptop)** — **blocked on hardware (not present).** `hosts/` + `modules/` structure is ready; add when the device arrives.
+- [ ] **disko** — declarative partitioning; reinstall-time change. **Deferred indefinitely — do NOT raise unless the user explicitly asks.**
+- [ ] **impermanence** — ephemeral root; requires disko first. **Deferred indefinitely — do NOT raise unless the user explicitly asks.**
 
 ---
 
 ## Changelog
 
+### 2026-06-19 — Secrets: imperative-by-design
+
+Formally documented that no declarative secrets backend (sops-nix / agenix) will be used. Secrets are managed by the application (e.g. Bitwarden) and synced via the user's account. See DESIGN.md.
+
 ### 2026-06-19 — Declared Solaar + Kando; cursor DRY; catppuccin-grub removed
 
-Declared Solaar (hardware.logitech.wireless + rules.yaml) and Kando (config.json/menus.json) from the Theory-Y/tuxies-wiki Logitech setup, via in-repo .source; dconf cursor-theme now reads config.stylix.cursor.name (DRY); removed legacy catppuccin-grub theme (kept 1920x1080 resolution).
+Declared Solaar (`hardware.logitech.wireless` + `rules.yaml`) and Kando (`config.json` / `menus.json`) from Theory-Y/tuxies-wiki, via in-repo `.source` under `modules/home/misc/`. Dconf cursor-theme now reads `config.stylix.cursor.name` (DRY). Removed legacy catppuccin-grub theme (kept 1920x1080 resolution).
 
 ### 2026-06-19 — Stylix theme-selector framework + vanilla profile; fonts + cli hygiene
 
-Stylix theme-selector framework + vanilla profile (`themeName` selector in `myConfig`; `vanilla` profile in `modules/home/theming/stylix.nix`); cursor kept GNOME-owned via dconf (no Stylix cursor target); fonts module moved from `misc/` to `theming/` (`modules/home/theming/fonts.nix`); fastfetch declared via `programs.fastfetch.settings` (root dotfile removed); fzf default options declared.
+Stylix theme-selector framework + vanilla profile (`themeName` selector in `myConfig`; `vanilla` profile in `modules/home/theming/stylix.nix`; commented `everforest` stub). Cursor kept GNOME-owned via dconf (no Stylix cursor target). Fonts module moved `misc/fonts-home.nix` → `theming/fonts.nix`. Fastfetch declared via `programs.fastfetch.settings` (root dotfile removed). Fzf default options declared.
 
 ### 2026-06-18 — Stylix trialled and reverted; vanilla preferred
 
@@ -66,7 +87,7 @@ Added `nodejs` to home packages.
 
 ### 2026-06-18 — hardware-config tracking corrected
 
-Flakes only copy git-tracked files — corrected all docs and `.gitignore` to reflect that `hardware-configuration.nix` must be tracked. Commit `8283da0` already re-tracked the file; docs lagged. Updated README install flow (8 numbered steps), `scripts/gen-hardware-config.sh` header. Strategy: single tracked file per machine.
+Flakes only copy git-tracked files — corrected all docs and `.gitignore` to reflect that `hardware-configuration.nix` must be tracked. Strategy: single tracked file per machine.
 
 ### 2026-06-18 — dconf: GNOME shortcuts + tweaks ported
 
@@ -81,16 +102,15 @@ First baremetal run: declarative GNOME extension settings (gnome-shell + night-t
 
 ### 2026-06-18 — declutter + hygiene
 
-- yazi + ghostty migrated from `home.file` blobs to `programs.yazi` / `programs.ghostty` in home-configs.nix.
-- Solaar + Kando config files sourced via `home.file .source` from tuxies-wiki resources (subsequently commented out — deferred).
+- yazi + ghostty migrated from `home.file` blobs to `programs.yazi` / `programs.ghostty`.
+- Solaar + Kando config files sourced via `home.file .source` from tuxies-wiki resources (subsequently committed in-repo 2026-06-19).
 - Won't-port items struck: Tiling Shell, v4l2loopback, Waydroid, Fluent icons/cursor.
-- Added 3 subfolder READMEs (`default/`, `default/system/`, `default/home/`).
 
 ### 2026-06-18 — Wayland, grub-btrfs, ibus-rime, Solaar, Kando, portability
 
 - **Wayland switch** — GDM Wayland on; removed X11 xkb block; `gnome-input-sources.nix` → GNOME layout `us+colemak_dh`.
 - **grub-btrfs** — `services.grub-btrfs.enable` (pairs with snapper).
-- **ibus-rime Cantonese schemas** — system engine override adds `rime-cantonese`; home config enables `luna_pinyin` + `jyut6ping3`.
-- **Solaar** — `system-modules/system-solaar.nix` (`services.solaar`, tray-hide); subsequently commented out (deferred).
-- **Kando** — `kando` pkg in system-apps; `~/.config/autostart/kando.desktop` in home.
-- **Portability** — `scripts/gen-hardware-config.sh`; README per-device setup section.
+- **ibus-rime Cantonese schemas** — system engine override adds `rime-cantonese`; home config enables `luna_pinyin` + `jyut6ping3` (subsequently removed in rebuild; greenfield future item).
+- **Solaar** — `services.solaar`; subsequently committed in-repo 2026-06-19.
+- **Kando** — `kando` pkg; autostart `.desktop`; config committed in-repo 2026-06-19.
+- **Portability** — per-device setup section in README.
