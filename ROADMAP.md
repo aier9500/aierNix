@@ -41,7 +41,6 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ## Future / Deferred
 
 - [ ] **Stylix colorful theme profiles** — framework is already in place (see Current State above). Remaining work: add a colorful theme entry (e.g. Everforest/Catppuccin/wallpaper-based via `stylix.image`) and flip `themeName`. Scope: GTK/cursor/fonts/ghostty/yazi targets; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
-- [ ] **Flatpak → nixpkgs migration** — evaluate per-app: Obsidian, Bitwarden, MissionCenter are packaged in nixpkgs; Zen stays flatpak. See DESIGN.md minimize-policy.
 - [ ] **rime-cantonese** — greenfield IME: system-level `i18n.inputMethod` ibus engine + home-side rime schemas (luna_pinyin + jyut6ping3). Prior home-only config was removed in the rebuild as it was never functional. Start fresh.
 - [ ] **Declarative GNOME extensions** — **requires explicit user go-ahead before starting.** Previously crashed baremetal (extension version mismatch, 2026-06-18). Re-attempt only when nixpkgs version-matching for extensions is reliable.
 - [ ] **Howdy facial login** — **requires explicit user go-ahead before starting; highest-stakes item (PAM integration, lockout risk).** Deferred until baremetal + user motivation.
@@ -53,6 +52,10 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ---
 
 ## Changelog
+
+### 2026-06-19 — Flatpak → nixpkgs migration
+
+Migrated 5 cleanly-packaged apps off flatpak into `home.packages` (`modules/home/apps/home-pkgs.nix`): Obsidian, Mission Center, Kooha, Extension Manager (`gnome-extension-manager`), Gradia. Removed from the nix-flatpak list (flatpak count 9 → 4). **Bitwarden stayed on flatpak** — its nixpkgs build (`bitwarden-desktop`) pulls an insecure electron (`electron-39.8.10`), and the sandbox is preferable for a secrets app anyway. Also staying (not packaged): Zen (browser; sandbox desirable), Flatseal (flatpak-perms tool), rclone-manager. Per DESIGN minimize-policy. Note: nix-flatpak uninstalls the 5 on switch and `~/.var/app/` data does not carry to native config dirs — re-open the Obsidian vault (vault files untouched); the other 4 hold no meaningful state. Kooha relies on the PipeWire screencast portal (GNOME provides it). Also updated the Mission Center custom keybinding (`<Ctrl><Shift>Esc`) from `flatpak run io.missioncenter.MissionCenter` to the native `missioncenter` command (it had been ported from the flatpak-oriented wiki) — verified the binary resolves on the gsd-media-keys PATH via `~/.nix-profile/bin`. Gate: `nix flake check` + `nh home build`.
 
 ### 2026-06-19 — Kando Integration extension kept imperative (declarative install evaluated, declined)
 

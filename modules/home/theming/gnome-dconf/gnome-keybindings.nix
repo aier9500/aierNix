@@ -48,10 +48,12 @@ _:
       binding = "<Super>Return";
     };
 
-    # custom1 — Mission Center (installed via flatpak, see flatpak-home.nix)
+    # custom1 — Mission Center (nixpkgs home.packages; migrated off flatpak 2026-06-19)
+    # Bare `missioncenter` resolves: home.packages bins land in ~/.nix-profile/bin,
+    # which is on the gsd-media-keys PATH that runs custom keybinding commands.
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       name = "Launch Mission Center";
-      command = "flatpak run io.missioncenter.MissionCenter";
+      command = "missioncenter";
       binding = "<Control><Shift>Escape";
     };
   };

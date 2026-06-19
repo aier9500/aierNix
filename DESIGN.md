@@ -137,12 +137,15 @@ All quality tooling is available in the devShell (`nix develop`). `.envrc` with 
 
 Flatpak is a bridge, not a destination. The policy is: migrate any app to nixpkgs when it is packaged, works correctly, and does not require special runtime isolation.
 
-**Stay on flatpak indefinitely:**
-- Zen browser (not packaged in nixpkgs; sandboxing is desirable for a browser)
-- Any app not available or broken in nixpkgs
+**Migrated to nixpkgs (2026-06-19):** Obsidian, Mission Center, Kooha, Extension Manager (`gnome-extension-manager`), Gradia — packaged and non-broken; now in `modules/home/apps/home-pkgs.nix`.
 
-**Candidates to migrate to nixpkgs (deferred — see ROADMAP):**
-- Obsidian, Bitwarden, MissionCenter — packaged in nixpkgs; evaluate per-app when doing the migration pass
+**Stay on flatpak:**
+- Zen browser — not packaged; browser sandboxing is desirable anyway
+- Bitwarden — packaged (`bitwarden-desktop`) but its nixpkgs build pulls an insecure electron (`electron-39.8.10`); flatpak's sandbox + bundled runtime is preferable for a secrets app (would otherwise need `permittedInsecurePackages`)
+- Flatseal — not packaged; manages flatpak permissions
+- rclone-manager — not packaged
+
+Re-evaluate any of these whenever it gains a working / non-insecure nixpkgs package.
 
 **Never declare flatpak packages twice** — nix-flatpak manages the list declaratively; do not also list them in `home.packages`.
 

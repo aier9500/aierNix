@@ -15,10 +15,17 @@ in
     home.packages = [
       # Photo / graphics
       pkgs.darktable
+      pkgs.gradia # screenshot annotation (migrated from flatpak)
       # GNOME utilities
       pkgs.dconf-editor
       pkgs.gnome-boxes
+      pkgs.gnome-extension-manager # migrated from flatpak; GNOME extensions stay imperative (L8)
       pkgs.gnome-tweaks
+      pkgs.mission-center # system monitor (migrated from flatpak)
+      # Notes
+      pkgs.obsidian # migrated from flatpak; re-open vault after switch
+      # Screen recording
+      pkgs.kooha # migrated from flatpak; uses PipeWire screencast portal
       # Networking
       pkgs.proton-vpn
       # Communication

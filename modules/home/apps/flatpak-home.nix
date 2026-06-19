@@ -1,6 +1,12 @@
 # modules/home/apps/flatpak-home.nix — flatpak user packages via nix-flatpak
 # The nix-flatpak HM module is injected by mkHome (lib/default.nix).
 # System-level flatpak enablement is handled by modules/system/flatpak.nix.
+#
+# Apps stay here only when they are not in nixpkgs, or when flatpak's sandbox /
+# bundled runtime is preferable (e.g. Bitwarden, whose nixpkgs build needs an
+# insecure electron). Flatpak is a bridge, not a destination (DESIGN.md
+# minimize-policy); everything cleanly packaged was migrated to home.packages
+# (modules/home/apps/home-pkgs.nix) on 2026-06-19.
 { config, lib, ... }:
 let
   cfg = config.myHome.apps.flatpak;
@@ -12,15 +18,10 @@ in
     services.flatpak = {
       enable = true;
       packages = [
-        "app.zen_browser.zen"
-        "be.alexandervanhee.gradia"
-        "com.bitwarden.desktop"
-        "com.github.tchx84.Flatseal"
-        "com.mattjakeman.ExtensionManager"
-        "io.github.seadve.Kooha"
-        "io.github.zarestia_dev.rclone-manager"
-        "io.missioncenter.MissionCenter"
-        "md.obsidian.Obsidian"
+        "app.zen_browser.zen" # not in nixpkgs; browser sandboxing desirable (DESIGN-locked)
+        "com.bitwarden.desktop" # nixpkgs bitwarden-desktop needs insecure electron-39.8.10; sandbox preferred for a secrets app
+        "com.github.tchx84.Flatseal" # not in nixpkgs; manages flatpak permissions
+        "io.github.zarestia_dev.rclone-manager" # not in nixpkgs
       ];
     };
   };
