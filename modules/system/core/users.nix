@@ -8,6 +8,7 @@ _:
     extraGroups = [
       "networkmanager"
       "wheel"
+      "uinput" # Solaar uinput access for KeyPress rules (Wayland)
     ];
   };
 }

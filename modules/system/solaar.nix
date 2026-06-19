@@ -18,7 +18,12 @@ in
   options.mySystem.solaar.enable = lib.mkEnableOption "Solaar (Logitech device manager) + udev rules";
 
   config = lib.mkIf cfg.enable {
-    hardware.logitech.wireless.enable = true;
-    hardware.logitech.wireless.enableGraphical = true;
+    hardware = {
+      logitech.wireless.enable = true;
+      logitech.wireless.enableGraphical = true;
+      # Solaar "Key press" rules inject via /dev/uinput on Wayland; needs the uinput
+      # module + group access (user added to the uinput group in core/users.nix).
+      uinput.enable = true;
+    };
   };
 }
