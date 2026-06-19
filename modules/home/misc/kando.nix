@@ -1,7 +1,7 @@
 # modules/home/misc/kando.nix — kando radial menu daemon
 # Moved from system-pkgs (environment.systemPackages) to home in P2 (user override).
 # Kando runs as a background daemon triggered via a global hotkey.
-# Config (config.json, menus.json) is managed imperatively via the GUI — deferred.
+# Config files sourced from in-repo copies (kando-config.json, kando-menus.json).
 {
   config,
   lib,
@@ -25,5 +25,8 @@ in
       X-GNOME-Autostart-enabled=true
       Comment=Kando radial menu daemon
     '';
+
+    xdg.configFile."kando/config.json".source = ./kando-config.json;
+    xdg.configFile."kando/menus.json".source = ./kando-menus.json;
   };
 }

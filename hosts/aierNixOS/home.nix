@@ -28,6 +28,7 @@
     # Misc
     ../../modules/home/theming/fonts.nix
     ../../modules/home/misc/kando.nix
+    ../../modules/home/misc/solaar.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -76,5 +77,6 @@
     };
     fonts.enable = true;
     kando.enable = true;
+    solaar.enable = true;
   };
 }

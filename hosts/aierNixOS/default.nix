@@ -26,6 +26,7 @@ _:
     ../../modules/system/flatpak.nix
     ../../modules/system/power.nix
     ../../modules/system/printing.nix
+    ../../modules/system/solaar.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -47,5 +48,6 @@ _:
     flatpak.enable = true;
     power.enable = true;
     printing.enable = true;
+    solaar.enable = true;
   };
 }
