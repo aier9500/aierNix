@@ -33,6 +33,7 @@ in
       modules = [
         ../modules/options.nix
         inputs.nix-flatpak.homeManagerModules.nix-flatpak
+        inputs.stylix.homeModules.stylix
       ]
       ++ modules;
       extraSpecialArgs = { inherit inputs; };

@@ -28,8 +28,13 @@
 
     themeName = lib.mkOption {
       type = lib.types.str;
-      default = "";
-      description = "Theme name — reserved for future Stylix integration.";
+      default = "vanilla";
+      description = ''
+        Active Stylix theme name. Must match a key in the themes attrset
+        defined in modules/home/theming/stylix.nix.
+        Current options: "vanilla".
+        Future options: "everforest", "catppuccin", etc.
+      '';
     };
   };
 }

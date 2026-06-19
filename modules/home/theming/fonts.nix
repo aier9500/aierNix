@@ -1,4 +1,4 @@
-# modules/home/misc/fonts-home.nix — user font symlinks into ~/.local/share/fonts
+# modules/home/theming/fonts.nix — user font symlinks into ~/.local/share/fonts
 # Uses home.file to expose font packages in the standard user font path.
 # JetBrainsMono Nerd Font: full braille/box/symbol + icon coverage so the
 # VS Code terminal (Claude Code TUI spinner, etc.) renders without tofu boxes.
@@ -16,7 +16,8 @@ in
 
   config = lib.mkIf cfg.enable {
     home.file = {
-      ".local/share/fonts/IbmPlex".source = "${pkgs.ibm-plex}/share/fonts/opentype";
+      # IbmPlex removed — Stylix now installs IBM Plex via the font-packages target.
+      # Keeping this would duplicate the font in ~/.local/share/fonts.
       ".local/share/fonts/JetBrainsMonoNerd".source =
         "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono";
       ".local/share/fonts/NotoCjkSerif".source =

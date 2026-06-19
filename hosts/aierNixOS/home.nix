@@ -24,9 +24,9 @@
     ../../modules/home/apps/home-pkgs.nix
     # Theming
     ../../modules/home/theming/dconf.nix
-    ../../modules/home/theming/cursors.nix
+    ../../modules/home/theming/stylix.nix
     # Misc
-    ../../modules/home/misc/fonts-home.nix
+    ../../modules/home/theming/fonts.nix
     ../../modules/home/misc/kando.nix
   ];
 
@@ -36,7 +36,7 @@
     hostname = "aierNixOS";
     timezone = "America/Caracas";
     locale = "en_US.UTF-8";
-    themeName = "";
+    themeName = "vanilla";
   };
 
   # Identity — required by standalone home-manager
@@ -72,7 +72,7 @@
     };
     theming = {
       gnome.enable = true;
-      cursors.enable = true;
+      # cursors.enable removed — Stylix now owns the cursor via stylix.cursor.
     };
     fonts.enable = true;
     kando.enable = true;
