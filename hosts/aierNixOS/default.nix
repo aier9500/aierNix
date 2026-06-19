@@ -27,6 +27,7 @@ _:
     ../../modules/system/power.nix
     ../../modules/system/printing.nix
     ../../modules/system/solaar.nix
+    ../../modules/system/ibus.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -49,5 +50,6 @@ _:
     power.enable = true;
     printing.enable = true;
     solaar.enable = true;
+    ibus.enable = true; # ibus + Rime engine (luna_pinyin + jyut6ping3); schemas in myHome.ibusRime
   };
 }

@@ -18,6 +18,7 @@ modules/system/
 │   ├── gnome.nix          # mySystem.desktop.gnome — GNOME + GDM
 │   └── pipewire.nix       # mySystem.desktop.pipewire — PipeWire audio stack
 ├── flatpak.nix            # mySystem.flatpak — Flatpak system service
+├── ibus.nix               # mySystem.ibus — ibus + Rime engine (luna_pinyin, jyut6ping3)
 ├── keyd.nix               # mySystem.keyd — Colemak DH keyboard remap (evdev)
 ├── nix.nix                # Nix daemon settings, nh, allowUnfree, stateVersion
 ├── power.nix              # mySystem.power — power-profiles-daemon
@@ -95,6 +96,7 @@ The module is silent unless the host sets `mySystem.<feature>.enable = true`. Th
 | `power.nix` | `mySystem.power` | `power-profiles-daemon`; explicitly disables `tlp` to prevent conflict |
 | `printing.nix` | `mySystem.printing` | CUPS printing service |
 | `solaar.nix` | `mySystem.solaar` | Logitech device manager: `hardware.logitech.wireless` (install + udev). Device rules are imperative (Solaar GUI) — see `DESIGN.md` GUI-Owned Config |
+| `ibus.nix` | `mySystem.ibus` | ibus input-method framework + Rime engine via `i18n.inputMethod` (type `ibus`). The bundled rime-data provides `luna_pinyin` + `jyut6ping3` (no `rimeDataPkgs` override). Schema selection is the home half (`modules/home/misc/ibus-rime.nix`); the GNOME input source is in gnome-input-sources dconf. See `DESIGN.md` L6 |
 
 ---
 

@@ -28,6 +28,7 @@
     # Misc
     ../../modules/home/theming/fonts.nix
     ../../modules/home/misc/kando.nix
+    ../../modules/home/misc/ibus-rime.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -76,6 +77,7 @@
     };
     fonts.enable = true;
     kando.enable = true;
+    ibusRime.enable = true; # Rime schema list (luna_pinyin + jyut6ping3); engine in mySystem.ibus
     # Solaar: install + udev are system-level (mySystem.solaar); device rules are
     # configured imperatively in the Solaar GUI — no home module. See README.
   };

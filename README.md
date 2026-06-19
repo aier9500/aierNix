@@ -45,6 +45,7 @@ modules/
     power.nix                      # power-profiles-daemon + battery charge-limit [mySystem.power.enable]
     printing.nix                   # CUPS                                        [mySystem.printing.enable]
     solaar.nix                     # Logitech: hardware.logitech.wireless + udev [mySystem.solaar.enable]
+    ibus.nix                       # ibus + Rime engine (luna_pinyin, jyut6ping3) [mySystem.ibus.enable]
     nix.nix                        # nix.settings, programs.nh, allowUnfree, stateVersion
     system-pkgs.nix                # environment.systemPackages (git, gparted, ffmpeg-full, home-manager, …)
   home/
@@ -71,6 +72,7 @@ modules/
       fonts.nix                    # home.file font symlinks                     [myHome.fonts.enable]
     misc/
       kando.nix                    # package + autostart .desktop (config imperative)  [myHome.kando.enable]
+      ibus-rime.nix                # Rime schema list (default.custom.yaml)             [myHome.ibusRime.enable]
 
 overlays/
   default.nix                      # overlay scaffold (empty)
