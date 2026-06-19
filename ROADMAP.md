@@ -18,6 +18,8 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 
 ### Items of notice for the incoming agent
 
+- **Repo rules now live in `CLAUDE.md` (read it).** Two hard rules: (1) **any system-config change requires explicit user approval before proceeding** — even in auto mode, even if requested — because this repo is a minimal universal template and system clobber must be avoided; (2) changes covered by Theory-Y's wiki (`~/Projects/tuxies-wiki`) **prompt the user** to dispatch an `opus-manager` to mirror them per that wiki's rules.
+
 - **Kando + Solaar configs are imperative** (2026-06-19 refactor). The flake installs the Kando package + autostart and Solaar via `hardware.logitech.wireless`, but the menus (`config.json`/`menus.json`) and Solaar rules (`rules.yaml`) are owned by the apps' GUIs — a declarative symlink is read-only and blocks the editor's save (DESIGN.md L11). **Every manual post-install step now lives in README → "Manual setup (imperative)"** (Kando, Solaar, GNOME extensions, Bitwarden, VS Code). The **Kando Integration** GNOME extension stays **imperative** — install + enable it via the GNOME Extensions app before the Haptic-button → pie-menu chain works. (It is version-matched in nixpkgs and could be installed declaratively, but only via a system module, which was declined 2026-06-19 to keep the system config lean — see L8.) After a fresh `nh home switch` Kando/Solaar configs reset to defaults; prior config is in git history + the wiki.
 - **Stylix colorful themes:** the framework is already in place (`myConfig.themeName` selector in `hosts/aierNixOS/home.nix`, theme registry + `vanilla` profile in `modules/home/theming/stylix.nix`, with a commented `everforest` stub showing the full pattern). Adding a colorful theme = add an entry to the `themes` attrset + flip `themeName`. See the file header for step-by-step instructions.
 - **Working pattern:** the agent builds and verifies in-harness (`nix flake check`, `nh os build`, `nh home build`, `nix store diff-closures`). The USER runs the live `nh os switch` / `nh home switch` in their own terminal. Never auto-activate. See `MEMORY.md` for the full pattern.
@@ -41,7 +43,6 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ## Future / Deferred
 
 - [ ] **Stylix colorful theme profiles** — framework is already in place (see Current State above). Remaining work: add a colorful theme entry (e.g. Everforest/Catppuccin/wallpaper-based via `stylix.image`) and flip `themeName`. Scope: GTK/cursor/fonts/ghostty/yazi targets; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
-- [ ] **rime-cantonese** — greenfield IME: system-level `i18n.inputMethod` ibus engine + home-side rime schemas (luna_pinyin + jyut6ping3). Prior home-only config was removed in the rebuild as it was never functional. Start fresh.
 - [ ] **Declarative GNOME extensions** — **requires explicit user go-ahead before starting.** Previously crashed baremetal (extension version mismatch, 2026-06-18). Re-attempt only when nixpkgs version-matching for extensions is reliable.
 - [ ] **Howdy facial login** — **requires explicit user go-ahead before starting; highest-stakes item (PAM integration, lockout risk).** Deferred until baremetal + user motivation.
 - [ ] **Second host (laptop)** — **blocked on hardware (not present).** `hosts/` + `modules/` structure is ready; add when the device arrives.
@@ -52,6 +53,19 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ---
 
 ## Changelog
+
+### 2026-06-19 — Colemak-DH layout fix, fastfetch de-box, yazi g→.; repo rules
+
+- **Colemak-DH:** set the GNOME xkb input source to `us+colemak_dh` (the rime input-source change had clobbered it to plain `us`). Corrected the doctrine — Colemak letters come from this xkb source, **not** keyd (keyd only remaps modifiers); DESIGN L4 fixed.
+- **fastfetch:** de-boxed the 3 section headers — dropped the `┌`/`┐` corners, kept the centered dashed title (`──── Hardware ────`) — so long lines (e.g. Packages) no longer overflow a box border. (fastfetch's packages module is inherently single-line; true multi-line would need a custom command module.)
+- **yazi:** added `g .` → `cd ~/.dotfiles`.
+- **Repo rules (`CLAUDE.md`, new):** (1) system-config changes require explicit user approval before proceeding, even in auto mode; (2) wiki-covered changes prompt before mirroring to `~/Projects/tuxies-wiki` via an opus-manager.
+
+Gate: `nix flake check` + `nh home build` (all home-side). Wiki mirror (fastfetch `config.jsonc` + yazi/terminal guides) dispatched to an opus-manager.
+
+### 2026-06-19 — rime-cantonese IME (ibus-rime, greenfield)
+
+Re-implemented ibus-rime input, doing **both** halves this time (the prior home-only attempt had no system engine registration — almost certainly why it never worked). System: `modules/system/ibus.nix` (`mySystem.ibus.enable`) sets `i18n.inputMethod` (type `ibus`, engine `ibus-engines.rime`). Home: `modules/home/misc/ibus-rime.nix` (`myHome.ibusRime.enable`) writes `default.custom.yaml` enabling `luna_pinyin` (Pinyin) + `jyut6ping3` (Cantonese Jyutping) — both ship in the engine's bundled rime-data, so no `rimeDataPkgs` override. dconf `gnome-input-sources.nix` adds the `('ibus','rime')` input source. Verified in-store: engine name `rime`, component lands at `/run/current-system/sw/share/ibus/component/rime.xml` (GNOME's ibus-daemon scans there), yaml renders valid. **Needs `nh os switch` + `nh home switch` + logout/login** (Wayland can't restart ibus in place); rime deploys schemas on first switch; default schema `luna_pinyin`, switch to `jyut6ping3` with F4 / Ctrl+`. Action plan: `action-plans/rime-cantonese-ime.md`. Gate: `nix flake check` + `nh os/home build`.
 
 ### 2026-06-19 — Flatpak → nixpkgs migration
 
