@@ -233,17 +233,14 @@ secrets-imperative policy (see `DESIGN.md`).
 
 ### GNOME extensions
 
-*Declared:* nothing — extensions are imperative (DESIGN.md **L8**: declarative
-*enable* via dconf crashed baremetal on a version mismatch).
+*Declared:* nothing — extensions are **fully imperative** (DESIGN.md **L8**).
 
 - Install and enable each extension via the GNOME Extensions app (or the
-  **Extension Manager** flatpak).
-- Declarative *install* is viable: gnome-shell's `XDG_DATA_DIRS` includes the
-  standalone home-manager profile share, so `pkgs.gnomeExtensions.*` added to
-  `home.packages` are discovered automatically after re-login. Extensions are kept
-  imperative here to stay lean and let the GNOME Extensions app own the list;
-  *enable* would stay imperative regardless (home-manager dconf sets the whole
-  `enabled-extensions` list and would clobber hand-enabled extensions).
+  **Extension Manager** flatpak); the extensions own their own settings.
+- For reference: a `home.packages` install *is* discoverable by gnome-shell (the
+  old "needs a system module" claim was wrong), but extensions are kept fully
+  imperative by choice — for leanness and a simpler mental model. The manual list
+  lives in tuxies-wiki.
 
 ### Bitwarden (secrets)
 

@@ -168,7 +168,7 @@ Same install-only philosophy as VS Code (L10) and the secrets-imperative policy 
 | Kando | `pkgs.kando` + autostart `.desktop` | `config.json`, `menus.json` (settings editor) + the Kando Integration GNOME extension |
 | Solaar | `hardware.logitech.wireless` (install + udev) | `rules.yaml` (rule editor) |
 
-GNOME extensions land on the imperative side for a *different* reason — *enabling* them via dconf risks version-mismatch crashes (L8), not file ownership. *Installing* a version-matched extension via `home.packages` is viable and home-side ungated (gnome-shell's actual `XDG_DATA_DIRS` — verified via `/proc/<pid>/environ` — includes `~/.nix-profile/share`, which is the standalone HM profile share path; a newly-added extension won't load until re-login on Wayland). The Kando Integration extension specifically stays imperative on leanness / GUI-owned grounds (L8), not a discoverability constraint.
+GNOME extensions are kept **fully imperative** — installed and enabled via the GNOME Extensions app, by choice (leanness + a simpler mental model; manual steps documented in tuxies-wiki). A `home.packages` install *is* technically discoverable by gnome-shell (its `XDG_DATA_DIRS` includes the standalone HM profile share — the earlier "needs a system module" claim was wrong), but we deliberately don't declare extensions. See L8.
 
 ---
 
@@ -184,11 +184,9 @@ Stylix will be adopted for theming when implemented, but only for a targeted sub
 - Yazi theme
 
 **NOT managed by Stylix:**
-- GNOME shell settings — stay in dconf (`gnome-shell.nix`)
-- night-theme-switcher extension settings — stay in dconf (`gnome-night-theme.nix`)
-- Any extension config (extensions remain imperative)
+- GNOME extensions — install, enable, and configure are all imperative (GNOME Extensions app); see L8. Other GNOME dconf (interface, clipboard, keybindings, tweaks, input sources) stays declarative in `gnome-dconf/`.
 
-Rationale: the dconf GNOME shell and extension settings interact with extension versions in ways Stylix cannot control. Keeping them in dconf preserves the ability to comment them out during extension version transitions without affecting the rest of theming.
+Rationale: extension settings interact with extension versions in ways Stylix (and declarative dconf) cannot safely control — a version-mismatched extension crashed baremetal once — so extensions stay entirely app-owned.
 
 ---
 
@@ -203,7 +201,7 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | L5 | Bash (not zsh/fish/starship) | Custom PS1 already tuned; no reason to switch |
 | L6 | ibus-rime for CJK input | luna_pinyin + jyut6ping3; system engine + user schema config file |
 | L7 | hardware-configuration.nix tracked in git | Nix flakes only copy git-tracked files; ignored hardware-config causes build failures |
-| L8 | GNOME extensions — enablement imperative; install now declarative (home-side) | Declarative *enable* via dconf crashed on baremetal (version mismatch, 2026-06-18); manage on/off via the GNOME Extensions app. *Enable* would stay imperative regardless (home-manager dconf sets the whole `enabled-extensions` list and would clobber hand-enabled extensions). Declarative *install* via `home.packages` is viable and **home-side ungated**: gnome-shell's real `XDG_DATA_DIRS` (read from `/proc/<pid>/environ` 2026-06-19) includes `~/.nix-profile/share`, resolving to the standalone HM profile — so `pkgs.gnomeExtensions.*` packages placed there ARE discovered. A newly-added extension requires re-login to load on Wayland (discoverable ≠ live without re-login). Six extensions declared in `home-pkgs.nix` (Phase 0); the Kando Integration extension stays imperative on leanness/GUI-owned grounds (not a discoverability constraint). |
+| L8 | GNOME extensions — fully imperative (install + enable) | Install, enable, and configure all via the GNOME Extensions app; toggles & settings owned by the app. Chosen for leanness, a simpler mental model, and faster onboarding — manual steps live in tuxies-wiki. Notes: a `home.packages` install IS discoverable by gnome-shell (the earlier "needs a system module" claim was false — its `XDG_DATA_DIRS` includes the standalone HM profile), but we deliberately don't declare extensions; declarative *enable* via dconf also crashed baremetal once (version mismatch, 2026-06-18). |
 | L9 | No CI | Local quality gate (pre-commit + `nix flake check`) is sufficient for a single-person dotfiles repo |
 | L10 | VSCode install-only in home | Settings managed via VS Code Settings Sync / GitHub Gist; Nix-managed settings would conflict |
 | L11 | GUI-owned config (Kando menus, Solaar rules) imperative | A declarative `xdg.configFile`/`.source` link is a read-only Nix-store symlink — the app's own editor cannot save to it. Install + enablement declarative; config owned by the app. See GUI-Owned Config doctrine |
@@ -222,7 +220,7 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | disko (declarative partitioning) | Deferred | Reinstall-time change; not worth disrupting a running system |
 | impermanence (ephemeral root) | Deferred | Requires disko first; reinstall-time |
 | sops-nix / agenix secrets | Deferred | No concrete secrets in config yet; adopt when needed |
-| Declarative GNOME extensions (enablement) | Partially done (Phase 0) | Install-only declared in `home-pkgs.nix` (Phase 0, 2026-06-19); enablement (dconf `enabled-extensions` takeover, Phase 1) still imperative — version-mismatch risk until verified on switch |
+| Declarative GNOME extensions | Decided against (2026-06-19) | Not pursuing — extensions are fully imperative by choice (leanness / simpler mental model); see L8 |
 | Howdy facial login | Deferred | Fiddly PAM integration; not for VM; revisit on baremetal |
 | Second host (laptop) | Deferred | hosts/ + modules/ structure is ready for it |
 | Multi-host NVIDIA/Asahi handling | Deferred | Depends on second host hardware |

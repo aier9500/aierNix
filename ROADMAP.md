@@ -23,7 +23,7 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 - **Kando + Solaar configs are imperative** (2026-06-19 refactor). The flake installs the Kando package + autostart and Solaar via `hardware.logitech.wireless`, but the menus (`config.json`/`menus.json`) and Solaar rules (`rules.yaml`) are owned by the apps' GUIs — a declarative symlink is read-only and blocks the editor's save (DESIGN.md L11). **Every manual post-install step now lives in README → "Manual setup (imperative)"** (Kando, Solaar, GNOME extensions, Bitwarden, VS Code). The **Kando Integration** GNOME extension stays **imperative** — install + enable it via the GNOME Extensions app before the Haptic-button → pie-menu chain works. (It is version-matched in nixpkgs and a home-side declarative install would be discoverable, but keeping it imperative is the deliberate leanness/GUI-owned decision — see L8.) After a fresh `nh home switch` Kando/Solaar configs reset to defaults; prior config is in git history + the wiki.
 - **Stylix colorful themes:** the framework is already in place (`myConfig.themeName` selector in `hosts/aierNixOS/home.nix`, theme registry + `vanilla` profile in `modules/home/theming/stylix.nix`, with a commented `everforest` stub showing the full pattern). Adding a colorful theme = add an entry to the `themes` attrset + flip `themeName`. See the file header for step-by-step instructions.
 - **Working pattern:** the agent builds and verifies in-harness (`nix flake check`, `nh os build`, `nh home build`, `nix store diff-closures`). The USER runs the live `nh os switch` / `nh home switch` in their own terminal. Never auto-activate. See `MEMORY.md` for the full pattern.
-- **High-stakes deferred items** (Howdy, declarative GNOME extensions) require explicit user go-ahead before any work is started. See annotations in Future/Deferred below.
+- **High-stakes deferred items** (Howdy) require explicit user go-ahead before any work is started. See annotations in Future/Deferred below.
 
 ---
 
@@ -43,8 +43,7 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ## Future / Deferred
 
 - [ ] **Stylix colorful theme profiles** — framework is already in place (see Current State above). Remaining work: add a colorful theme entry (e.g. Everforest/Catppuccin/wallpaper-based via `stylix.image`) and flip `themeName`. Scope: GTK/cursor/fonts/ghostty/yazi targets; keep GNOME shell + night-theme-switcher in dconf; do NOT enable `targets.gnome` (User Themes extension crashed baremetal).
-- [x] **Declarative GNOME extensions Phase 0 (packages)** — 6 extensions added to `home.packages` 2026-06-19; home-side ungated (HM profile is on gnome-shell's `XDG_DATA_DIRS`). See changelog.
-- [ ] **Declarative GNOME extensions Phase 1 (dconf enablement)** — dconf `enabled-extensions` takeover; requires explicit user go-ahead before starting. Previously crashed baremetal (extension version mismatch, 2026-06-18). Real risk: authoritative dconf write, full-list or nothing. See `action-plans/declarative-gnome-extensions.md` Phase 1.
+- **Declarative GNOME extensions** — *decided against* (2026-06-19): extensions are fully imperative by choice (leanness / simpler mental model). See L8 + changelog. (Was Phase 0/1; reverted.)
 - [ ] **Howdy facial login** — **requires explicit user go-ahead before starting; highest-stakes item (PAM integration, lockout risk).** Deferred until baremetal + user motivation.
 - [ ] **Second host (laptop)** — **blocked on hardware (not present).** `hosts/` + `modules/` structure is ready; add when the device arrives.
 - [ ] **nixfmt deprecation warning** — `nix flake check` emits `nixfmt-rfc-style is now the same as pkgs.nixfmt which should be used instead` on every run. Low-priority hygiene: switch the formatter/devShell reference from `nixfmt-rfc-style` to `pkgs.nixfmt`.
@@ -54,6 +53,10 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ---
 
 ## Changelog
+
+### 2026-06-19 — Reverted declarative GNOME extensions → fully imperative by choice
+
+Reverted Phase 0 (the 6 `gnomeExtensions.*` packages in `home-pkgs.nix`) and dropped the never-wired Phase 1 (the `enabled-extensions` dconf in `gnome-dconf/gnome-shell.nix` — a commented-out import in `dconf.nix`, so it was never active). Deleted `gnome-shell.nix` and `gnome-night-theme.nix` (both extension dconf, both un-imported), removed their commented imports from `dconf.nix`, dropped the stale `copyous` comment in `gnome-clipboard.nix`, and removed `action-plans/declarative-gnome-extensions.md`. Decision (supersedes the Phase 0/1 plan): all GNOME extensions are installed + managed **imperatively** via the GNOME Extensions app — to cut maintenance scope, simplify the repo's mental model, and rely on the well-documented manual steps in tuxies-wiki. The L8 *factual* correction stands (a `home.packages` install IS gnome-shell-discoverable); we simply choose not to use it. Extensions keep working through the revert (imperative copies in `~/.local/share/gnome-shell/extensions/` untouched; live `enabled-extensions` dconf was never managed). Gate: `nix flake check` + `nh home build`.
 
 ### 2026-06-19 — Stylix colorful theme profiles + legacy GTK (adw-gtk3) fix
 
