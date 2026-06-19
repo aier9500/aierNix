@@ -28,12 +28,10 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 - [ ] **Declarative Kando config** — source `config.json` and `menus.json` from tuxies-wiki resources once layout is stable.
 - [ ] **Declarative Solaar rules** — source `rules.yaml` from tuxies-wiki resources.
 - [ ] **Declarative GNOME extensions** — re-attempt when nixpkgs version-matching for extensions is reliable (crashed baremetal 2026-06-18).
-- [ ] **GNOME battery-health preservation** — GNOME 50 ships a built-in battery-health/charge-limit feature but it does not appear on this NixOS GNOME 50 setup; investigate the right NixOS option / package (likely a UPower or power-profiles-daemon / gnome-settings-daemon knob) to surface it.
 - [ ] **fastfetch config.jsonc** — declare custom fastfetch config once finalized.
 - [ ] **fzf keybindings + defaultOptions** — declare when preferences are settled.
 - [ ] **disko** — declarative partitioning; reinstall-time change.
 - [ ] **impermanence** — ephemeral root; requires disko first.
-- [ ] **Secrets backend (sops-nix or agenix)** — adopt when a concrete secret appears in config.
 - [ ] **Howdy facial login** — fiddly PAM; deferred until baremetal + motivation.
 - [ ] **Second host (laptop)** — hosts/ + modules/ structure is ready; add when hardware arrives.
 - [ ] **ibus-rime / rime-cantonese** — set up from scratch (system-level i18n.inputMethod ibus engine + home-side rime schemas); not currently configured (the prior home-only config was removed in the rebuild as it was never functional).
@@ -41,6 +39,10 @@ Work on the `rebuild` branch. Each phase ends with a `nixos-rebuild build`-verif
 ---
 
 ## Changelog
+
+### 2026-06-18 — GNOME battery charge-limit enabled
+
+GNOME 50 battery charge-limit enabled on the ASUS Zenbook S 16 — custom udev rule + hwdb `CHARGE_LIMIT=_,80` in `modules/system/power.nix` (asus_wmi exposes only an end threshold; upower's bundled rule needed a start threshold, so we backfill the hwdb import).
 
 ### 2026-06-18 — best-practice rebuild complete
 

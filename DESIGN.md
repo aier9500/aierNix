@@ -147,6 +147,12 @@ Flatpak is a bridge, not a destination. The policy is: migrate any app to nixpkg
 
 ---
 
+## Secrets — Imperative by Design
+
+No declarative secrets backend (no sops-nix / agenix). Secrets are managed by the application (e.g. Bitwarden) and synced via the user's account — the same philosophy as VS Code settings (install the app only, no Nix-side secret config). If a concrete in-config secret ever becomes unavoidable, revisit; until then, declarative secrets are intentionally out of scope.
+
+---
+
 ## Partial Stylix Policy (Deferred)
 
 Stylix will be adopted for theming when implemented, but only for a targeted subset of themes. The goal is NOT to let Stylix manage everything.
