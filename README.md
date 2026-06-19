@@ -217,8 +217,8 @@ secrets-imperative policy (see `DESIGN.md`).
    Extensions app, then restart Kando. On Wayland this extension is what lets Kando
    bind its global shortcut — the Haptic-button → pie-menu chain does **not** work
    until it's active. (It is version-matched in nixpkgs and *could* be installed
-   declaratively, but only from a system module — declined to keep the system config
-   lean; see DESIGN.md L8.)
+   declaratively, but is kept imperative to let the GNOME Extensions app own it;
+   see DESIGN.md L8.)
 2. Build your pie menus in the Kando settings editor. Kando writes
    `~/.config/kando/{config.json,menus.json}` itself.
 
@@ -238,12 +238,12 @@ secrets-imperative policy (see `DESIGN.md`).
 
 - Install and enable each extension via the GNOME Extensions app (or the
   **Extension Manager** flatpak).
-- Declarative *install* is technically viable for a version-matched extension (e.g.
-  `gnomeExtensions.kando-integration`), but only from a system module — gnome-shell
-  doesn't scan the standalone home-manager profile. Declined for now to keep the
-  system config lean; *enable* would stay imperative regardless (home-manager dconf
-  sets the whole `enabled-extensions` list and would clobber hand-enabled
-  extensions).
+- Declarative *install* is viable: gnome-shell's `XDG_DATA_DIRS` includes the
+  standalone home-manager profile share, so `pkgs.gnomeExtensions.*` added to
+  `home.packages` are discovered automatically after re-login. Extensions are kept
+  imperative here to stay lean and let the GNOME Extensions app own the list;
+  *enable* would stay imperative regardless (home-manager dconf sets the whole
+  `enabled-extensions` list and would clobber hand-enabled extensions).
 
 ### Bitwarden (secrets)
 

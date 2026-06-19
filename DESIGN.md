@@ -31,7 +31,7 @@ Philosophy, conventions, and locked decisions for the aierNix dotfiles repo. Rea
 - `git` — system (`programs.git.enable = true`), because it is needed to manage the flake itself
 - `home-manager` — system packages (bootstrap requirement)
 - `vscode` — home only (install-only; Settings Sync handles config; no Nix-managed settings)
-- `kando` — home (package install + autostart .desktop; user-space daemon). Menus/settings stay **imperative** (Kando's editor owns `config.json`/`menus.json`); the GNOME Shell integration extension is also **imperative** (install + enable via the GNOME Extensions app — declarative install would need a system module, declined to keep system config lean; L8). See GUI-Owned Config doctrine below
+- `kando` — home (package install + autostart .desktop; user-space daemon). Menus/settings stay **imperative** (Kando's editor owns `config.json`/`menus.json`); the GNOME Shell integration extension is also **imperative** (install + enable via the GNOME Extensions app — kept imperative for leanness, per the GUI-owned/lean rationale; L8). See GUI-Owned Config doctrine below
 - `solaar` — split: system installs the app + udev rules (`hardware.logitech.wireless`); device rules (`rules.yaml`) are **imperative** (Solaar GUI owns them) — no home module
 - `ghostty` — home (terminal emulator; user config)
 - `ibus-rime` — split: system installs engines; home writes the user config file (`default.custom.yaml`)
@@ -168,7 +168,7 @@ Same install-only philosophy as VS Code (L10) and the secrets-imperative policy 
 | Kando | `pkgs.kando` + autostart `.desktop` | `config.json`, `menus.json` (settings editor) + the Kando Integration GNOME extension |
 | Solaar | `hardware.logitech.wireless` (install + udev) | `rules.yaml` (rule editor) |
 
-GNOME extensions land on the imperative side for a *different* reason — *enabling* them via dconf risks version-mismatch crashes (L8), not file ownership. *Installing* a version-matched extension (e.g. `gnomeExtensions.kando-integration`) is technically viable, but only from a system module (gnome-shell doesn't scan the standalone home-manager profile); declined to keep the system config lean (L8), so extensions are installed + enabled via the GNOME Extensions app.
+GNOME extensions land on the imperative side for a *different* reason — *enabling* them via dconf risks version-mismatch crashes (L8), not file ownership. *Installing* a version-matched extension via `home.packages` is viable and home-side ungated (gnome-shell's actual `XDG_DATA_DIRS` — verified via `/proc/<pid>/environ` — includes `~/.nix-profile/share`, which is the standalone HM profile share path; a newly-added extension won't load until re-login on Wayland). The Kando Integration extension specifically stays imperative on leanness / GUI-owned grounds (L8), not a discoverability constraint.
 
 ---
 
@@ -203,7 +203,7 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | L5 | Bash (not zsh/fish/starship) | Custom PS1 already tuned; no reason to switch |
 | L6 | ibus-rime for CJK input | luna_pinyin + jyut6ping3; system engine + user schema config file |
 | L7 | hardware-configuration.nix tracked in git | Nix flakes only copy git-tracked files; ignored hardware-config causes build failures |
-| L8 | GNOME extensions — imperative (install + enable) | Declarative *enable* via dconf crashed on baremetal (version mismatch, 2026-06-18); manage on/off via the GNOME Extensions app. Declarative *install* is technically viable for a version-matched extension (e.g. `gnomeExtensions.kando-integration`) but needs a **system** module — gnome-shell doesn't scan the standalone home-manager profile; declined 2026-06-19 to keep the system config lean. *Enable* would stay imperative regardless (home-manager dconf sets the whole `enabled-extensions` list and would clobber hand-enabled extensions) |
+| L8 | GNOME extensions — enablement imperative; install now declarative (home-side) | Declarative *enable* via dconf crashed on baremetal (version mismatch, 2026-06-18); manage on/off via the GNOME Extensions app. *Enable* would stay imperative regardless (home-manager dconf sets the whole `enabled-extensions` list and would clobber hand-enabled extensions). Declarative *install* via `home.packages` is viable and **home-side ungated**: gnome-shell's real `XDG_DATA_DIRS` (read from `/proc/<pid>/environ` 2026-06-19) includes `~/.nix-profile/share`, resolving to the standalone HM profile — so `pkgs.gnomeExtensions.*` packages placed there ARE discovered. A newly-added extension requires re-login to load on Wayland (discoverable ≠ live without re-login). Six extensions declared in `home-pkgs.nix` (Phase 0); the Kando Integration extension stays imperative on leanness/GUI-owned grounds (not a discoverability constraint). |
 | L9 | No CI | Local quality gate (pre-commit + `nix flake check`) is sufficient for a single-person dotfiles repo |
 | L10 | VSCode install-only in home | Settings managed via VS Code Settings Sync / GitHub Gist; Nix-managed settings would conflict |
 | L11 | GUI-owned config (Kando menus, Solaar rules) imperative | A declarative `xdg.configFile`/`.source` link is a read-only Nix-store symlink — the app's own editor cannot save to it. Install + enablement declarative; config owned by the app. See GUI-Owned Config doctrine |
@@ -222,7 +222,7 @@ Rationale: the dconf GNOME shell and extension settings interact with extension 
 | disko (declarative partitioning) | Deferred | Reinstall-time change; not worth disrupting a running system |
 | impermanence (ephemeral root) | Deferred | Requires disko first; reinstall-time |
 | sops-nix / agenix secrets | Deferred | No concrete secrets in config yet; adopt when needed |
-| Declarative GNOME extensions | Deferred | Extension version mismatch caused crash (L8 above); re-evaluate when nixpkgs version-matching is reliable |
+| Declarative GNOME extensions (enablement) | Partially done (Phase 0) | Install-only declared in `home-pkgs.nix` (Phase 0, 2026-06-19); enablement (dconf `enabled-extensions` takeover, Phase 1) still imperative — version-mismatch risk until verified on switch |
 | Howdy facial login | Deferred | Fiddly PAM integration; not for VM; revisit on baremetal |
 | Second host (laptop) | Deferred | hosts/ + modules/ structure is ready for it |
 | Multi-host NVIDIA/Asahi handling | Deferred | Depends on second host hardware |
