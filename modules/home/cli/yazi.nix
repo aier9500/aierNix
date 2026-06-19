@@ -106,6 +106,14 @@ in
             run = "cd ~/Projects";
             desc = "Go to Projects";
           }
+          {
+            on = [
+              "g"
+              "."
+            ];
+            run = "cd ~/.dotfiles";
+            desc = "Go to .dotfiles";
+          }
         ];
       };
     };
