@@ -43,6 +43,9 @@ in
       pkgs.python3
       # Theming
       pkgs.adw-gtk3
+      # Shotzy OCR
+      pkgs.tesseract
+      pkgs.zbar
     ];
   };
 }
