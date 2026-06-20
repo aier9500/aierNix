@@ -21,6 +21,7 @@ _:
     ../../modules/system/desktop/pipewire.nix
     ../../modules/system/desktop/fonts.nix
     ../../modules/system/keyd.nix
+    ../../modules/system/libinput-config.nix
     ../../modules/system/snapper.nix
     ../../modules/system/virtualisation.nix
     ../../modules/system/flatpak.nix
@@ -43,6 +44,7 @@ _:
     desktop.gnome.enable = true;
     desktop.pipewire.enable = true;
     keyd.enable = true;
+    libinputConfig.enable = true; # touchpad scroll-factor on Wayland (default 0.3)
     snapper.enable = true;
     virtualisation.enable = true;
     flatpak.enable = true;
