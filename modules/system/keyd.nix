@@ -20,5 +20,17 @@ in
         };
       };
     };
+
+    # keyd exposes a virtual keyboard that libinput won't classify as
+    # internal, which silently breaks libinput's disable-while-typing
+    # (DWT) — the touchpad is no longer suppressed while typing. Mark
+    # keyd's virtual keyboard as an internal keyboard so libinput pairs
+    # it with the touchpad and DWT works again. (NixOS wiki: Keyd.)
+    environment.etc."libinput/local-overrides.quirks".text = ''
+      [keyd virtual keyboard]
+      MatchUdevType=keyboard
+      MatchName=keyd virtual keyboard
+      AttrKeyboardIntegration=internal
+    '';
   };
 }
