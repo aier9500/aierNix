@@ -1,5 +1,3 @@
-# modules/system/system-pkgs.nix — core system packages and program enablements
-# ghostty remains here (system-level install); vscode and kando moved to home in P2.
 { pkgs, ... }:
 
 {

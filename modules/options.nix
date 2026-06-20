@@ -16,14 +16,9 @@
       description = "Machine hostname.";
     };
 
-    timezone = lib.mkOption {
-      type = lib.types.str;
-      description = "System timezone (e.g. America/Caracas).";
-    };
-
     locale = lib.mkOption {
       type = lib.types.str;
-      description = "Primary locale (e.g. en_US.UTF-8).";
+      description = "Primary locale (e.g. en_GB.UTF-8).";
     };
 
     themeName = lib.mkOption {

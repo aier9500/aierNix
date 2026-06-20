@@ -1,4 +1,3 @@
-# modules/system/core/boot.nix — always-on bootloader + filesystem support
 _:
 
 {

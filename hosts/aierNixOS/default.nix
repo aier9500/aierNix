@@ -34,8 +34,7 @@ _:
   myConfig = {
     user = "aier";
     hostname = "aierNixOS";
-    timezone = "America/Caracas";
-    locale = "en_US.UTF-8";
+    locale = "en_GB.UTF-8";
     themeName = "";
   };
 
