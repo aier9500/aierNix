@@ -20,6 +20,13 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # OpenWhispr — voice dictation app + NixOS module that wires up Wayland
+    # auto-paste (ydotool/uinput/groups). See modules/system/openwhispr.nix.
+    openwhispr = {
+      url = "github:OpenWhispr/openwhispr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

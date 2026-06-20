@@ -29,6 +29,7 @@ _:
     ../../modules/system/printing.nix
     ../../modules/system/solaar.nix
     ../../modules/system/ibus.nix
+    ../../modules/system/openwhispr.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -44,7 +45,8 @@ _:
     desktop.gnome.enable = true;
     desktop.pipewire.enable = true;
     keyd.enable = true;
-    libinputConfig.enable = true; # touchpad scroll-factor on Wayland (default 0.3)
+    libinputConfig.enable = true; # adjusting for overly fast scroll speed on Gnome
+    libinputConfig.scrollFactor = "0.2"; # set the scrollfactor speed to 0.2 instead of the default 0.3
     snapper.enable = true;
     virtualisation.enable = true;
     flatpak.enable = true;
@@ -52,5 +54,6 @@ _:
     printing.enable = true;
     solaar.enable = true;
     ibus.enable = true; # ibus + Rime engine (luna_pinyin + jyut6ping3); schemas in myHome.ibusRime
+    openwhispr.enable = true; # voice dictation; upstream flake module wires Wayland auto-paste (ydotool/uinput)
   };
 }
