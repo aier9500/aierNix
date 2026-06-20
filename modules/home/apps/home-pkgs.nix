@@ -32,15 +32,17 @@ in
       pkgs.vesktop
       # CLI / dev tools
       pkgs.claude-code
+      pkgs.dconf2nix
+      pkgs.nodejs
+      pkgs.openconnect
+      pkgs.python3
+      # Web apps
+      pkgs.chromium
       # Clipboard tools — Claude Code reads pasted images via `xclip … || wl-paste …`;
       # without these, image paste fails with "no image found in clipboard" (wl-clipboard
       # for the Wayland session, xclip for XWayland-sourced images).
       pkgs.wl-clipboard
       pkgs.xclip
-      pkgs.dconf2nix
-      pkgs.nodejs
-      pkgs.openconnect
-      pkgs.python3
       # Theming
       pkgs.adw-gtk3
       # Shotzy OCR
