@@ -19,9 +19,11 @@ in
       ########## Dependencies ##########
       ##################################
 
-      # Clipboard tools — CLI need these to allow pasting pictures
+      # Clipboard tools — Claude Code needs these to allow pasting pictures
       wl-clipboard
       xclip
+      # Automation tool — OpenWhispr needs this to autopaste in Wayland
+      ydotool
       # Extension — Shotzy OCR
       tesseract
       zbar
