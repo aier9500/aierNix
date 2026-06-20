@@ -14,6 +14,7 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 
 - **Best-practice rebuild (P0–P3) is complete and merged to `main`.** Layout is `hosts/` + `modules/` with standalone home-manager and `nh`. `default/` tree is deleted. See Changelog below for the full history.
 - **This session (2026-06-19) completed:** Stylix theme-selector framework + vanilla profile; fastfetch via `programs.fastfetch.settings`; fzf default options; cursor DRY (dconf reads stylix cursor name); Kando + Solaar installed but their app-owned configs kept **imperative** (no embedded config files — see GUI-Owned Config doctrine); README "Manual setup (imperative)" section added; legacy catppuccin-grub theme removed; secrets imperative-by-design formally documented; GNOME battery charge-limit active on ASUS Zenbook S 16.
+- **This session (2026-06-20) completed:** touchpad scroll-factor on Wayland via a declarative `libinput-config` (new `pkgs/libinput-config/` derivation + `modules/system/libinput-config.nix`, `mySystem.libinputConfig.enable`, scroll-factor `0.3`) — verified live (wrapper mapped into gnome-shell; scroll confirmed slower) and **completing OVERRIDE.md** (now cleared). Logged the key NixOS gotcha: glibc reads `/etc/ld-nix.so.preload`, **not** `/etc/ld.so.preload`.
 - **Local `tuxies-wiki/` clone is already gone** — the directory does not exist. Everything needed was ported in-repo. The canonical reference wiki lives at GitHub `Theory-Y/tuxies-wiki`.
 
 ### Items of notice for the incoming agent
@@ -53,6 +54,16 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ---
 
 ## Changelog
+
+### 2026-06-20 — Touchpad scroll-factor on Wayland (declarative libinput-config) — completes OVERRIDE
+
+Ported the `shivasai573/touchpad-sensitivity-tweak` fix (GNOME/mutter on Wayland exposes no scroll-speed slider) to a declarative module instead of its FHS installer (apt/dnf/pacman + `ninja install` to `/usr/local` + `/etc/ld.so.preload` — none of which work on NixOS; its `install_fix.sh` has no NixOS branch and dies at `meson setup`). New `pkgs/libinput-config/default.nix` builds the wrapper (lz42 mirror, rev `986afe8`, ISC) against the system `libinput-1.31.3`, skipping upstream's `/etc/ld.so.preload`-editing install script and installing only the `.so` (which links nothing but glibc — it interposes libinput symbols at runtime via `RTLD_NEXT`). New `modules/system/libinput-config.nix` (`mySystem.libinputConfig.enable` + `scrollFactor`, str, default `"0.3"`) writes the preload file + `/etc/libinput.conf` with `scroll-factor` only (so GNOME keeps owning tap/natural-scroll). Host wired: import + `libinputConfig.enable = true`.
+
+**Key NixOS gotcha (cost a debug cycle, now in MEMORY):** nixpkgs patches glibc's loader to read **`/etc/ld-nix.so.preload`**, NOT the standard `/etc/ld.so.preload` the upstream tool and every FHS distro use (verify: `grep -a 'ld-nix.so.preload' <glibc>/lib/ld-linux-x86-64.so.2`). The first version wrote `/etc/ld.so.preload` → the loader silently ignored it → the wrapper never loaded → scrolling stayed at the default factor (1.0). Fixed by targeting `environment.etc."ld-nix.so.preload"`. The `LD_PRELOAD` env var works fine; only the file name differs.
+
+Verified after `nixos-rebuild switch` + relogin: the wrapper is mapped into the live compositor (`grep -c libinput-config /proc/<gnome-shell>/maps` > 0) and scrolling is confirmed slower. Gate: `nixos-rebuild build` (closure builds) + live verification. **System change (user-approved + user-activated).** NixOS-specific (the `ld-nix.so.preload` mechanism), so **not** mirrored to the wiki.
+
+This completes **OVERRIDE.md item 1** (the touchpad-sensitivity-tweak port). Item 2 (keyd virtual-keyboard quirk → `AttrKeyboardIntegration=internal` so disable-while-typing works) is implemented in `modules/system/keyd.nix` and **verified live this session**: the keyd virtual keyboard (`event25`, name exact-match) reports `AttrKeyboardIntegration=internal` via `libinput quirks list`, the quirk file passes `libinput quirks validate`, and the touchpad (`ASUF1209:00 2808:0219 Touchpad`, `event19`) is an internal multitouch DWT-capable device on mutter/Wayland's libinput backend. The only un-run check is the cosmetic `sudo libinput list-devices` → touchpad `Disable-while-typing: enabled` line (needs root). OVERRIDE.md is cleared.
 
 ### 2026-06-19 — Reverted declarative GNOME extensions → fully imperative by choice
 
