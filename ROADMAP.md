@@ -14,7 +14,7 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 
 - **Best-practice rebuild (P0–P3) is complete and merged to `main`.** Layout is `hosts/` + `modules/` with standalone home-manager and `nh`. `default/` tree is deleted. See Changelog below for the full history.
 - **This session (2026-06-19) completed:** Stylix theme-selector framework + vanilla profile; fastfetch via `programs.fastfetch.settings`; fzf default options; cursor DRY (dconf reads stylix cursor name); Kando + Solaar installed but their app-owned configs kept **imperative** (no embedded config files — see GUI-Owned Config doctrine); README "Manual setup (imperative)" section added; legacy catppuccin-grub theme removed; secrets imperative-by-design formally documented; GNOME battery charge-limit active on ASUS Zenbook S 16.
-- **This session (2026-06-20) completed:** touchpad scroll-factor on Wayland via a declarative `libinput-config` (new `pkgs/libinput-config/` derivation + `modules/system/libinput-config.nix`, `mySystem.libinputConfig.enable`, scroll-factor `0.3`) — verified live (wrapper mapped into gnome-shell; scroll confirmed slower) and **completing OVERRIDE.md** (now cleared). Logged the key NixOS gotcha: glibc reads `/etc/ld-nix.so.preload`, **not** `/etc/ld.so.preload`.
+- **This session (2026-06-20) completed:** touchpad scroll-factor on Wayland via a declarative `libinput-config` (new `pkgs/libinput-config/` derivation + `modules/system/libinput-config.nix`, `mySystem.libinputConfig.enable`, scroll-factor `0.3`) — verified live (wrapper mapped into gnome-shell; scroll confirmed slower) and **completing OVERRIDE.md** (now cleared). Logged the key NixOS gotcha: glibc reads `/etc/ld-nix.so.preload`, **not** `/etc/ld.so.preload`. OpenWhispr voice dictation added (upstream flake module, ydotool/uinput, `openwhispr://` protocol handler); module consolidation (fonts stub deleted, locale moved to host file, flatpak split documented); repo archived as community template. **Known open:** OpenWhispr auto-paste is UNTESTED / broken (see Items of notice).
 - **Local `tuxies-wiki/` clone is already gone** — the directory does not exist. Everything needed was ported in-repo. The canonical reference wiki lives at GitHub `Theory-Y/tuxies-wiki`.
 
 ### Items of notice for the incoming agent
@@ -25,6 +25,7 @@ Design decisions and doctrine live in `DESIGN.md`. Working-pattern and orientati
 - **Stylix colorful themes:** the framework is already in place (`myConfig.themeName` selector in `hosts/aierNixOS/home.nix`, theme registry + `vanilla` profile in `modules/home/theming/stylix.nix`, with a commented `everforest` stub showing the full pattern). Adding a colorful theme = add an entry to the `themes` attrset + flip `themeName`. See the file header for step-by-step instructions.
 - **Working pattern:** the agent builds and verifies in-harness (`nix flake check`, `nh os build`, `nh home build`, `nix store diff-closures`). The USER runs the live `nh os switch` / `nh home switch` in their own terminal. Never auto-activate. See `MEMORY.md` for the full pattern.
 - **High-stakes deferred items** (Howdy) require explicit user go-ahead before any work is started. See annotations in Future/Deferred below.
+- **OpenWhispr auto-paste is UNTESTED / broken** — web sign-in via the `openwhispr://` protocol handler works, but auto-paste after dictation does NOT: it likely types a literal `v` instead of pasting (the Ctrl modifier is dropped from the injected Ctrl+V). Suspected causes: (1) uinput device-enumeration race (ydotool's virtual device may not be ready when the paste is attempted) or (2) keyd intercepting the injected event and remapping it under Colemak-DH. Needs investigation before OpenWhispr is usable end-to-end.
 
 ---
 
@@ -54,6 +55,23 @@ Full restructure into `hosts/` + `modules/` layout with standalone home-manager 
 ---
 
 ## Changelog
+
+### 2026-06-20 — OpenWhispr voice dictation; module consolidation; repo archived as template
+
+**OpenWhispr:** added voice dictation via the upstream `openwhispr` flake (`nixosModules.default`). New `modules/system/openwhispr.nix` (`mySystem.openwhispr.enable`) enables the module, sets up `ydotool`/`uinput`/`input` groups (system-side, removing `ydotool` from `home-pkgs.nix` where it lived before), and registers `open-whispr.desktop` as the `openwhispr://` protocol handler — fixing browser-based sign-in. `openwhispr` flake input added to `flake.nix`. System change (user-approved).
+
+**Module consolidation / de-scatter:**
+- Deleted dead `modules/system/desktop/fonts.nix` stub (fonts are solely `myHome.fonts`; the stub was never wired).
+- Moved per-user locale overrides (`LC_TIME=en_DK`, `LC_MONETARY=en_US`) from the old standalone-HM home module to a new host file `hosts/aierNixOS/locale.nix` (system-wide via `i18n.extraLocaleSettings` + `mkForce`), eliminating the GUI env-propagation workaround that was needed when locale was set only in the HM session. Deleted `modules/home/misc/locale.nix`. System change (user-approved).
+- Documented flatpak's necessary system/home split — cannot be home-only on NixOS (portal + system daemon must live on the NixOS layer); noted in `modules/system/flatpak.nix`.
+
+**Repo archived** as a community starting-point template (README update).
+
+**Known open:** OpenWhispr auto-paste is UNTESTED / broken — see Items of notice for suspected causes (uinput device-enumeration race or keyd intercepting injected events under Colemak-DH).
+
+### 2026-06-20 — Solaar autostart declared
+
+Added a declarative autostart `.desktop` for Solaar (`environment.etc."xdg/autostart/solaar.desktop"` in `modules/system/solaar.nix`, `Exec=solaar --window=hide` → starts minimized to the tray), mirroring Kando's autostart pattern but system-side (Solaar is installed system-wide via `hardware.logitech.wireless`, so the entry lives in `/etc/xdg/autostart`, not home's `~/.config/autostart`). "Start at login" is now declared — no need for Solaar's GUI toggle; a prior toggle leaves a redundant, deletable `~/.config/autostart/solaar.desktop`. Trimmed the module header's "ONLY Solaar config" line. README "Manual setup (imperative)" → Solaar and the `modules/system/README.md` table row updated to list the autostart. Device rules (`rules.yaml`) stay imperative (GUI-owned). Gate: `nix-instantiate --parse`. System change (user-approved). Wiki mirror declined.
 
 ### 2026-06-20 — Touchpad scroll-factor on Wayland (declarative libinput-config) — completes OVERRIDE
 

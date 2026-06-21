@@ -1,6 +1,9 @@
 # modules/home/apps/flatpak-home.nix — flatpak user packages via nix-flatpak
-# The nix-flatpak HM module is injected by mkHome (lib/default.nix).
-# System-level flatpak enablement is handled by modules/system/flatpak.nix.
+#
+# HOME half of a NECESSARY system/home split (see modules/system/flatpak.nix for why
+# flatpak cannot be home-only). This module only declares the per-user app LIST; the
+# nix-flatpak HM module (injected by mkHome in lib/default.nix) installs them with
+# `--user` and rides on the system flatpak runtime enabled in modules/system/flatpak.nix.
 #
 # Apps stay here only when they are not in nixpkgs, or when flatpak's sandbox /
 # bundled runtime is preferable (e.g. Bitwarden, whose nixpkgs build needs an

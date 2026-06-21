@@ -8,8 +8,8 @@ _:
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  # en_DK and en_US are generated (not defaults) to back the user-session overrides in
-  # modules/home/misc/locale.nix — ISO-8601 dates via en_DK, USD currency via en_US.
+  # en_DK and en_US are generated (not defaults) to back the host LC_TIME/LC_MONETARY
+  # overrides in hosts/aierNixOS/locale.nix — ISO-8601 dates via en_DK, USD currency via en_US.
   i18n.supportedLocales = [
     "C.UTF-8/UTF-8"
     "en_GB.UTF-8/UTF-8"

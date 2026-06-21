@@ -79,6 +79,12 @@ The complete ibus-rime setup is spread across three locations:
 
 ---
 
+## Locale overrides
+
+Locale overrides are **not here**. A former `locale.nix` in this directory used to set `LC_TIME=en_DK` (ISO dates) and `LC_MONETARY=en_US` (USD) as home-manager session variables to work around standalone-HM GUI env-propagation limitations. That module was removed; the same overrides now live machine-wide in `hosts/aierNixOS/locale.nix` via `i18n.extraLocaleSettings` (NixOS system level), which propagates correctly to all sessions including GUI apps.
+
+---
+
 ## Solaar
 
 Solaar is **not here**. Its system-level install and udev rules live in `modules/system/solaar.nix`; its per-device rules are configured imperatively through the Solaar GUI (same GUI-owned-config reason as Kando above).

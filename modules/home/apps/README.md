@@ -54,16 +54,16 @@ General-purpose package bucket for GUI and CLI applications that need no Nix-man
 
 | Category | Packages |
 |---|---|
-| Photo / graphics | `darktable`, `gradia` |
-| GNOME utilities | `dconf-editor`, `gnome-boxes`, `gnome-extension-manager`, `gnome-tweaks`, `mission-center` |
-| Notes | `obsidian` |
-| Screen recording | `kooha` |
-| Networking | `proton-vpn` |
-| Communication | `vesktop` |
-| CLI / dev tools | `claude-code`, `wl-clipboard`, `xclip`, `dconf2nix`, `nodejs`, `openconnect`, `python3` |
+| Dependencies | `wl-clipboard`, `xclip` (Claude Code image paste — see Notes), `tesseract`, `zbar` (Shotzy OCR extension) |
 | Theming | `adw-gtk3` |
+| GNOME utilities | `dconf-editor`, `gnome-boxes`, `gnome-extension-manager`, `gnome-tweaks` |
+| Utils | `mission-center`, `gradia`, `kooha`, `proton-vpn` |
+| Dev tools | `claude-code`, `dconf2nix`, `nodejs`, `openconnect`, `python3` |
+| Personal apps | `chromium`, `rawtherapee`, `obsidian`, `vesktop` |
 
-Several of these were migrated from `flatpak-home.nix` on 2026-06-19 (`obsidian`, `mission-center`, `kooha`, `gnome-extension-manager`, `gradia`) once their nixpkgs packages were confirmed clean.
+> **Note on `ydotool`:** `ydotool` is **not** listed here. It is provided system-side by `modules/system/openwhispr.nix` via `programs.ydotool.enable` (which also configures the `ydotoold` daemon, the `ydotool` group, and the uinput socket). Adding it here as a user package would be redundant and would not grant the required group membership.
+
+Several apps were migrated from `flatpak-home.nix` on 2026-06-19 (`obsidian`, `mission-center`, `kooha`, `gnome-extension-manager`, `gradia`) once their nixpkgs packages were confirmed clean.
 
 ---
 
@@ -76,7 +76,9 @@ Several of these were migrated from `flatpak-home.nix` on 2026-06-19 (`obsidian`
 | nix-flatpak injected by | `lib/default.nix` (`mkHome`) |
 | System prerequisite | `mySystem.flatpak.enable = true` in `modules/system/flatpak.nix` |
 
-Declarative Flatpak user packages. After the 2026-06-19 migration, exactly four apps remain:
+**This module is the HOME half of a necessary system/home split.** Flatpak cannot be home-manager-only on NixOS: the binary, portals, and menu-export wiring must be enabled at the NixOS level. `modules/system/flatpak.nix` does that; this module only declares the per-user app list (installed with `--user` via nix-flatpak riding on the system runtime). Disabling the system module while keeping this one enabled will break Flatpak entirely.
+
+After the 2026-06-19 migration, exactly four apps remain:
 
 | App ID | Reason to stay on Flatpak |
 |---|---|
@@ -111,8 +113,9 @@ Declarative Flatpak user packages. After the 2026-06-19 migration, exactly four 
 |---|---|---|
 | Imported by | `hosts/aierNixOS/home.nix` | Host is the only consumer; it flips the enable toggles |
 | Reads from | `modules/options.nix` | `myHome.*` / `myConfig.*` option namespace |
-| Paired with | `modules/system/flatpak.nix` | System module enables the Flatpak service; this module declares user packages |
+| Paired with (required) | `modules/system/flatpak.nix` | System module enables the Flatpak runtime; this module declares user packages — both halves are required |
 | nix-flatpak injected by | `lib/default.nix` (`mkHome`) | The `services.flatpak` HM option is not available otherwise |
+| `ydotool` provided by | `modules/system/openwhispr.nix` | System-side `programs.ydotool.enable`; not a home package |
 
 ---
 

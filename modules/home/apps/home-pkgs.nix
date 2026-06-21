@@ -14,7 +14,6 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
 
-
       ##################################
       ########## Dependencies ##########
       ##################################
@@ -28,23 +27,22 @@ in
       # Theming
       adw-gtk3
 
-
       ###################################
       ########## User Programs ##########
       ###################################
-      
+
       # GNOME utilities
       dconf-editor
       gnome-boxes
       gnome-extension-manager
       gnome-tweaks
-      
+
       # Utils
       mission-center # system monitor
       gradia # screenshot editor
       kooha # screen recorder util
       proton-vpn
-      
+
       # Dev tools
       claude-code
       dconf2nix
@@ -57,8 +55,7 @@ in
       rawtherapee
       obsidian
       vesktop
-      
-      
+
     ];
   };
 }

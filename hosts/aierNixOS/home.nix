@@ -29,7 +29,6 @@
     ../../modules/home/theming/fonts.nix
     ../../modules/home/misc/kando.nix
     ../../modules/home/misc/ibus-rime.nix
-    ../../modules/home/misc/locale.nix
   ];
 
   # Cross-cutting values (consumed by modules via myConfig.*)
@@ -78,7 +77,7 @@
     fonts.enable = true;
     kando.enable = true;
     ibusRime.enable = true; # Rime schema list (luna_pinyin + jyut6ping3); engine in mySystem.ibus
-    locale.enable = true; # user-session overrides: ISO dates + USD currency (system baseline is en_GB)
+    # locale overrides moved system-side → hosts/aierNixOS/locale.nix (machine-wide LC_TIME/LC_MONETARY)
     # Solaar: install + udev are system-level (mySystem.solaar); device rules are
     # configured imperatively in the Solaar GUI — no home module. See README.
   };

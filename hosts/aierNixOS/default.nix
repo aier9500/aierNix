@@ -11,6 +11,7 @@ _:
     # Core always-on modules
     ../../modules/system/core/networking.nix
     ../../modules/system/core/locale.nix
+    ./locale.nix # host-specific LC_TIME/LC_MONETARY deviations from the en_GB baseline
     ../../modules/system/core/users.nix
     ../../modules/system/core/boot.nix
     ../../modules/system/nix.nix
@@ -19,7 +20,6 @@ _:
     # Feature-toggle modules
     ../../modules/system/desktop/gnome.nix
     ../../modules/system/desktop/pipewire.nix
-    ../../modules/system/desktop/fonts.nix
     ../../modules/system/keyd.nix
     ../../modules/system/libinput-config.nix
     ../../modules/system/snapper.nix
