@@ -1,4 +1,3 @@
-# modules/system/core/networking.nix — always-on networking config
 _:
 
 {

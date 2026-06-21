@@ -21,8 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # OpenWhispr — voice dictation app + NixOS module that wires up Wayland
-    # auto-paste (ydotool/uinput/groups). See modules/system/openwhispr.nix.
+    # OpenWhispr — voice dictation; its NixOS module wires up Wayland auto-paste.
+    # See modules/system/openwhispr.nix.
     openwhispr = {
       url = "github:OpenWhispr/openwhispr";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,29 +35,24 @@
       system = "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
 
-      # Helper library — mkHost wraps nixosSystem, mkHome wraps homeManagerConfiguration.
-      # Both auto-inject modules/options.nix and pass inputs as specialArgs.
+      # mkHost/mkHome helpers (auto-inject modules/options.nix, pass inputs).
       lib = import ./lib/default.nix { inherit inputs; };
     in
     {
-      # --- NixOS system configuration ---
       nixosConfigurations.aierNixOS = lib.mkHost {
         inherit system;
         modules = [ ./hosts/aierNixOS/default.nix ];
       };
 
-      # --- Standalone home-manager configuration ---
-      # Activated via: nh home switch
+      # Standalone home-manager (nh home switch).
       homeConfigurations.aier = lib.mkHome {
         inherit pkgs;
         modules = [ ./hosts/aierNixOS/home.nix ];
       };
 
-      # --- Formatter (nix fmt) ---
       formatter.${system} = pkgs.nixfmt-rfc-style;
 
-      # --- Dev shell: quality-gate tools ---
-      # Enter with: nix develop
+      # Dev shell (nix develop): quality-gate tools.
       devShells.${system}.default = pkgs.mkShell {
         packages = [
           pkgs.nixfmt-rfc-style
@@ -67,10 +62,8 @@
         ];
       };
 
-      # --- Pre-commit checks via git-hooks.nix ---
-      # Excludes:
-      #   hardware-configuration.nix — generated file; statix/deadnix flags
-      #                                are expected and not actionable
+      # Pre-commit checks (git-hooks.nix). hardware-configuration.nix is excluded —
+      # it's generated, so its statix/deadnix flags aren't actionable.
       checks.${system}.pre-commit-check = inputs.git-hooks.lib.${system}.run {
         src = ./.;
         hooks = {

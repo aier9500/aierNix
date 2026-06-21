@@ -1,22 +1,46 @@
 # aierNix
 
+<!-- ════════════════════════════════════════════════════════════════════ -->
+
+> [!NOTE]
+> ## ✍️ Final thoughts
+>
+> _Placeholder — my closing reflections, to be written before archiving._
+>
+> <!-- write here -->
+>
+> &nbsp;
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+
+---
+
+> [!IMPORTANT]
+> ## 📦 Archived — an experimental 3-day port
+>
+> This repo ports my personal Fedora setup (~95%) and customisation habits onto
+> NixOS + home-manager — declarative, define-once, never-set-up-again — built in
+> three days with AI agents handling the most tedious work.
+>
+> A modular, option-based Nix config had been a ~2-year dream of mine; what always
+> stopped me was the sheer tedium of the setup. This was both a way to learn Nix and
+> an experiment in how much of that tedium an AI agent could take off my hands. It
+> turned out to be enough to finally make the dream real — with just my hands and AI
+> agents.
+>
+> It is archived as a starting-point **template** to fork and adapt — **not** a
+> polished, battle-hardened config. Expect to review every module, adjust hardware
+> settings, and test features before relying on them; not everything is verified on
+> hardware other than the original machine.
+
+---
+
 Personal NixOS + home-manager flake. Declarative config transferred from the
 [tuxies-wiki](https://github.com/theory-y/tuxies-wiki) aiers-fedora-checklist,
 restructured into a best-practice `hosts/` + `modules/` layout with standalone
 home-manager and a local quality gate.
 
 Doctrine lives in `DESIGN.md`. Rebuild plan and changelog live in `ROADMAP.md`.
-
----
-
-> **Experimental / archived template**
->
-> This repo is an experimental 3-day port of a personal Linux config to NixOS +
-> home-manager, carried out with agentic AI assistance and archived as a
-> starting-point template for others to fork and adapt. It is not a polished,
-> battle-hardened config — expect to review every module, adjust hardware
-> settings, and test features before relying on them. Not all functionality is
-> fully tested on hardware other than the original machine.
 
 ---
 

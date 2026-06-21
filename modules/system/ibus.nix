@@ -1,12 +1,10 @@
-# modules/system/ibus.nix — ibus input-method framework + Rime engine (system half)
+# modules/system/ibus.nix — ibus + Rime engine (system half)
 #
-# Registers the Rime engine system-wide via i18n.inputMethod so GNOME's ibus-daemon
-# finds it (the component lands in /run/current-system/sw/share/ibus/component). The
-# engine's bundled rime-data already includes the luna_pinyin + jyut6ping3 schemas,
-# so no rimeDataPkgs override is needed. The user schema selection and the GNOME
-# input source live in the home half (modules/home/misc/ibus-rime.nix +
-# gnome-input-sources dconf). GNOME integrates ibus via the input-source mechanism
-# (text-input-v3), not GTK_IM_MODULE. See DESIGN.md L6.
+# Registers the Rime engine via i18n.inputMethod so GNOME's ibus-daemon finds it.
+# Bundled rime-data includes luna_pinyin + jyut6ping3 — no rimeDataPkgs override
+# needed. Schema selection and GNOME input source live in the home half
+# (modules/home/misc/ibus-rime.nix). GNOME uses ibus via text-input-v3, not
+# GTK_IM_MODULE. See DESIGN.md L6.
 {
   config,
   lib,

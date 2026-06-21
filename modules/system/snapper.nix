@@ -1,4 +1,3 @@
-# modules/system/snapper.nix — BTRFS timeline snapshots for root
 { config, lib, ... }:
 let
   cfg = config.mySystem.snapper;

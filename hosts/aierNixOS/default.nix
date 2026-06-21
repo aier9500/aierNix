@@ -1,7 +1,5 @@
-# hosts/aierNixOS/default.nix — P1 system configuration
-#
-# Imports all system modules directly; no legacy passthrough.
-# Sets myConfig.* values and enables feature toggles for this machine.
+# hosts/aierNixOS/default.nix — system configuration for this machine.
+# Imports the system modules, sets myConfig.* values, and flips feature toggles on.
 _:
 
 {
@@ -45,15 +43,15 @@ _:
     desktop.gnome.enable = true;
     desktop.pipewire.enable = true;
     keyd.enable = true;
-    libinputConfig.enable = true; # adjusting for overly fast scroll speed on Gnome
-    libinputConfig.scrollFactor = "0.2"; # set the scrollfactor speed to 0.2 instead of the default 0.3
+    libinputConfig.enable = true; # GNOME/Wayland scroll runs too fast otherwise
+    libinputConfig.scrollFactor = "0.2"; # slower than the module's 0.3 default
     snapper.enable = true;
     virtualisation.enable = true;
     flatpak.enable = true;
     power.enable = true;
     printing.enable = true;
     solaar.enable = true;
-    ibus.enable = true; # ibus + Rime engine (luna_pinyin + jyut6ping3); schemas in myHome.ibusRime
-    openwhispr.enable = true; # voice dictation; upstream flake module wires Wayland auto-paste (ydotool/uinput)
+    ibus.enable = true; # ibus + Rime engine; schemas in myHome.ibusRime
+    openwhispr.enable = true; # voice dictation; auto-paste UNTESTED (see README)
   };
 }

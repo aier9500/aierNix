@@ -1,7 +1,5 @@
-# hosts/aierNixOS/home.nix — P2 modular home-manager configuration
-#
-# Sets home-manager identity values, myConfig.* cross-cutting values,
-# and enables all active home feature toggles for this machine.
+# hosts/aierNixOS/home.nix — home-manager configuration for this machine.
+# Imports the home modules, sets identity + myConfig.* values, and flips toggles on.
 { ... }:
 
 {
@@ -72,13 +70,12 @@
     };
     theming = {
       gnome.enable = true;
-      # cursors.enable removed — Stylix now owns the cursor via stylix.cursor.
+      # cursor is owned by Stylix (stylix.cursor), so no cursors toggle here.
     };
     fonts.enable = true;
     kando.enable = true;
-    ibusRime.enable = true; # Rime schema list (luna_pinyin + jyut6ping3); engine in mySystem.ibus
-    # locale overrides moved system-side → hosts/aierNixOS/locale.nix (machine-wide LC_TIME/LC_MONETARY)
-    # Solaar: install + udev are system-level (mySystem.solaar); device rules are
-    # configured imperatively in the Solaar GUI — no home module. See README.
+    ibusRime.enable = true; # Rime schema list; engine in mySystem.ibus
+    # locale overrides live system-side in hosts/aierNixOS/locale.nix.
+    # Solaar is system-level (mySystem.solaar); its device rules are set in the GUI.
   };
 }

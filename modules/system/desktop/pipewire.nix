@@ -1,4 +1,3 @@
-# modules/system/desktop/pipewire.nix — PipeWire audio stack
 { config, lib, ... }:
 let
   cfg = config.mySystem.desktop.pipewire;

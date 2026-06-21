@@ -1,14 +1,11 @@
-# pkgs/libinput-config/default.nix — warningnonpotablewater's libinput-config (lz42 mirror)
+# pkgs/libinput-config/default.nix — libinput-config (lz42 mirror)
 #
-# A libinput wrapper that lets you set input options — notably the touchpad
-# scroll-factor — that GNOME/mutter on Wayland does not expose. It works by
-# symbol interposition: the .so is force-loaded ahead of libinput (system-wide
-# ld.so.preload, wired in modules/system/libinput-config.nix) and reads
-# /etc/libinput.conf at device init.
+# A libinput wrapper that exposes input options GNOME/Wayland doesn't — notably the
+# touchpad scroll-factor. It loads ahead of libinput (preload, wired in
+# modules/system/libinput-config.nix) and reads /etc/libinput.conf.
 #
-# Upstream's `ninja install` appends to /etc/ld.so.preload via scripts/preload.sh.
-# That is the module's job here (declarative + GC-safe), so we skip the install
-# step and copy only the built .so into $out/lib.
+# We skip upstream's `ninja install` (it edits /etc/ld.so.preload — the module does
+# that declaratively instead) and copy only the built .so into $out/lib.
 {
   stdenv,
   lib,
@@ -37,19 +34,16 @@ stdenv.mkDerivation {
     pkg-config
   ];
 
-  # libinput + libudev are pulled in for HEADERS ONLY: meson uses
-  # partial_dependency(includes: true) and links with
-  # --unresolved-symbols=ignore-all, so the .so has no hard libinput dependency
-  # and resolves the real symbols at runtime via RTLD_NEXT against whatever
-  # libinput the host process (e.g. mutter) already loaded.
+  # libinput + libudev are here for HEADERS ONLY — the build links with unresolved
+  # symbols, so the .so has no hard libinput dependency and binds to whatever libinput
+  # the host process (e.g. mutter) already loaded at runtime.
   buildInputs = [
     libinput
     udev
   ];
 
-  # Skip `ninja install`: its meson install script (scripts/preload.sh) edits
-  # /etc/ld.so.preload, which fails in the build sandbox and is handled
-  # declaratively by modules/system/libinput-config.nix instead.
+  # Skip `ninja install` (its preload script edits /etc/ld.so.preload, which fails in
+  # the sandbox and is handled by the module); install just the built .so.
   installPhase = ''
     runHook preInstall
     install -Dm755 \

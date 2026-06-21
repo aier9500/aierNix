@@ -1,6 +1,4 @@
-# modules/home/apps/vscode.nix — VS Code (install-only; no Nix config)
-# Settings managed via VS Code Settings Sync / GitHub Gist — no Nix config intentional.
-# Moved from system-pkgs (environment.systemPackages) to home in P2.
+# modules/home/apps/vscode.nix — install-only; settings managed via VS Code Settings Sync.
 {
   config,
   lib,

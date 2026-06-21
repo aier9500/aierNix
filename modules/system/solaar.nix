@@ -1,11 +1,10 @@
-# modules/system/solaar.nix — Solaar Logitech device manager + udev rules
-# hardware.logitech.wireless installs Solaar and registers udev rules system-wide.
-# There is no services.solaar — Solaar runs as a per-user tray app, not a daemon.
+# modules/system/solaar.nix — Solaar Logitech device manager
+# hardware.logitech.wireless installs Solaar + udev rules; no services.solaar
+# exists — Solaar is a per-user tray app.
 #
-# Device rules (~/.config/solaar/rules.yaml) are
-# IMPERATIVE: owned and rewritten by the Solaar GUI rule editor, so they are not
-# declared here. A declarative symlink would be read-only and block the editor.
-# See README "Manual setup (imperative)".
+# Device rules (~/.config/solaar/rules.yaml) are imperative: the Solaar GUI
+# owns and rewrites that file, so a read-only Nix symlink would break the
+# editor. See README "Manual setup (imperative)".
 {
   config,
   lib,
@@ -21,15 +20,13 @@ in
     hardware = {
       logitech.wireless.enable = true;
       logitech.wireless.enableGraphical = true;
-      # Solaar "Key press" rules inject via /dev/uinput on Wayland; needs the uinput
-      # module + group access (user added to the uinput group in core/users.nix).
+      # "Key press" rules inject via /dev/uinput on Wayland (user in uinput group — core/users.nix).
       uinput.enable = true;
     };
 
-    # Autostart at login so the tray app + device rules are active without a manual
-    # launch — this is enablement (like Solaar's GUI "Start at login" toggle), not
-    # user-editable config, so a read-only Nix-store symlink in /etc/xdg/autostart is
-    # fine. --window=hide starts it minimized to the tray (no window on every login).
+    # Autostart: equivalent to Solaar's "Start at login" toggle. A read-only
+    # Nix symlink in /etc/xdg/autostart is fine for enablement-only config.
+    # --window=hide starts minimized to tray.
     environment.etc."xdg/autostart/solaar.desktop".text = ''
       [Desktop Entry]
       Type=Application

@@ -1,4 +1,4 @@
-# modules/home/cli/gh.nix — GitHub CLI
+# modules/home/cli/gh.nix
 { config, lib, ... }:
 let
   cfg = config.myHome.cli.gh;

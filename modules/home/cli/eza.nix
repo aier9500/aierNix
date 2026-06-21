@@ -1,4 +1,4 @@
-# modules/home/cli/eza.nix — eza directory listing tool
+# modules/home/cli/eza.nix
 { config, lib, ... }:
 let
   cfg = config.myHome.cli.eza;

@@ -1,4 +1,3 @@
-# modules/system/core/users.nix — always-on user account definition
 _:
 
 {

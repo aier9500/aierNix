@@ -1,4 +1,4 @@
-# modules/home/cli/zoxide.nix — zoxide smart directory jumper
+# modules/home/cli/zoxide.nix
 { config, lib, ... }:
 let
   cfg = config.myHome.cli.zoxide;

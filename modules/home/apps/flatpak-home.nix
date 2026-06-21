@@ -1,15 +1,6 @@
-# modules/home/apps/flatpak-home.nix — flatpak user packages via nix-flatpak
-#
-# HOME half of a NECESSARY system/home split (see modules/system/flatpak.nix for why
-# flatpak cannot be home-only). This module only declares the per-user app LIST; the
-# nix-flatpak HM module (injected by mkHome in lib/default.nix) installs them with
-# `--user` and rides on the system flatpak runtime enabled in modules/system/flatpak.nix.
-#
-# Apps stay here only when they are not in nixpkgs, or when flatpak's sandbox /
-# bundled runtime is preferable (e.g. Bitwarden, whose nixpkgs build needs an
-# insecure electron). Flatpak is a bridge, not a destination (DESIGN.md
-# minimize-policy); everything cleanly packaged was migrated to home.packages
-# (modules/home/apps/home-pkgs.nix) on 2026-06-19.
+# modules/home/apps/flatpak-home.nix — per-user flatpak app list (via nix-flatpak)
+# Requires modules/system/flatpak.nix — flatpak cannot be home-only.
+# Keep apps here only when absent from nixpkgs or when the sandbox is preferable.
 { config, lib, ... }:
 let
   cfg = config.myHome.apps.flatpak;

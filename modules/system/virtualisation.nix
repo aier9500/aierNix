@@ -1,4 +1,3 @@
-# modules/system/virtualisation.nix — libvirtd virtualisation support
 { config, lib, ... }:
 let
   cfg = config.mySystem.virtualisation;

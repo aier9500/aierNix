@@ -1,7 +1,5 @@
-# modules/options.nix — cross-cutting myConfig.* values
-#
-# Declares shared values consumed by both system and home modules.
-# Does NOT declare feature toggles — those live in each feature module.
+# Shared values consumed by system and home modules.
+# Feature toggles live in each feature module, not here.
 { lib, ... }:
 
 {

@@ -1,4 +1,3 @@
-# modules/system/nix.nix — nix daemon settings, nh, allowUnfree, stateVersion
 _:
 
 {

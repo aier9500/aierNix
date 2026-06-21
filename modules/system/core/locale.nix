@@ -1,15 +1,14 @@
 _:
 
 {
-  # Timezone is detected automatically at runtime via geoclue2 (pulled in by
-  # automatic-timezoned). `time.timeZone` must stay unset for this to work. Being
-  # system-wide, the detected zone applies to every user session too.
+  # Timezone is auto-detected via geoclue2 (automatic-timezoned). `time.timeZone`
+  # must stay unset for this to work — the detected zone applies system-wide.
   services.automatic-timezoned.enable = true;
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  # en_DK and en_US are generated (not defaults) to back the host LC_TIME/LC_MONETARY
-  # overrides in hosts/aierNixOS/locale.nix — ISO-8601 dates via en_DK, USD currency via en_US.
+  # en_DK and en_US are generated here so host-level LC_TIME/LC_MONETARY overrides
+  # work (ISO-8601 dates via en_DK, USD currency via en_US).
   i18n.supportedLocales = [
     "C.UTF-8/UTF-8"
     "en_GB.UTF-8/UTF-8"

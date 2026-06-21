@@ -1,4 +1,3 @@
-# modules/system/desktop/gnome.nix — GNOME + GDM desktop environment
 {
   config,
   lib,

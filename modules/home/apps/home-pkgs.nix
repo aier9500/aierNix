@@ -14,22 +14,14 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
 
-      ##################################
-      ########## Dependencies ##########
-      ##################################
-
-      # Clipboard tools — Claude Code needs these to allow pasting pictures
+      # Clipboard (Claude Code picture-paste requires both)
       wl-clipboard
       xclip
-      # Extension — Shotzy OCR
+      # Shotzy OCR extension deps
       tesseract
       zbar
       # Theming
       adw-gtk3
-
-      ###################################
-      ########## User Programs ##########
-      ###################################
 
       # GNOME utilities
       dconf-editor
@@ -38,7 +30,7 @@ in
       gnome-tweaks
 
       # Utils
-      mission-center # system monitor
+      mission-center
       gradia # screenshot editor
       kooha # screen recorder util
       proton-vpn

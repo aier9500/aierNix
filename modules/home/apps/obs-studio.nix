@@ -1,4 +1,4 @@
-# modules/home/apps/obs-studio.nix — OBS Studio screen recording/streaming
+# modules/home/apps/obs-studio.nix
 { config, lib, ... }:
 let
   cfg = config.myHome.apps.obsStudio;

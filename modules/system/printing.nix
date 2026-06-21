@@ -1,4 +1,3 @@
-# modules/system/printing.nix — CUPS printing service
 { config, lib, ... }:
 let
   cfg = config.mySystem.printing;

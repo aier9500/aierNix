@@ -10,15 +10,14 @@ in
     programs.ghostty = {
       enable = true;
       settings = {
-        # transparency: lower is more transparent (blur needs Blur my Shell on GNOME)
+        # lower opacity = more transparent; blur requires Blur my Shell on GNOME
         background-opacity = 0.8;
         background-blur = true;
 
-        # initial window grid size in columns and rows
         window-width = 120;
         window-height = 40;
 
-        # restore window size across launches: default | never | always
+        # options: default | never | always
         window-save-state = "never";
       };
     };

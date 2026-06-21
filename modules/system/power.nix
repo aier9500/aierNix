@@ -11,12 +11,11 @@ in
       power-profiles-daemon.enable = true;
       tlp.enable = false;
 
-      # GNOME 50 "Battery Charge Limit" fix — ASUS Zenbook S 16 (UM5606WA).
-      # asus_wmi exposes only charge_control_end_threshold (no start). upower's
-      # bundled rule only fires when a start threshold exists, so it never imports
-      # CHARGE_LIMIT and ChargeThresholdSupported stays false. This rule backfills
-      # it (keyed on the attribute that actually exists), and the _,80 hwdb sentinel
-      # tells upower to skip the absent start threshold and cap charging at 80%.
+      # GNOME "Battery Charge Limit" fix for ASUS Zenbook S 16 (UM5606WA).
+      # asus_wmi exposes only charge_control_end_threshold (no start threshold).
+      # upower's bundled rule requires a start threshold, so it never sets
+      # ChargeThresholdSupported. This rule backfills it; _,80 tells upower to
+      # skip the absent start threshold and cap charging at 80%.
       udev = {
         extraRules = ''
           ACTION=="remove", GOTO="upower_asus_end"

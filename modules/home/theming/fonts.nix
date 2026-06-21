@@ -1,7 +1,4 @@
-# modules/home/theming/fonts.nix — user font symlinks into ~/.local/share/fonts
-# Uses home.file to expose font packages in the standard user font path.
-# JetBrainsMono Nerd Font: full braille/box/symbol + icon coverage so the
-# VS Code terminal (Claude Code TUI spinner, etc.) renders without tofu boxes.
+# JetBrainsMono Nerd Font: full symbol/icon coverage prevents tofu in VS Code / TUI terminals.
 {
   config,
   lib,

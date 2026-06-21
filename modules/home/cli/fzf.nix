@@ -1,4 +1,4 @@
-# modules/home/cli/fzf.nix — fzf fuzzy finder
+# modules/home/cli/fzf.nix
 { config, lib, ... }:
 let
   cfg = config.myHome.cli.fzf;
@@ -9,8 +9,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.fzf = {
       enable = true;
-      # No existing FZF_DEFAULT_OPTS found in shell config or tuxies-wiki.
-      # These are sensible starting defaults — tune to taste.
+      # Tune to taste.
       defaultOptions = [
         "--height 40%"
         "--layout=reverse"

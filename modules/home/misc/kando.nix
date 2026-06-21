@@ -1,22 +1,14 @@
-# modules/home/misc/kando.nix — kando radial menu daemon
-# Moved from system-pkgs (environment.systemPackages) to home in P2 (user override).
-# Kando runs as a background daemon triggered via a global hotkey.
+# Kando radial menu daemon — package + autostart only.
 #
-# DECLARATIVE here:
-#   - the kando package (user-space daemon);
-#   - the autostart .desktop — enablement (guarantees the daemon launches at
-#     login), not user-editable config, so the read-only Nix-store symlink is fine.
+# Declarative: package and autostart .desktop (enablement, not user config).
 #
-# IMPERATIVE (deliberately NOT declared — owned by the app / the user):
-#   - config.json (settings + hotkey) and menus.json (pie definitions): an
-#     `xdg.configFile.…source` link is a read-only Nix-store symlink, so Kando's
-#     editor cannot save to it. Build the menus in the Kando settings UI.
-#   - the GNOME Shell integration extension (needed on Wayland to bind the global
-#     shortcut): install + enable it via the GNOME Extensions app. It is
-#     version-matched in nixpkgs (`gnomeExtensions.kando-integration`) and could be
-#     installed declaratively, but only from a system module — gnome-shell does not
-#     scan the standalone home-manager profile — which was declined to keep the
-#     system config lean (DESIGN.md L8).
+# Imperative (NOT declared — app/user-owned):
+#   - config.json and menus.json: declaring via xdg.configFile would produce a
+#     read-only Nix-store symlink, blocking Kando's editor from saving. Build menus
+#     in the Kando UI instead.
+#   - GNOME Shell integration extension (Wayland global shortcut): install via GNOME
+#     Extensions app. Could use gnomeExtensions.kando-integration declaratively, but
+#     only from a system module (gnome-shell ignores the standalone HM profile).
 # See README "Manual setup (imperative)".
 {
   config,

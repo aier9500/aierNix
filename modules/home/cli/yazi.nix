@@ -1,6 +1,5 @@
-# modules/home/cli/yazi.nix — yazi file manager with custom config
-# Note: a cosmetic warning exists about programs.yazi.shellWrapperName default
-# changing in 26.05 — setting explicitly to "y" to adopt new default and silence it.
+# modules/home/cli/yazi.nix
+# shellWrapperName set to "y" explicitly to silence a 26.05 deprecation warning.
 { config, lib, ... }:
 let
   cfg = config.myHome.cli.yazi;
@@ -29,9 +28,7 @@ in
         };
       };
 
-      # keymap.toml — custom g-prefix navigation.
-      # prepend_keymap sits ahead of defaults.
-      # Kept defaults: g h (home), g c (~/.config), g d (Downloads), g t (/tmp), g g (top)
+      # keymap.toml — custom g-prefix navigation (prepend_keymap sits ahead of defaults)
       keymap = {
         mgr.prepend_keymap = [
           {
