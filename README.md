@@ -3,28 +3,36 @@
 <!-- ════════════════════════════════════════════════════════════════════ -->
 
 > [!NOTE]
+>
 > ## ✍️ Final thoughts
 >
-> _Placeholder — my closing reflections, to be written before archiving._
+> _NixOS is really fun, and is really feasible as a daily driver now with a clearly defined AI workflow, But I am going back to Fedora, here's why:_
 >
 > <!-- write here -->
 >
-> &nbsp;
+> - I am too much of a tinkerer, I will inevetibly end up spending more time configuring the computer I work on than getting work done.
+> - I simply don't fit the usecase intended by NixOS.
+>   - I don't reinstall my operating system often;
+>   - I don't manager servers (my friend does);
+>   - I change my system a lot (having to open my configs every time for minor changes is tedius).
+>
+> **That said, I really hope you (yes, you reading), would enjoy learning and tinkering with Nix as much as I did.**
 
 <!-- ════════════════════════════════════════════════════════════════════ -->
 
 ---
 
 > [!IMPORTANT]
+>
 > ## 📦 Archived — an experimental 3-day port
 >
 > This repo ports my personal Fedora setup (~95%) and customisation habits onto
 > NixOS + home-manager — declarative, define-once, never-set-up-again — built in
 > three days with AI agents handling the most tedious work.
 >
-> A modular, option-based Nix config had been a ~2-year dream of mine; what always
-> stopped me was the sheer tedium of the setup. This was both a way to learn Nix and
-> an experiment in how much of that tedium an AI agent could take off my hands. It
+> A modular, option-based Nix config had been a ~2-year dream of mine back in highschool;
+> what always stopped me was the sheer tedium of the setup. This was both a way to learn Nix
+> and an experiment in how much of that tedium an AI agent could take off my hands. It
 > turned out to be enough to finally make the dream real — with just my hands and AI
 > agents.
 >
@@ -124,10 +132,10 @@ Each subdirectory has its own README for detail. See `DESIGN.md` for doctrine
 
 ## Output names
 
-| Flake output | Command target |
-|---|---|
+| Flake output                    | Command target                                                   |
+| ------------------------------- | ---------------------------------------------------------------- |
 | `nixosConfigurations.aierNixOS` | `nh os switch` / `sudo nixos-rebuild switch --flake .#aierNixOS` |
-| `homeConfigurations.aier` | `nh home switch` / `home-manager switch --flake .#aier` |
+| `homeConfigurations.aier`       | `nh home switch` / `home-manager switch --flake .#aier`          |
 
 ---
 
@@ -247,12 +255,12 @@ secrets-imperative policy (see `DESIGN.md`).
 
 ### Kando (radial menu)
 
-*Declared:* package + autostart `.desktop` (`modules/home/misc/kando.nix`).
+_Declared:_ package + autostart `.desktop` (`modules/home/misc/kando.nix`).
 
 1. Install **and** enable the **Kando Integration** GNOME extension via the GNOME
    Extensions app, then restart Kando. On Wayland this extension is what lets Kando
    bind its global shortcut — the Haptic-button → pie-menu chain does **not** work
-   until it's active. (It is version-matched in nixpkgs and *could* be installed
+   until it's active. (It is version-matched in nixpkgs and _could_ be installed
    declaratively, but is kept imperative to let the GNOME Extensions app own it;
    see DESIGN.md L8.)
 2. Build your pie menus in the Kando settings editor. Kando writes
@@ -260,7 +268,7 @@ secrets-imperative policy (see `DESIGN.md`).
 
 ### Solaar (Logitech devices)
 
-*Declared:* install + udev rules via `hardware.logitech.wireless`, **plus** the
+_Declared:_ install + udev rules via `hardware.logitech.wireless`, **plus** the
 autostart `.desktop` (`/etc/xdg/autostart/solaar.desktop`) — all in
 `modules/system/solaar.nix`.
 
@@ -274,18 +282,18 @@ autostart `.desktop` (`/etc/xdg/autostart/solaar.desktop`) — all in
 
 ### GNOME extensions
 
-*Declared:* nothing — extensions are **fully imperative** (DESIGN.md **L8**).
+_Declared:_ nothing — extensions are **fully imperative** (DESIGN.md **L8**).
 
 - Install and enable each extension via the GNOME Extensions app (or the
   **Extension Manager** flatpak); the extensions own their own settings.
-- For reference: a `home.packages` install *is* discoverable by gnome-shell (the
+- For reference: a `home.packages` install _is_ discoverable by gnome-shell (the
   old "needs a system module" claim was wrong), but extensions are kept fully
   imperative by choice — for leanness and a simpler mental model. The manual list
   lives in tuxies-wiki.
 
 ### Bitwarden (secrets)
 
-*Declared:* flatpak install `com.bitwarden.desktop`
+_Declared:_ flatpak install `com.bitwarden.desktop`
 (`modules/home/apps/flatpak-home.nix`).
 
 - Sign in to your account; secrets sync from the vault. There is **no** declarative
@@ -294,14 +302,14 @@ autostart `.desktop` (`/etc/xdg/autostart/solaar.desktop`) — all in
 
 ### VS Code (settings)
 
-*Declared:* install-only (`modules/home/apps/vscode.nix`).
+_Declared:_ install-only (`modules/home/apps/vscode.nix`).
 
 - Sign in to **Settings Sync**; settings and extensions restore from your GitHub
   account. Nix-managed settings would conflict (DESIGN.md **L10**).
 
 ### OpenWhispr (voice dictation) — UNTESTED
 
-*Declared:* `modules/system/openwhispr.nix`; toggle: `mySystem.openwhispr.enable`.
+_Declared:_ `modules/system/openwhispr.nix`; toggle: `mySystem.openwhispr.enable`.
 
 Integrates OpenWhispr via its upstream flake NixOS module
 (`inputs.openwhispr.nixosModules.default`), which handles the system-side
@@ -333,16 +341,16 @@ groups. A re-login is required for group membership to take effect.
 
 After the bootstrap, all switches go through `nh`:
 
-| Task | Command |
-|---|---|
-| Rebuild + switch system | `nh os switch` (alias: `sysw`) |
-| Rebuild + switch home | `nh home switch` (alias: `homesw`) |
-| Build system (no switch) | `nh os build` |
-| Build home (no switch) | `nh home build` |
-| GC old generations | `nh clean all` |
-| Search packages | `nix search nixpkgs <term>` (alias: `nixse`) |
-| Enter dev shell | `nix develop` |
-| Run formatter | `nix fmt` |
+| Task                     | Command                                      |
+| ------------------------ | -------------------------------------------- |
+| Rebuild + switch system  | `nh os switch` (alias: `sysw`)               |
+| Rebuild + switch home    | `nh home switch` (alias: `homesw`)           |
+| Build system (no switch) | `nh os build`                                |
+| Build home (no switch)   | `nh home build`                              |
+| GC old generations       | `nh clean all`                               |
+| Search packages          | `nix search nixpkgs <term>` (alias: `nixse`) |
+| Enter dev shell          | `nix develop`                                |
+| Run formatter            | `nix fmt`                                    |
 
 ### Flake path behavior
 
@@ -370,11 +378,11 @@ These are declared in `modules/home/shell/bash.nix`.
 All tooling is available in the devShell. `.envrc` (`use flake`) auto-loads it
 via nix-direnv on `cd`.
 
-| Tool | Role | How to run |
-|---|---|---|
-| nixfmt-rfc-style | Formatter | `nix fmt` |
-| statix | Linter (anti-patterns, `with pkgs;` detection) | `statix check .` |
-| deadnix | Dead code elimination | `deadnix .` |
-| git-hooks.nix | Pre-commit: runs all three on staged `.nix` files | automatic on `git commit` |
+| Tool             | Role                                              | How to run                |
+| ---------------- | ------------------------------------------------- | ------------------------- |
+| nixfmt-rfc-style | Formatter                                         | `nix fmt`                 |
+| statix           | Linter (anti-patterns, `with pkgs;` detection)    | `statix check .`          |
+| deadnix          | Dead code elimination                             | `deadnix .`               |
+| git-hooks.nix    | Pre-commit: runs all three on staged `.nix` files | automatic on `git commit` |
 
 `nix flake check` must pass before any merge to `main`.
